@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Xland.Models;
-using Xland.DAL;
 using Xland.Services;
 using Xland.ViewModels;
 using AutoMapper;
@@ -16,13 +15,12 @@ namespace Xland.Controllers
 {
     public class ProjectController : Controller
     {
-        private XlandContext db = new XlandContext();
 
-        private IProjectService service;
+        private IProjectService projectService;
 
         public ProjectController(IProjectService service)
         {
-            this.service = service;
+            this.projectService = service;
         }
 
         // GET: /Project/
@@ -44,10 +42,9 @@ namespace Xland.Controllers
 
              * */
 
-            var projects = service.GetAllProjects();
+            var projects = projectService.GetAllProjects();
 
             IEnumerable<ProjectIndexViewModel> viewModel = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectIndexViewModel>>(projects.Cast<Project>().AsEnumerable());
-
 
             return View(viewModel);
         }
@@ -82,8 +79,7 @@ namespace Xland.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Project.Add(project);
-                db.SaveChanges();
+                projectService.AddProject(project);
                 return RedirectToAction("Index");
             }
 
@@ -97,11 +93,12 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            var project = projectService.GetProject(id);
             if (project == null)
             {
                 return HttpNotFound();
             }
+            
             return View(project);
         }
 
@@ -114,8 +111,7 @@ namespace Xland.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-                db.SaveChanges();
+                projectService.EditProject(project);
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -128,7 +124,7 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            Project project = projectService.GetProject(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -141,9 +137,9 @@ namespace Xland.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Project project = db.Project.Find(id);
-            db.Project.Remove(project);
-            db.SaveChanges();
+            
+            projectService.DeleteProject(id);
+
             return RedirectToAction("Index");
         }
 
@@ -151,7 +147,7 @@ namespace Xland.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+               projectService.Dispose();
             }
             base.Dispose(disposing);
         }
