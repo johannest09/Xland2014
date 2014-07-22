@@ -10,5 +10,7 @@ namespace Xland.Models
         public int ID { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+
+        public virtual ICollection<Studio> Studios { get; set; }
     }
 }

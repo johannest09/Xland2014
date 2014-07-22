@@ -31,6 +31,7 @@ namespace Xland
             // e.g. container.RegisterType<ITestService, TestService>(); 
       
             container.RegisterType<IProjectService, ProjectService>();
+            container.RegisterType<IStudioService, StudioService>();
 
             RegisterTypes(container);
 
@@ -49,7 +50,11 @@ namespace Xland
             Mapper.CreateMap<Project, ProjectIndexViewModel>()
                 .ForMember(x => x.Title, o => o.MapFrom(s => s.Title))
                 .ForMember(x => x.ID, o => o.MapFrom(s => s.ID));
+
+            Mapper.CreateMap<ProjectEditViewModel, Project>();
+        
         }
+            
 
     }
 }

@@ -19,5 +19,7 @@ namespace Xland.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
         }
+
+        public System.Data.Entity.DbSet<Xland.Models.Studio> Studios { get; set; }
     }
 }

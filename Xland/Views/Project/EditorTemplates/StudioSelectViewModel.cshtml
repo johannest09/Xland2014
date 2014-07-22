@@ -1,0 +1,7 @@
+﻿@model Xland.ViewModels.StudioSelectViewModel
+
+@Html.HiddenFor(model => model.StudioID)
+@Html.HiddenFor(model => model.Name)
+
+@Html.LabelFor(model => model.IsSelected, Model.Name)
+@Html.EditorFor(model => model.IsSelected)

@@ -12,15 +12,18 @@ namespace Xland.Services
     public interface IProjectService
     {
         IList<string> GetProjectTitles();
-        IList<ProjectIndexViewModel> GetProjectTitlesAndID();
-        Project GetProject(int? id);
+        Project GetProjectById(int? id);
         void AddProject(Project project);
+        void AttachStudioToProject(Studio studio);
         void EditProject(Project project);
         void DeleteProject(int id);
 
-        void Dispose();
+        Project GetProjectIncludeStudios(int id);
 
         IEnumerable<Project> GetAllProjects();
 
+        void SaveChanges();
+
+        void Dispose();
     }
 }

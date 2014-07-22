@@ -22,42 +22,21 @@ namespace Xland.Services
             return projects.ToList();
         }
 
-        
-        public IDictionary<int, string> GetProjectTitlesAndID() 
-        {
-            var projects = (from p in this.context.Project
-                            select new
-                            {
-                                ID = p.ID,
-                                Title = p.Title
-                            }).ToList();
-
-
-            return projects.ToDictionary(p => p.ID, s => s.Title);
-
-        }
-
         public IEnumerable<Project> GetAllProjects()
         {
-       
             return this.context.Project.ToList();
-
         }
-
-
-        System.Collections.Generic.IList<ViewModels.ProjectIndexViewModel> IProjectService.GetProjectTitlesAndID()
-        {
-            throw new NotImplementedException();
-        }
-
 
         public void AddProject(Project project)
         {
             this.context.Project.Add(project);
             this.context.SaveChanges();
-            
         }
 
+        public void AttachStudioToProject(Studio studio)
+        {
+            context.Studios.Attach(studio);
+        }
 
         public void EditProject(Project project)
         {
@@ -65,8 +44,7 @@ namespace Xland.Services
             this.context.SaveChanges();
         }
 
-
-        public Project GetProject(int? id)
+        public Project GetProjectById(int? id)
         {
             return this.context.Project.Find(id);
 
@@ -78,7 +56,19 @@ namespace Xland.Services
 
             context.Project.Remove(project);
             context.SaveChanges();
+        }
 
+        public Project GetProjectIncludeStudios(int id)
+        {
+            var project = context.Project.Include(p => p.Studios)
+                .SingleOrDefault(p => p.ID == id);
+
+            return project;
+        }
+
+        public void SaveChanges()
+        {
+            context.SaveChanges();
         }
 
         public void Dispose()

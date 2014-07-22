@@ -17,10 +17,12 @@ namespace Xland.Controllers
     {
 
         private IProjectService projectService;
+        private IStudioService studioService;
 
-        public ProjectController(IProjectService service)
+        public ProjectController(IProjectService projectService, IStudioService studioService)
         {
-            this.projectService = service;
+            this.projectService = projectService;
+            this.studioService = studioService;
         }
 
         // GET: /Project/
@@ -56,7 +58,8 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Project.Find(id);
+            Project project = projectService.GetProjectById(id);
+
             if (project == null)
             {
                 return HttpNotFound();
@@ -67,23 +70,53 @@ namespace Xland.Controllers
         // GET: /Project/Create
         public ActionResult Create()
         {
-            return View();
+
+            var viewModel = new ProjectCreateViewModel 
+            { 
+                Studios = studioService.GetAllStudios().Select(s => new StudioSelectViewModel
+                {
+                    StudioID = s.ID,
+                    Name = s.Name,
+                    IsSelected = false
+                }).ToList()
+            };
+
+            return View(viewModel);
+            
         }
 
         // POST: /Project/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Title,Author")] Project project)
+        public ActionResult Create(ProjectCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var project = new Project
+                {
+                    Title = viewModel.Project.Title,
+                    Author = viewModel.Project.Author,
+                    Studios = new List<Studio>()
+                };
+
+                if (viewModel.Studios != null)
+                {
+                    foreach (var selectedStudio in viewModel.Studios.Where(s => s.IsSelected))
+                    {
+                        var studio = new Studio { ID = selectedStudio.StudioID };
+                        projectService.AttachStudioToProject(studio);
+                        project.Studios.Add(studio);
+                    }
+
+                    projectService.SaveChanges();
+                }
+
                 projectService.AddProject(project);
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            return View(viewModel);
         }
 
         // GET: /Project/Edit/5
@@ -93,18 +126,41 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var project = projectService.GetProject(id);
+
+            var project = projectService.GetProjectById(id);
+
             if (project == null)
             {
                 return HttpNotFound();
             }
-            
-            return View(project);
+
+            var selectedStudios = studioService.GetProjectStudios(id);
+
+            var viewModel = new ProjectEditViewModel
+            {
+                ID = project.ID,
+                Project = project
+            };
+
+            viewModel.Studios = studioService.GetAllStudios()
+                .Select(c => new StudioEditViewModel
+                {
+                    StudioID = c.ID,
+                    Name = c.Name
+                }).ToList();
+
+            foreach (var s in viewModel.Studios)
+            {
+                s.IsSelected = selectedStudios.Any(x => x.ID == s.StudioID);
+            }
+
+            return View(viewModel);
         }
 
         // POST: /Project/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ID,Title,Author")] Project project)
@@ -116,6 +172,52 @@ namespace Xland.Controllers
             }
             return View(project);
         }
+         * */
+
+        [HttpPost]
+        public ActionResult Edit(ProjectEditViewModel model)
+        {
+
+            //IEnumerable<ProjectIndexViewModel> viewModel = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectIndexViewModel>>(projects.Cast<Project>().AsEnumerable());
+            
+            //var project = model.Project;
+
+            var project = projectService.GetProjectIncludeStudios(model.ID);
+
+            if (model.Studios != null)
+            {
+                foreach (var studio in model.Studios)
+                {
+                    if (studio.IsSelected)
+                    {
+                        if (!project.Studios.Any( s => s.ID == studio.StudioID))
+                        {
+                            // if studio is selected but not yet
+                            // related in DB, add relationship
+                            var addedStudio = new Studio { ID = studio.StudioID };
+                            projectService.AttachStudioToProject(addedStudio);
+                            project.Studios.Add(addedStudio);
+                        }
+                    }
+                    else
+                    {
+                        var removedStudio = project.Studios
+                            .SingleOrDefault(s => s.ID == studio.StudioID);
+                        if (removedStudio != null)
+                        {
+                            // if studio is not selected but currently
+                            // related in DB, remove relationship
+                            project.Studios.Remove(removedStudio);
+                        }
+                    }
+                }
+
+                projectService.SaveChanges();
+            }
+
+
+            return View(model);
+        }
 
         // GET: /Project/Delete/5
         public ActionResult Delete(int? id)
@@ -124,7 +226,7 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = projectService.GetProject(id);
+            Project project = projectService.GetProjectById(id);
             if (project == null)
             {
                 return HttpNotFound();

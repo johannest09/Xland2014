@@ -119,3 +119,6 @@ C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xlan
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\AutoMapper.dll
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\AutoMapper.Net4.dll
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\AutoMapper.xml
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.studioclassadded.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.projectstudio.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.addingstudiotoprojectetc.resources

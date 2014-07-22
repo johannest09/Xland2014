@@ -1,49 +1,52 @@
-﻿@model Xland.Models.Project
-
+﻿@model Xland.ViewModels.ProjectCreateViewModel
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
-        <h4>Project</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
+            @Html.LabelFor(model => model.Project.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.Title, new { @class= "form-control"} )
+                @Html.ValidationMessageFor(model => model.Project.Title)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.Author, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.Author, new { @class= "form-control"} )
+                @Html.ValidationMessageFor(model => model.Project.Author)
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Author)
-                @Html.ValidationMessageFor(model => model.Author)
-            </div>
-        </div>
+        
+
+        @Html.EditorFor(model => model.Studios)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Bæta við" class="btn btn-primary" />
             </div>
         </div>
+
     </div>
 }
 
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Aftur í lista", "Index", null, new { @class = "btn btn-default" })
 </div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe-U-BLvwE6b8biTRNaYPmboqbJhrlhpU&sensor=false&amp;libraries=places"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
