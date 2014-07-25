@@ -113,7 +113,6 @@ C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\Mono.Math.
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.csproj.App.config
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Razor.dll
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Razor.xml
-C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.csprojResolveAssemblyReference.cache
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.init.resources
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.csproj.GenerateResource.Cache
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\AutoMapper.dll
@@ -122,3 +121,11 @@ C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\AutoMapper
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.studioclassadded.resources
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.projectstudio.resources
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.addingstudiotoprojectetc.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\WebActivatorEx.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\dotless.Core.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Optimization.Less.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Optimization.Less.pdb
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Optimization.Less.xml
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.photomodel.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.csprojResolveAssemblyReference.cache
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.photoaddtitle.resources

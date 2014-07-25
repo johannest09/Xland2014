@@ -32,6 +32,8 @@ namespace Xland
       
             container.RegisterType<IProjectService, ProjectService>();
             container.RegisterType<IStudioService, StudioService>();
+            container.RegisterType<IPhotoService, PhotoService>();
+            container.RegisterType<IPhotoGalleryService, PhotoGalleryService>();
 
             RegisterTypes(container);
 
@@ -52,6 +54,8 @@ namespace Xland
                 .ForMember(x => x.ID, o => o.MapFrom(s => s.ID));
 
             Mapper.CreateMap<ProjectEditViewModel, Project>();
+
+            
         
         }
             
