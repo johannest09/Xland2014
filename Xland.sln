@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xland", "Xland\Xland.csproj", "{9BEE1871-9CB6-4BFB-A5C2-F736067C875C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resources", "Resources\Resources.csproj", "{5FADE42D-68E8-40C9-B575-877B41A6ACA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{9BEE1871-9CB6-4BFB-A5C2-F736067C875C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BEE1871-9CB6-4BFB-A5C2-F736067C875C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BEE1871-9CB6-4BFB-A5C2-F736067C875C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FADE42D-68E8-40C9-B575-877B41A6ACA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FADE42D-68E8-40C9-B575-877B41A6ACA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FADE42D-68E8-40C9-B575-877B41A6ACA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FADE42D-68E8-40C9-B575-877B41A6ACA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

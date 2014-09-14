@@ -10,45 +10,75 @@ using Xland.Models;
 using Xland.Services;
 using Xland.ViewModels;
 using AutoMapper;
+using Xland.Utilities;
+using System.Globalization;
+using Xland.Filters;
+using Xland.Helpers;
 
 namespace Xland.Controllers
 {
-    public class ProjectController : Controller
-    {
 
+
+    public class ProjectController : BaseController
+    {
         private IProjectService projectService;
         private IStudioService studioService;
+        private IPhotoGalleryService photogalleryService;
+        private IPhotoService photoservice;
 
-        public ProjectController(IProjectService projectService, IStudioService studioService)
+        public ProjectController(IProjectService projectService, IStudioService studioService, IPhotoGalleryService photogalleryService, IPhotoService photoservice)
         {
             this.projectService = projectService;
             this.studioService = studioService;
+            this.photogalleryService = photogalleryService;
+            this.photoservice = photoservice;
         }
 
         // GET: /Project/
         
         public ActionResult Index()
         {
-            //return View(db.Project.ToList());
-
-            /*
-            var projectTitles = service.GetProjectTitles();
-            var list = new List<ProjectViewModel>();
-
-            foreach (var title in projectTitles)
-            {
-                var vm = new ProjectViewModel();
-                vm.Title = title;
-                list.Add(vm);
-            }
-
-             * */
-
-            var projects = projectService.GetAllProjects();
+            var projects = projectService.GetProjects();
 
             IEnumerable<ProjectIndexViewModel> viewModel = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectIndexViewModel>>(projects.Cast<Project>().AsEnumerable());
 
             return View(viewModel);
+        }
+
+        public ActionResult Info(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var project = projectService.GetProjectIncludeStudios(id);
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new ProjectInfoViewModel
+            {
+                Project = project
+            };
+
+            var gallery = (from g in photogalleryService.GetAllPhotoGalleries()
+                          where g.Project.ID == project.ID
+                          select g).SingleOrDefault();
+
+            if (gallery != null)
+            {
+                var photos = (from p in photoservice.GetPhotos()
+                              where p.PhotoGallery.ID == gallery.ID
+                              select p).ToList();
+                model.Photos = photos;
+
+            }
+
+
+            return View(model);
         }
 
         // GET: /Project/Details/5
@@ -58,12 +88,16 @@ namespace Xland.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = projectService.GetProjectById(id);
+
+            var project = projectService.GetProjectById(id);
 
             if (project == null)
             {
                 return HttpNotFound();
             }
+
+
+
             return View(project);
         }
 
@@ -93,12 +127,10 @@ namespace Xland.Controllers
         {
             if (ModelState.IsValid)
             {
-                var project = new Project
-                {
-                    Title = viewModel.Project.Title,
-                    Author = viewModel.Project.Author,
-                    Studios = new List<Studio>()
-                };
+          
+                var project = viewModel.Project;
+                
+                project.Studios = new List<Studio>();
 
                 if (viewModel.Studios != null)
                 {
@@ -108,8 +140,6 @@ namespace Xland.Controllers
                         projectService.AttachStudioToProject(studio);
                         project.Studios.Add(studio);
                     }
-
-                    projectService.SaveChanges();
                 }
 
                 projectService.AddProject(project);
@@ -154,6 +184,11 @@ namespace Xland.Controllers
                 s.IsSelected = selectedStudios.Any(x => x.ID == s.StudioID);
             }
 
+            var projectTypes = from ProjectType s in Enum.GetValues(typeof(ProjectType))
+               select new { ID = s, Name = s.ToString() };
+
+            ViewData["projectTypes"] = new SelectList(projectTypes, "ID", "Name", project.ProjectType);
+
             return View(viewModel);
         }
 
@@ -175,46 +210,79 @@ namespace Xland.Controllers
          * */
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(ProjectEditViewModel model)
         {
 
-            //IEnumerable<ProjectIndexViewModel> viewModel = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectIndexViewModel>>(projects.Cast<Project>().AsEnumerable());
-            
-            //var project = model.Project;
-
-            var project = projectService.GetProjectIncludeStudios(model.ID);
-
-            if (model.Studios != null)
+            if (ModelState.IsValid)
             {
-                foreach (var studio in model.Studios)
+                var project = projectService.GetProjectIncludeStudios(model.ID);
+                string projectType = Request["ProjectTypes"];
+
+                // Mapper does not work!
+                //project = Mapper.Map<ProjectEditViewModel, Project>(model, project);
+                //ProjectMapper.Map(model.Project, project);
+
+
+                project.ID = model.ID;
+                project.Title = model.Project.Title;
+                project.ProjectType = (ProjectType)Enum.Parse(typeof(ProjectType), projectType);
+                project.ContactPerson = model.Project.ContactPerson;
+                project.ProjectBeginDate = model.Project.ProjectBeginDate;
+                project.ProjectEndDate = model.Project.ProjectEndDate;
+                project.InProgress = model.Project.InProgress;
+                project.CapitalCost = model.Project.CapitalCost;
+                project.Designers = model.Project.Designers;
+                project.Affiliates = model.Project.Affiliates;
+                project.ProjectOwner = model.Project.ProjectOwner;
+                project.Contractor = model.Project.Contractor;
+                project.AreaSize = model.Project.AreaSize;
+                project.Description = model.Project.Description;
+                project.DescriptionEnglish = model.Project.DescriptionEnglish;
+                project.Lat = model.Project.Lat;
+                project.Long = model.Project.Long;
+                project.ProjectLocation = model.Project.ProjectLocation;
+                project.Locality = model.Project.Locality;
+                
+
+                if (model.Studios != null)
                 {
-                    if (studio.IsSelected)
+                    foreach (var studio in model.Studios)
                     {
-                        if (!project.Studios.Any( s => s.ID == studio.StudioID))
+                        if (studio.IsSelected)
                         {
-                            // if studio is selected but not yet
-                            // related in DB, add relationship
-                            var addedStudio = new Studio { ID = studio.StudioID };
-                            projectService.AttachStudioToProject(addedStudio);
-                            project.Studios.Add(addedStudio);
+                            if (!project.Studios.Any(s => s.ID == studio.StudioID))
+                            {
+                                // if studio is selected but not yet
+                                // related in DB, add relationship
+                                var addedStudio = new Studio { ID = studio.StudioID };
+                                projectService.AttachStudioToProject(addedStudio);
+                                project.Studios.Add(addedStudio);
+                            }
+
+                            projectService.SaveChanges();
+                        }
+                        else
+                        {
+                            var removedStudio = project.Studios
+                                .SingleOrDefault(s => s.ID == studio.StudioID);
+                            if (removedStudio != null)
+                            {
+                                // if studio is not selected but currently
+                                // related in DB, remove relationship
+                                project.Studios.Remove(removedStudio);
+                            }
                         }
                     }
-                    else
-                    {
-                        var removedStudio = project.Studios
-                            .SingleOrDefault(s => s.ID == studio.StudioID);
-                        if (removedStudio != null)
-                        {
-                            // if studio is not selected but currently
-                            // related in DB, remove relationship
-                            project.Studios.Remove(removedStudio);
-                        }
-                    }
+                    projectService.EditProject(project);
+                    projectService.SaveChanges();
                 }
 
-                projectService.SaveChanges();
-            }
+                var projectTypes = from ProjectType s in Enum.GetValues(typeof(ProjectType))
+                                   select new { ID = s, Name = s.ToString() };
 
+                ViewData["projectTypes"] = new SelectList(projectTypes, "ID", "Name", project.ProjectType);
+            }
 
             return View(model);
         }
@@ -244,6 +312,47 @@ namespace Xland.Controllers
 
             return RedirectToAction("Index");
         }
+        
+        /*
+        public enum ProjectType
+        {
+            Almenningsrými, Saga, Samkeppnir, Skipulag
+        }
+         * */
+
+        private IEnumerable<SelectListItem> GetProjectTypes()
+        {
+            
+            return null;
+        }
+
+        public ActionResult SetCulture(string culture)
+        {
+            // Validate input
+            culture = CultureHelper.GetImplementedCulture(culture);
+            //RouteData.Values["culture"] = culture;  // set culture
+
+            // Save culture in a cookie
+            
+            HttpCookie cookie = Request.Cookies["_culture"];
+            if (cookie != null)
+                cookie.Value = culture;   // update cookie value
+            else
+            {
+                cookie = new HttpCookie("_culture");
+                cookie.Value = culture;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
+
+            var currentUri = Request.Url.AbsoluteUri;
+
+            var returUrl = Request["returnUrl"];
+
+            return Redirect(returUrl);
+
+        }    
+
 
         protected override void Dispose(bool disposing)
         {
@@ -253,5 +362,7 @@ namespace Xland.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }

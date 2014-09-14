@@ -10,6 +10,8 @@ using Xland.Models;
 using Xland.DAL;
 using Xland.Services;
 using System.IO;
+using System.Drawing;
+using Xland.ViewModels;
 
 namespace Xland.Controllers
 {
@@ -19,6 +21,11 @@ namespace Xland.Controllers
         private IPhotoGalleryService photoGalleryService;
         private IPhotoService photoService;
         private IProjectService projectService;
+
+        const int MAX_WIDTH = 1080;
+        const int MAX_HEIGHT = 800;
+
+        public const string GalleryUploadFolderPath = "~/Content/PhotoGalleries/";
 
         public PhotoGalleryController(IPhotoGalleryService photoGalleryService, IPhotoService photoService, IProjectService projectService)
         {
@@ -32,7 +39,8 @@ namespace Xland.Controllers
         {
             var galleries = photoGalleryService.GetAllPhotoGalleries();
 
-            //IEnumerable<ProjectIndexViewModel> viewModel = Mapper.Map<IEnumerable<Project>, IEnumerable<ProjectIndexViewModel>>(projects.Cast<Project>().AsEnumerable());
+            ViewBag.ProjectTitles = photoGalleryService.GetPhotoGalleryProjectTitles();
+            ViewBag.ImageGalleryImageCount = photoGalleryService.GetPhotoGalleryPhotoCount();
 
             return View(galleries);
         }
@@ -40,79 +48,101 @@ namespace Xland.Controllers
         // GET: /PhotoGallery/Details/5
         public ActionResult Details(int? id)
         {
-            
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var gallery = photoGalleryService.GetGalleryById(id);
+
+           
+            // Get All Images associated to ImageGallery
+
+            var galleryPhotos = (from p in photoService.GetPhotos()
+                                    where p.PhotoGallery.ID == gallery.ID
+                                    select p).ToList();
+
+            var projectTitle = projectService.GetProjectById(gallery.Project.ID).Title;
+
+            var model = new PhotoGalleryDetailViewModel { 
+                ID = gallery.ID, 
+                ProjectTitle = projectTitle, 
+                photoGallery = gallery, 
+                photos = galleryPhotos 
+            };
+
+            return View(model);
         }
 
         // GET: /PhotoGallery/Create
         public ActionResult Create()
         {
-            ViewBag.ProjectID = new SelectList(projectService.GetAllProjects(), "ID", "Title");
-            return View();
+          
+            PhotoGalleryCreateViewModel vm = new PhotoGalleryCreateViewModel();
+
+            //ViewBag.photogalleries = projectService.GetProjects().Select(x => new SelectListItem { Text = x.Title, Value = x.ID.ToString() });
+
+            ViewBag.photogalleries = projectService.GetProjectsWithoutGalleries().Select(x => new SelectListItem { Text = x.Title, Value = x.ID.ToString() });
+            return View(vm);
         }
 
         // POST: /PhotoGallery/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID")] PhotoGallery photogallery, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(PhotoGalleryCreateViewModel photogalleryVm, IEnumerable<HttpPostedFileBase> files)
         {
+
             if (ModelState.IsValid)
             {
-                // Get the project id and attach to imagegallery
-                var projectId = Convert.ToInt32(Request.Params["ProjectID"]);
-                photogallery.Project = projectService.GetProjectById(projectId);
-                photoGalleryService.CreateGallery(photogallery);
-                
+
                 if (files != null)
                 {
-                    // Create image folder for the gallery using the gallery id as unique name
-                    string ImageGalleryDirectory = Server.MapPath("~/Content/PhotoGalleries");
-                    string foldername = "Gallery" + photogallery.ID;
-                    Directory.CreateDirectory(ImageGalleryDirectory + "\\" + foldername);
+
+                    var photogallery = new PhotoGallery();
+
+                    photogallery.Project = projectService.GetProjectById(photogalleryVm.ProjectId);
+                    photoGalleryService.CreateGallery(photogallery);
+
+                    string galleryUploadPath= Server.MapPath(GalleryUploadFolderPath);
+                    string folderUniqueName = "Gallery" + photogallery.ID + "/";
+
+                    Directory.CreateDirectory(galleryUploadPath + "\\" + folderUniqueName);
+                    string galleryPath = GalleryUploadFolderPath + folderUniqueName;
 
                     foreach (var file in files)
                     {
-                        string filename = System.IO.Path.GetFileName(file.FileName);
-                        string path = System.IO.Path.Combine(Server.MapPath("~/Content/PhotoGalleries/" + foldername), filename);
-                        file.SaveAs(path);
-                        photoService.CreatePhotoBulk(filename, foldername, path, photogallery);
+                        if (file.ContentLength == 0)
+                            continue;
+
+                        if (file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            photoService.UploadPhoto(file, galleryPath, MAX_WIDTH, MAX_HEIGHT);
+                            photoService.CreatePhotoBulk(GalleryUploadFolderPath, file.FileName, folderUniqueName, photogallery);
+                        }
                     }
                 }
                 return RedirectToAction("Index");
-            }
-
-            return View(photogallery);
-        }
-
-        // GET: /PhotoGallery/Edit/5
-        public ActionResult Edit(int? id)
-        {
-           
-            return View();
-        }
-
-        // POST: /PhotoGallery/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID")] PhotoGallery photogallery)
-        {
-            if (ModelState.IsValid)
-            {
                 
-                return RedirectToAction("Index");
             }
-            return View(photogallery);
+
+            return View(photogalleryVm);
         }
 
         // GET: /PhotoGallery/Delete/5
         public ActionResult Delete(int? id)
         {
-            
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var gallery = photoGalleryService.GetGalleryById(id);
+            if (gallery == null)
+            {
+                return HttpNotFound();
+            }
+            return View(gallery);
         }
 
         // POST: /PhotoGallery/Delete/5
@@ -120,9 +150,41 @@ namespace Xland.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var gallery = photoGalleryService.GetGalleryById(id);
+
+            // Get the gallery directory
+            string galleryPath = Server.MapPath(GalleryUploadFolderPath + "/Gallery" + gallery.ID);
+            photoGalleryService.DeleteGallery(id, galleryPath);
            
             return RedirectToAction("Index");
         }
+
+        public string DeletePhoto(int id)
+        {
+            var photo = photoService.GetPhotoById(id);
+
+            if (photo == null)
+            {
+                return "0";
+            }
+            try
+            {
+                photoService.DeletePhoto(id);
+
+                // Remove photo from directory
+                string path = Server.MapPath(photo.Path);
+                System.IO.File.Delete(path);
+
+                return "1";
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return "0";
+        }
+
+        
 
         protected override void Dispose(bool disposing)
         {

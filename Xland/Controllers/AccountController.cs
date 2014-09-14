@@ -23,6 +23,7 @@ namespace Xland.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            FormsAuthentication.SignOut();
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

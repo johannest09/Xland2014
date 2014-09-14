@@ -18,6 +18,8 @@ namespace Xland.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
+            //Database.SetInitializer<XlandContext>(new DropCreateDatabaseIfModelChanges<XlandContext>());
+
         }
 
         public System.Data.Entity.DbSet<Xland.Models.Studio> Studios { get; set; }

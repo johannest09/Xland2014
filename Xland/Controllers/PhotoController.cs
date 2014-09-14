@@ -83,7 +83,6 @@ namespace Xland.Controllers
         // GET: /Photo/Delete/5
         public ActionResult Delete(int? id)
         {
-            
             return View();
         }
 
@@ -99,6 +98,18 @@ namespace Xland.Controllers
         public void DeletePhoto(int id)
         {
             photoService.DeletePhoto(id);
+        }
+
+        [HttpPost]
+        public void SetAsMainPhoto(int id)
+        {
+            photoService.SetAsMainPhoto(id);
+        }
+
+        [HttpPost]
+        public void SavePhotoText(int id, string title, string text)
+        {
+            photoService.SavePhotoText(id, title, text);
         }
 
         protected override void Dispose(bool disposing)

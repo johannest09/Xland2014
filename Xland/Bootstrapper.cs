@@ -6,6 +6,9 @@ using Xland.Controllers;
 using AutoMapper;
 using Xland.Models;
 using Xland.ViewModels;
+using Xland.UnitOfWork;
+using Xland.Repository;
+using System.Configuration;
 
 namespace Xland
 {
@@ -13,15 +16,15 @@ namespace Xland
     {
         public static IUnityContainer Initialise()
         {
-
-            var container = BuildUnityContainer();
+            var connectionstring = System.Configuration.ConfigurationManager.ConnectionStrings["XlandContext"].ConnectionString;
+            var container = BuildUnityContainer(connectionstring);
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             return container;
         }
 
-        private static IUnityContainer BuildUnityContainer()
+        private static IUnityContainer BuildUnityContainer(string connectionstring)
         {
             var container = new UnityContainer();
 
@@ -29,11 +32,18 @@ namespace Xland
             // it is NOT necessary to register your controllers
 
             // e.g. container.RegisterType<ITestService, TestService>(); 
+
+
+
+            container.RegisterType<IUnitOfWork, Xland.UnitOfWork.UnitOfWork>(new HierarchicalLifetimeManager(), new InjectionConstructor(connectionstring));
+            container.RegisterType(typeof(IGenericRepository<>), typeof(GenericRepository<>));
       
             container.RegisterType<IProjectService, ProjectService>();
             container.RegisterType<IStudioService, StudioService>();
             container.RegisterType<IPhotoService, PhotoService>();
             container.RegisterType<IPhotoGalleryService, PhotoGalleryService>();
+
+
 
             RegisterTypes(container);
 
@@ -53,7 +63,12 @@ namespace Xland
                 .ForMember(x => x.Title, o => o.MapFrom(s => s.Title))
                 .ForMember(x => x.ID, o => o.MapFrom(s => s.ID));
 
-            Mapper.CreateMap<ProjectEditViewModel, Project>();
+
+            // CreateMap<Foo, Bar>().ForMember(x => x.Blarg, opt => opt.Ignore());
+            Mapper.CreateMap<ProjectEditViewModel, Project>()
+                .ForMember(x => x.Studios, opt => opt.Ignore())
+                .ForMember(x => x.ProjectType, opt => opt.Ignore()
+                );
 
             
         

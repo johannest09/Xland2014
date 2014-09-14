@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title - Xland</title>
+
+        @Styles.Render("~/Content/less")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/back")
+
+
+        @RenderSection("scripts", required: false)
+    </head>
+    <body class="admin">
+        @Html.Partial("_NavigationPartialFixed")
+        <div class="container-fluid">
+            
+            <div class="row">
+
+                @Html.Partial("_SidebarPartial");
+                
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    @RenderSection("featured", required: false)
+                    <div class="container">
+                        @RenderBody()
+                    </div>
+                </div>
+                
+            </div>
+
+        </div>
+
+        @Scripts.Render("~/bundles/bootstrap")
+    </body>
+    
+</html>

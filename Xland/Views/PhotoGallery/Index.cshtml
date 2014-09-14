@@ -2,26 +2,48 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Myndasöfn</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@Html.ActionLink("Bæta við Myndasafni", "Create", null, new { @class="btn btn-primary btn-lg btn-create" })
+
 <table class="table">
-    <tr>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    <thead>
+        <tr>
+            <th>Auðkenni</th>
+            <th>Verkefni</th>
+            <th>Fjöldi mynda</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @{
+                    var projectTitle = ViewBag.ProjectTitles[item.Project.ID];
+                    @projectTitle
+                }
+            </td>
+            <td>
+                @{
+                    @ViewBag.ImageGalleryImageCount[item.ID];
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Skoða", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Eyða", "Delete", new { id = item.ID })
+            </td>
+          
+        </tr>
+    }
+    
+
 
 </table>

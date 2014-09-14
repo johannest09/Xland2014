@@ -1,21 +1,32 @@
-﻿<div class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        @*@Html.ActionLink("Xland", "Index", "Home", null, new { @class = "navbar-brand" })*@
+﻿<div class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*@Html.ActionLink("Xland", "Index", "Home", null, new { @class = "navbar-brand" })*@
 
-        <a href=@Url.Action("Index", "Home") class="navbar-brand"><img src="~/Content/images/xland-logo-light.png" alt="Xland" style="height:60%" /></a>
-    </div>
-    <div class="navbar-collapse collapse">
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
+        </div>
+        <div class="navbar-collapse collapse">
         
-        <ul class="nav navbar-nav">
-            <li>@Html.ActionLink("Verkefni", "Index", "Project")</li>
-            <li>@Html.ActionLink("Stofur", "Index", "Studio")</li>
-            <li>@Html.ActionLink("Myndagallerí", "Index", "PhotoGallery")</li>
-        </ul>
-        @*@Html.Partial("_LoginPartial")*@
+            @*@Html.Partial("_LoginPartial")*@
+
+            <section class="category-select">
+                
+				<select class="cs-select cs-skin-underline">
+					<option value="">@Resources.Resources.ChooseCategory</option>
+                    <option value="0">@Resources.Resources.PublicSpaces</option>
+					<option value="1">@Resources.Resources.Historical</option>
+					<option value="2">@Resources.Resources.Competitions</option>
+					<option value="3">@Resources.Resources.Regional</option>
+					<option value="4">@Resources.Resources.All</option>
+				</select>
+			</section>
+
+        </div>
     </div>
+    
 </div>

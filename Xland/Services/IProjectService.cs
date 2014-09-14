@@ -18,12 +18,15 @@ namespace Xland.Services
         void EditProject(Project project);
         void DeleteProject(int id);
 
-        Project GetProjectIncludeStudios(int id);
+        Project GetProjectIncludeStudios(int? id);
+        string GetProjectGalleryMainPhotoPath(int id);
 
-        IEnumerable<Project> GetAllProjects();
+        IEnumerable<Project> GetProjects();
+        IEnumerable<Project> GetProjectsWithoutGalleries();
 
         void SaveChanges();
 
         void Dispose();
+
     }
 }

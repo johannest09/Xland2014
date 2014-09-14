@@ -84,6 +84,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ImageResizer">
+      <HintPath>..\packages\ImageResizer.3.4.3\lib\ImageResizer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -234,6 +237,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\language.en.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language.en.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.en.designer.Designer.cs</LastGenOutput>
+    </Compile>
+    <Compile Include="App_GlobalResources\language.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language.resx</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </Compile>
+    <Compile Include="App_GlobalResources\language.en.designer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>language.en.designer.cs</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -270,6 +291,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\PhotoGalleryController.cs" />
@@ -277,32 +299,38 @@
     <Compile Include="Controllers\StudioController.cs" />
     <Compile Include="DAL\XlandContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\InternationalizationAttribute .cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407152141441_init.cs" />
-    <Compile Include="Migrations\201407152141441_init.Designer.cs">
-      <DependentUpon>201407152141441_init.cs</DependentUpon>
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Migrations\201408011609194_inital commit.cs" />
+    <Compile Include="Migrations\201408011609194_inital commit.Designer.cs">
+      <DependentUpon>201408011609194_inital commit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407202121054_studio class added.cs" />
-    <Compile Include="Migrations\201407202121054_studio class added.Designer.cs">
-      <DependentUpon>201407202121054_studio class added.cs</DependentUpon>
+    <Compile Include="Migrations\201408040052543_project model updated.cs" />
+    <Compile Include="Migrations\201408040052543_project model updated.Designer.cs">
+      <DependentUpon>201408040052543_project model updated.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407211513136_projectstudio.cs" />
-    <Compile Include="Migrations\201407211513136_projectstudio.Designer.cs">
-      <DependentUpon>201407211513136_projectstudio.cs</DependentUpon>
+    <Compile Include="Migrations\201408041358107_project model changes.cs" />
+    <Compile Include="Migrations\201408041358107_project model changes.Designer.cs">
+      <DependentUpon>201408041358107_project model changes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407212044092_adding studio to project etc..cs" />
-    <Compile Include="Migrations\201407212044092_adding studio to project etc..Designer.cs">
-      <DependentUpon>201407212044092_adding studio to project etc..cs</DependentUpon>
+    <Compile Include="Migrations\201408041442106_project model required fields.cs" />
+    <Compile Include="Migrations\201408041442106_project model required fields.Designer.cs">
+      <DependentUpon>201408041442106_project model required fields.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407251620518_photo model.cs" />
-    <Compile Include="Migrations\201407251620518_photo model.Designer.cs">
-      <DependentUpon>201407251620518_photo model.cs</DependentUpon>
+    <Compile Include="Migrations\201408101638285_property added to Project.cs" />
+    <Compile Include="Migrations\201408101638285_property added to Project.Designer.cs">
+      <DependentUpon>201408101638285_property added to Project.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201407252013231_photo add title.cs" />
-    <Compile Include="Migrations\201407252013231_photo add title.Designer.cs">
-      <DependentUpon>201407252013231_photo add title.cs</DependentUpon>
+    <Compile Include="Migrations\201408241708419_change project model.cs" />
+    <Compile Include="Migrations\201408241708419_change project model.Designer.cs">
+      <DependentUpon>201408241708419_change project model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408302119186_photo model properties changes.cs" />
+    <Compile Include="Migrations\201408302119186_photo model properties changes.Designer.cs">
+      <DependentUpon>201408302119186_photo model properties changes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -311,6 +339,8 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Studio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
     <Compile Include="Services\IPhotoGalleryService.cs" />
     <Compile Include="Services\IPhotoService.cs" />
     <Compile Include="Services\IProjectService.cs" />
@@ -319,16 +349,37 @@
     <Compile Include="Services\PhotoService.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\StudioService.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Utilities\XlandExtensions.cs" />
+    <Compile Include="ViewModels\PhotoGalleryCreateViewModel.cs" />
+    <Compile Include="ViewModels\PhotoGalleryDetailViewModel.cs" />
     <Compile Include="ViewModels\ProjectCreateViewModel.cs" />
     <Compile Include="ViewModels\ProjectEditViewModel.cs" />
     <Compile Include="ViewModels\ProjectIndexViewModel.cs" />
+    <Compile Include="ViewModels\ProjectInfoViewModel.cs" />
     <Compile Include="ViewModels\StudioEditViewModel.cs" />
     <Compile Include="ViewModels\StudioSelectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\css\component.css" />
+    <Content Include="Content\css\cs-select.css" />
+    <Content Include="Content\css\cs-skin-underline.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\googlegriddemo.css" />
+    <Content Include="Content\fonts\futura\FuturaLT-Bold.svg" />
+    <Content Include="Content\fonts\futura\FuturaLT.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\xland-logo-dark.png" />
+    <Content Include="Content\Images\xland-logo-light.png" />
     <Content Include="Content\screen.css" />
+    <Content Include="Content\Template\icons\fila-logo-greyscale.jpg" />
+    <Content Include="Content\Template\icons\marker_green.png" />
+    <Content Include="Content\Template\icons\marker_orange.png" />
+    <Content Include="Content\Template\icons\marker_purple.png" />
+    <Content Include="Content\Template\icons\marker_yellow.png" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -393,7 +444,14 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="Content\themes\flatly.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome\bpicons\bpicons.svg" />
+    <Content Include="fonts\fontawesome\fontawesome.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\icomoon\component.css" />
+    <Content Include="fonts\icomoon\cs-skin-underline.css" />
+    <Content Include="fonts\icomoon\font-awesome.css" />
+    <Content Include="fonts\icomoon\font-awesome.min.css" />
+    <Content Include="fonts\icomoon\googlegriddemo.css" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -494,9 +552,37 @@
     <Content Include="Content\less\mixins\vendor-prefixes.less" />
     <Content Include="Content\less\flatly.less" />
     <Content Include="Content\less\variables_flatly.less" />
+    <Content Include="Content\less\datepicker.less" />
+    <Content Include="Content\less\responsive.less" />
+    <Content Include="Scripts\GoogleGridGallery\cbpGridGallery.js" />
+    <Content Include="Scripts\GoogleGridGallery\classie.js" />
+    <Content Include="Scripts\GoogleGridGallery\imagesloaded.pkgd.min.js" />
+    <Content Include="fonts\fontawesome\fontawesome.eot" />
+    <Content Include="fonts\fontawesome\fontawesome.ttf" />
+    <Content Include="fonts\fontawesome\fontawesome.woff" />
+    <Content Include="fonts\fontawesome\bpicons\bpicons.eot" />
+    <Content Include="fonts\fontawesome\bpicons\bpicons.ttf" />
+    <Content Include="fonts\fontawesome\bpicons\bpicons.woff" />
+    <Content Include="Content\fonts\futura\FuturaLT-Bold.otf" />
+    <Content Include="Content\fonts\futura\FuturaLT-Bold.ttf" />
+    <Content Include="Content\fonts\futura\FuturaLT-Bold.woff" />
+    <Content Include="Content\fonts\futura\FuturaLT-Book.ttf" />
+    <Content Include="Content\fonts\futura\FuturaLT.otf" />
+    <Content Include="Content\fonts\futura\FuturaLT.ttf" />
+    <Content Include="Content\less\fonts.less" />
+    <Content Include="Content\fonts\futura\FuturaLT.woff" />
+    <Content Include="Content\less\caption-overlay.less" />
+    <None Include="Properties\PublishProfiles\xland %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Xland.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\application-back.js" />
+    <Content Include="Scripts\application-front.js" />
+    <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\GoogleGridGallery\masonry.pkgd.min.js" />
+    <Content Include="Scripts\isotope.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
@@ -511,7 +597,183 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
+    <Content Include="Scripts\lib\classie.js" />
+    <Content Include="Scripts\lib\lib-back.js" />
+    <Content Include="Scripts\lib\lib-front.js" />
+    <Content Include="Scripts\lib\lib.js" />
+    <Content Include="Scripts\map\googleMapApi.js" />
+    <Content Include="Scripts\map\jquery-ui-map.js" />
+    <Content Include="Scripts\map\mapSetup.js" />
+    <Content Include="Scripts\map\mapStyle.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\lib\selectFx.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\css\dialog.css" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\buttons.png" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\icons.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\items.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_arrow.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\menu_check.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\progress.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\img\tabs.gif" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\editable_selects.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\form_utils.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\mctabs.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\utils\validate.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example\dialog.html" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Clipboard.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Quirks.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Utils.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\WordFilter.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\classes\DomTextMatcher.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\CellSelection.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\Dialogs.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\Quirks.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\TableGrid.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\article.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\aside.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\blockquote.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\div.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\dl.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\figure.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h1.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h2.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h3.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h4.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h5.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h6.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\hgroup.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\ol.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\p.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\pre.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\section.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\ul.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
     <Content Include="Unity.Mvc4.README.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -579,34 +841,69 @@
     <Content Include="Views\PhotoGallery\Details.cshtml" />
     <Content Include="Views\PhotoGallery\Edit.cshtml" />
     <Content Include="Views\PhotoGallery\Index.cshtml" />
+    <Content Include="Scripts\map\jquery.geocomplete.min.js" />
+    <Content Include="Views\Shared\_Layout_admin.cshtml" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.json" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.json" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Views\Shared\_SidebarPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout_Frontpage.cshtml" />
+    <Content Include="Views\Shared\_FrontpageSidebarPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout_Project.cshtml" />
+    <Content Include="Views\Project\Info.cshtml" />
+    <Content Include="Views\Shared\_NavigationPartialFixedProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
     <Folder Include="Content\PhotoGalleries\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201407152141441_init.resx">
-      <DependentUpon>201407152141441_init.cs</DependentUpon>
+    <Content Include="App_GlobalResources\language.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.en.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\language.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>language.designer.cs</LastGenOutput>
+    </Content>
+    <EmbeddedResource Include="Migrations\201408011609194_inital commit.resx">
+      <DependentUpon>201408011609194_inital commit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407202121054_studio class added.resx">
-      <DependentUpon>201407202121054_studio class added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408040052543_project model updated.resx">
+      <DependentUpon>201408040052543_project model updated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407211513136_projectstudio.resx">
-      <DependentUpon>201407211513136_projectstudio.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408041358107_project model changes.resx">
+      <DependentUpon>201408041358107_project model changes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407212044092_adding studio to project etc..resx">
-      <DependentUpon>201407212044092_adding studio to project etc..cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408041442106_project model required fields.resx">
+      <DependentUpon>201408041442106_project model required fields.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407251620518_photo model.resx">
-      <DependentUpon>201407251620518_photo model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408101638285_property added to Project.resx">
+      <DependentUpon>201408101638285_property added to Project.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201407252013231_photo add title.resx">
-      <DependentUpon>201407252013231_photo add title.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408241708419_change project model.resx">
+      <DependentUpon>201408241708419_change project model.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408302119186_photo model properties changes.resx">
+      <DependentUpon>201408302119186_photo model properties changes.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj">
+      <Project>{5fade42d-68e8-40c9-b575-877b41a6aca1}</Project>
+      <Name>Resources</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -626,7 +923,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63210</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53526/</IISUrl>
+          <IISUrl>http://localhost:63210/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

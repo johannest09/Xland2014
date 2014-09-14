@@ -1,18 +1,72 @@
-﻿@model Xland.Models.PhotoGallery
+﻿@model Xland.ViewModels.PhotoGalleryDetailViewModel
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
+<style>
+    .item {
+        float: left;
+        width: 300px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+        border: 1px solid #d4d4d4;
+        background: #f3f3f3;
+        border-radius: 2px;
+    }
+    .item img { width: 100%;}
+    ul.gallery-photos {
+        list-style: none;
+    }
+    .photo-actions {
+        margin: 20px;
+    }
+    .photo-text {
+        box-sizing: border-box;
+    }
+    
+</style>
 
-<h2>Details</h2>
+    
 
-<div>
-    <h4>PhotoGallery</h4>
-	<hr />
-    <dl class="dl-horizontal">
-    </dl>
+<div class="page-header">
+    <h1>Myndagallerí (auðkenni: @Html.DisplayFor(model => model.ID))<small> Fyrir verkefnið @Html.DisplayFor(model => model.ProjectTitle) </small></h1>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+
+
+
+<ul class="masonry js-masonry gallery-photos clearfix" data-masonry-options='{ "columnWidth": 200, "itemSelector": ".item" }'>
+                
+
+    @{
+        foreach(var photo in Model.photos)
+        {
+            <li class="item photo" data-photo-id="@photo.ID">
+                <img src="@Url.Content(photo.Path)" alt="@photo.Title" data-photoid="@photo.ID"  />
+
+                <div class="photo-actions">
+                    <a href="javascript:void(0);" title="Eyða" class="btn btn-md btn-danger btn-delete" data-id="@photo.ID">Eyða mynd</a>
+                    <a href="javascript:void(0);" title="Vista" class="btn btn-md btn-primary btn-save-photo" data-id="@photo.ID">Vista</a>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" class="main-photo" @(photo.IsMainPhoto == true? "checked='checked'" : "") />Aðalmynd
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="title" placeholder="Sláðu inn titil" value="@photo.Title" />
+                    </div>
+                    
+                    <textarea placeholder="Myndatexti sem birtist þegar mynd er skoðuð" rows="4"  cols="40" >@photo.Description</textarea>
+                </div>
+                
+            </li>
+        }
+    }
+</ul>
+
+
+<p class="clearfix">
+    @Html.ActionLink("Aftur í yfirlit", "Index", null, new { @class = "btn btn-default btn-lg" })
 </p>
+
+

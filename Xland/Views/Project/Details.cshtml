@@ -1,32 +1,150 @@
 ﻿@model Xland.Models.Project
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Verkefni";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Verkefni</h2>
 
 <div>
-    <h4>Project</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Author)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Author)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Website)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Website)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectBeginDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectBeginDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectEndDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectEndDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InProgress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InProgress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CapitalCost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CapitalCost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Affiliates)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Affiliates)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Designers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Designers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectOwner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectOwner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Contractor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AreaSize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AreaSize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LongDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LongDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectLocation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectLocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Locality)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Locality)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Studios)
+        </dt>
+        @foreach (var studio in Model.Studios)
+        {
+            <dd>@studio.Name</dd>
+        }
     </dl>
+  
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

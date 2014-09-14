@@ -1,9 +1,12 @@
 ﻿@model Xland.ViewModels.ProjectCreateViewModel
+
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+    
 }
 
-<h2>Create</h2>
+<h2>Bæta við verkefni</h2>
 
 @using (Html.BeginForm())
 {
@@ -18,23 +21,164 @@
                 @Html.ValidationMessageFor(model => model.Project.Title)
             </div>
         </div>
+        <!-- studios -->
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Project.Author, new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Stofur</label>
             <div class="col-md-6">
-                @Html.TextBoxFor(model => model.Project.Author, new { @class= "form-control"} )
-                @Html.ValidationMessageFor(model => model.Project.Author)
+                @Html.EditorFor(model => model.Studios)
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.EditorFor(model => model.Studios)
+            @Html.LabelFor(model => model.Project.Designers, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.Designers, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.Designers)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.ProjectType, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <select id="Project_ProjectType" class="form-control" name="Project.ProjectType">
+                    <option value="">Veldu tegund</option>
+                    <option value="0">Almenningsrými</option>
+                    <option value="1">Saga</option>
+                    <option value="2">Samkeppnir</option>
+                    <option value="3">Skipulag</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.ContactPerson, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.ContactPerson, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.ContactPerson)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.ProjectBeginDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <input class="datepicker form-control" placeholder="mm/yyyy" type="text" value="" id="Project_ProjectBeginDate" name="Project.ProjectBeginDate" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.ProjectEndDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <input class="datepicker form-control" placeholder="mm/yyyy" type="text" value="@DateTime.MaxValue.ToString()" id="Project_ProjectEndDate" name="Project.ProjectEndDate" data-date-format="mm/yyyy" data-date-viewmode="years" data-date-minviewmode="months">
             </div>
         </div>
         
         <div class="form-group">
+            @Html.LabelFor(model => model.Project.InProgress, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.CheckBoxFor(model => model.Project.InProgress)
+                @Html.ValidationMessageFor(model => model.Project.InProgress)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.CapitalCost, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Project.CapitalCost, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.CapitalCost)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.Affiliates, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.Affiliates, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.Affiliates)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.ProjectOwner, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.ProjectOwner, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.ProjectOwner)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.Contractor, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextBoxFor(model => model.Project.Contractor, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.Contractor)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.AreaSize, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.Project.AreaSize, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Project.AreaSize)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Project.Description, new { cols = "70", rows = "5", @class = "form-control tinymce" })
+                @Html.ValidationMessageFor(model => model.Project.Description)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Project.DescriptionEnglish, new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.TextAreaFor(model => model.Project.DescriptionEnglish, new { cols = "70", rows = "12", @class= "form-control tinymce" })
+                @Html.ValidationMessageFor(model => model.Project.DescriptionEnglish)
+            </div>
+        </div>
+
+
+        <!-- Geocomplete -->
+        <div class="geocomplete-inputs">
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-1">
+                    <h3 style="margin-bottom:40px;">Staðsetning og hnit</h3>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <input id="geocomplete" class="form-control" type="text" placeholder="Leita að staðsetningu" style="width:80%;float:left;margin:0 10px 10px 0;" />
+                    <input id="find" type="button" class="btn btn-small btn-info" value="Leita">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-2"><div id="mapPreview"></div></div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Project.Lat, new { @class = "control-label col-md-2 geocomplete" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Project.Lat, new Dictionary<string, Object> { { "class", "form-control" }, { "data-geo", "lat" } })
+                    @Html.ValidationMessageFor(model => model.Project.Lat)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Project.Long, new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.Project.Long, new Dictionary<string, Object> { { "class", "form-control" }, { "data-geo", "lng" } })
+                    @Html.ValidationMessageFor(model => model.Project.Long)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Project.ProjectLocation, new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Project.ProjectLocation, new Dictionary<string, Object> { { "class", "form-control" }, { "data-geo", "formatted_address" } })
+                    @Html.ValidationMessageFor(model => model.Project.ProjectLocation)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Project.Locality, new { @class = "control-label col-md-2" })
+                <div class="col-md-6">
+                    @Html.TextBoxFor(model => model.Project.Locality, new Dictionary<string, Object> { { "class", "form-control" }, { "data-geo", "locality" } })
+                    @Html.ValidationMessageFor(model => model.Project.Locality)
+                </div>
+            </div>
+        </div>
+        <div class="form-group"><div class="col-md-4"><a id="reset" class="btn btn-small" href="#" style="display:none;">Reset Marker</a></div></div>
+
+        
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Bæta við" class="btn btn-primary" />
+                @Html.ActionLink("Aftur í lista", "Index", null, new { @class = "btn btn-default" })
+                <input type="submit" value="Bæta við" class="btn btn-primary" style="margin-left: 10px;" />
             </div>
         </div>
 
@@ -42,13 +186,18 @@
 }
 
 
-<div>
-    @Html.ActionLink("Aftur í lista", "Index", null, new { @class = "btn btn-default" })
-</div>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCe-U-BLvwE6b8biTRNaYPmboqbJhrlhpU&sensor=false&amp;libraries=places"></script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        App.GeoCoding.Init();
+    });
+    
+</script>
 
 

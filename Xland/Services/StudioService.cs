@@ -5,75 +5,65 @@ using System.Linq;
 using System.Web;
 using Xland.DAL;
 using Xland.Models;
+using Xland.UnitOfWork;
+using Xland.Repository;
 
 namespace Xland.Services
 {
     public class StudioService : IStudioService
     {
 
-        private XlandContext context = new XlandContext();
+        private IUnitOfWork unitOfWork;
+        private IGenericRepository<Studio> studioRepository;
+
+        public StudioService(Xland.UnitOfWork.UnitOfWork unitOfWork, IGenericRepository<Studio> studioRepository)
+        {
+            this.unitOfWork = unitOfWork;
+            this.studioRepository = studioRepository;
+        }
 
         public IEnumerable<Studio> GetAllStudios()
         {
-            return context.Studios.ToList();
+            return studioRepository.GetAll();
         }
         
-
-
         public void CreateStudio(Studio studio)
         {
-            context.Studios.Add(studio);
-            context.SaveChanges();
+            studioRepository.Add(studio);
+            unitOfWork.Save();
         }
 
         public void AttachStudio(Studio studio)
         {
-            context.Studios.Attach(studio);
+            studioRepository.Attach(studio);
         }
 
         public void EditStudio(Studio studio)
         {
-            context.Entry(studio).State = EntityState.Modified;
-            context.SaveChanges();
+            studioRepository.Edit(studio);
+            unitOfWork.Save();
         }
 
         public void DeleteStudio(int id)
         {
-            Studio studio = this.GetStudioByID(id);
-            context.Studios.Remove(studio);
-            context.SaveChanges();
+            Studio studio = studioRepository.Find(id);
+            studioRepository.Delete(studio);
+            unitOfWork.Save();
         }
 
         public Studio GetStudioByID(int? id)
         {
-            return context.Studios.Find(id);
-        }
-        public List<KeyValuePair<int, string>> GetStudioNamesAndID()
-        {
-            var studios = context.Studios.ToList();
-
-            var keyValuPairs = new List<KeyValuePair<int, string>>();
-
-            foreach (var studio in studios)
-            {
-                keyValuPairs.Add(new KeyValuePair<int, string>(studio.ID, studio.Name));
-            }
-
-            return keyValuPairs;
+            return studioRepository.Find(id);
         }
 
         public IEnumerable<Studio> GetProjectStudios(int? id)
         {
-            var query = (from s in context.Studios
-                        where s.Projects.Any(p => p.ID == id)
-                        select s).ToList();
 
-            return query;
-        }
+            var projectStudios = (from s in studioRepository.GetAll()
+                          where s.Projects.Any(p => p.ID == id)
+                          select s).ToList();
 
-        public void Dispose()
-        {
-            context.Dispose();
+            return projectStudios;
         }
 
     }

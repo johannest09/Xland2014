@@ -13,8 +13,11 @@ namespace Xland.Services
         IEnumerable<PhotoGallery> GetAllPhotoGalleries();
         void CreateGallery(PhotoGallery gallery);
         void EditGallery(PhotoGallery gallery);
-        PhotoGallery GetGalleryById(int id);
-        void DeleteGallery(int id);
+        PhotoGallery GetGalleryById(int? id);
+        void DeleteGallery(int id, string galleryPath);
+
+        Dictionary<int, string> GetPhotoGalleryProjectTitles();
+        Dictionary<int, int> GetPhotoGalleryPhotoCount();
 
         void Dispose();
     }

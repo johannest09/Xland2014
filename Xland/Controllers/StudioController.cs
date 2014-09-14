@@ -119,6 +119,7 @@ namespace Xland.Controllers
             return RedirectToAction("Index");
         }
 
+        /*
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -127,5 +128,6 @@ namespace Xland.Controllers
             }
             base.Dispose(disposing);
         }
+         * */
     }
 }

@@ -15,8 +15,6 @@ namespace Xland.Services
         void AttachStudio(Studio studio);
         void EditStudio(Studio studio);
         void DeleteStudio(int id);
-        List<KeyValuePair<int, string>> GetStudioNamesAndID();
         IEnumerable<Studio> GetProjectStudios(int? id);
-        void Dispose();
     }
 }
