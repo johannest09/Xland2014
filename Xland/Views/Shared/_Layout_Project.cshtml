@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title - Xland</title>
+
+        @Styles.Render("~/Content/less/bootstrap.less")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/front")
+
+        <link rel="stylesheet" type="text/css" href="/Content/css/component.css" />
+        <!--link rel="stylesheet" type="text/css" href="/Content/css/font-awesome.css" /-->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+        @RenderSection("scripts", required: false)
+    </head>
+    <body class="project">
+       
+        <div id="wrap" class="container-fluid">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>        
+         
+        @Scripts.Render("~/bundles/bootstrap")
+
+        <script src="/Scripts/application-front.js" ></script>
+
+        <script src="/Scripts/GoogleGridGallery/imagesloaded.pkgd.min.js"></script>
+		<script src="/Scripts/GoogleGridGallery/masonry.pkgd.min.js"></script>
+		<script src="/Scripts/GoogleGridGallery/classie.js"></script>
+		<script src="/Scripts/GoogleGridGallery/cbpGridGallery.js"></script>
+		<script>
+		    new CBPGridGallery(document.getElementById('grid-gallery'));
+		</script>
+
+    </body>
+</html>

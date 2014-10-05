@@ -1,0 +1,21 @@
+﻿
+<div class="col-sm-3 col-md-2">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href=@Url.Action("Index", "Home") class="navbar-brand"><img src="~/Content/images/xland-logo-light.png" alt="Xland" /></a>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav nav-sidebar">
+            <li>@Html.ActionLink("Samkeppnir", "Flokkur", new { Id = "samkeppnir" })</li>
+            <li>@Html.ActionLink("Almenningsrými", "Flokkur", new { Id = "almenningsrymi" })</li>
+            <li>@Html.ActionLink("Samkeppnir", "Flokkur", new { Id = "samkeppnir" })</li>
+            <li>@Html.ActionLink("Saga", "Flokkur", new { Id = "Saga" })</li>
+            <li>@Html.ActionLink("Um Xland", "About", "Home")</li>
+        </ul>
+    </div>
+</div>
+    

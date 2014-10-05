@@ -1,0 +1,10 @@
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\bin\Debug\Resources.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\bin\Debug\Resources.pdb
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\bin\Debug\en\Resources.resources.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.Resources.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.Resources.en.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.csproj.GenerateResource.Cache
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\en\Resources.resources.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.pdb
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Resources\obj\Debug\Resources.csprojResolveAssemblyReference.cache

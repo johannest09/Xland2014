@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title - Xland</title>
+
+        @Styles.Render("~/Content/less/bootstrap.less")
+        @Styles.Render("~/Content/css");
+        
+
+        @RenderSection("scripts", required: false)
+    </head>
+    @{
+        var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    }
+    <body class="frontpage">
+        @helper selected(string c, string culture)
+            {
+                if (c == culture)
+                {
+                    @:class="selected"
+                }
+            }
+            
+        @using(Html.BeginForm("SetCulture", "Home"))
+        {
+            <div id="select-language">
+                <input type="hidden" name="culture" />
+                <div><a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a></div>
+                <div><a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a></div>
+            </div>
+        }
+        @Html.Partial("_NavigationPartialFixed")
+
+        <div id="map-container">
+                @RenderSection("featured", required: false)
+                @RenderBody()
+        </div>
+            @*Html.Partial("_NavigationPartialFixed")*@
+
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/map")
+    @Scripts.Render("~/bundles/front");
+
+
+
+    </body>
+</html>
