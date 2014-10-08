@@ -132,6 +132,9 @@
   <data name="AreaSize" xml:space="preserve">
     <value>Area size</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="CapitalCost" xml:space="preserve">
     <value>Capital cost</value>
   </data>

@@ -44,35 +44,37 @@
     }
 }
             
-@using(Html.BeginForm("SetCulture", "Project"))
-{
-    <div id="select-language">
-        <input type="hidden" name="culture" />
-        @Html.Hidden("returnUrl", this.Request.RawUrl)
-        <div><a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a></div>
-        <div><a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a></div>
-    </div>
-}
+            
+
 <div class="top">
     <div class="row">
         <div class="col-xs-12 col-sm-2 col-md-2">
             <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
-
         </div>
-        <div class="col-xs-12 col-sm-2 col-md-8">
+        <div class="col-xs-12 col-sm-10 col-md-10">
             <div class="row">
                 <header id="project-header">
                     <div class="col-xs-12 col-sm-8 col-md-6">
                         <h1 class="project-title">@Html.DisplayFor(model => model.Project.Title)</h1>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-6">
-                        <div class="project-type"><span>@Resources.Resources.Category</span>@projectType(Model.Project.ProjectType.ToString())</div>
+                        <div class="row">
+                            <a href="/" class="btn-back btn-mobile"><span>@Resources.Resources.Back</span></a>
+                            <a href="/" class="btn-back-desktop"><span>@Resources.Resources.Back</span></a>
+                            @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
+                            {
+                                <div id="select-language">
+                                    <input type="hidden" name="culture" />
+                                    <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
+                                    <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a>
+                                </div>
+                            }
+                            
+                        </div>
                     </div>
                 </header>
-                
             </div>
         </div>
-        
     </div>
 </div>
 
@@ -83,6 +85,7 @@
         <div class="col-sm-4 col-md-3">
 
             <div id="project-info">
+                <div class="project-type"><span>@Resources.Resources.Category</span>@projectType(Model.Project.ProjectType.ToString())</div>
                 <h3>@Resources.Resources.StudiosAndParticipants</h3>
                 <dl>
                     @if (Model.Project.Studios.Count > 0)
@@ -250,72 +253,75 @@
                 </div>
             </div>
             
-        @if (Model.Photos != null)
-        {
-            <div  class="col-xs-12 col-sm-8 col-md-9">
+       
+        
+        <div  class="col-xs-12 col-sm-8 col-md-9">
 
-            <div id="grid-gallery" class="grid-gallery">
-                <section class="grid-wrap">
-                    <ul class="grid cs-style-3">
-                        <li class="grid-sizer"></li>
-                    @foreach (var photo in Model.Photos)
-                    {
-                        <li>
-                            <figure>
-                                <img src="@Url.Content(photo.Path)?width=300" alt="@photo.Title" data-imageid="@photo.ID" class="item" />
-                                <figcaption><h3>@photo.Title</h3><span>@photo.Description</span></figcaption>
-                            </figure>
-                        </li>
+            @if (Model.Photos != null)
+            {
+                <div id="grid-gallery" class="grid-gallery">
+                    <section class="grid-wrap">
+                        <ul class="grid cs-style-3">
+                            <li class="grid-sizer"></li>
+                        @foreach (var photo in Model.Photos)
+                        {
+                            <li>
+                                <figure>
+                                    <img src="@Url.Content(photo.Path)?width=300" alt="@photo.Title" data-imageid="@photo.ID" class="item" />
+                                    <figcaption><h3>@photo.Title</h3><span>@photo.Description</span></figcaption>
+                                </figure>
+                            </li>
+                        }
+                        </ul>
+                    </section>
+                
+                    <section class="slideshow">
+                        <ul>
+                        @foreach (var photo in Model.Photos)
+                        {
+                            <li>
+                                <figure>
+                                    <img src="@Url.Content(photo.Path)?w=740&h=500&bgcolor=D9D9D9" alt="@photo.Title" data-imageid="@photo.ID" class="item" />
+                                    <figcaption>
+                                        <h3>@photo.Title</h3>
+							            <span>@photo.Description</span>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        }
+                        </ul>
+                        <nav>
+				            <span class="icon nav-prev"></span>
+				            <span class="icon nav-next"></span>
+				            <span class="icon nav-close"></span>
+			            </nav>
+                        <div class="info-keys icon">Navigate with arrow keys</div>
+                    </section>
+                </div>
+            
+            }
+            <div class="row">
+                <div id="project-description" class="col-sm-12 col-md-12">
+                    <h2>@Resources.Resources.Description</h2>
+                    @{
+                        if(culture.ToLower() == "is-is") {
+                    
+                            if (Model.Project.Description != null)
+                            {
+                                @Html.Raw(Model.Project.Description)
+                            }
+                        }
+                        else {
+                            if (Model.Project.DescriptionEnglish != null)
+                            {
+                                @Html.Raw(Model.Project.DescriptionEnglish)
+                            }
+                        }
                     }
-                    </ul>
-                </section>
-
-                <section class="slideshow">
-                    <ul>
-                    @foreach (var photo in Model.Photos)
-                    {
-                        <li>
-                            <figure>
-                                <img src="@Url.Content(photo.Path)?w=740&h=500&bgcolor=D9D9D9" alt="@photo.Title" data-imageid="@photo.ID" class="item" />
-                                <figcaption>
-                                    <h3>@photo.Title</h3>
-							        <span>@photo.Description</span>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    }
-                    </ul>
-                    <nav>
-				        <span class="icon nav-prev"></span>
-				        <span class="icon nav-next"></span>
-				        <span class="icon nav-close"></span>
-			        </nav>
-                    <div class="info-keys icon">Navigate with arrow keys</div>
-                </section>
+                </div>
             </div>
         </div>
-        }
-        
-    </div>
-    <div class="row">
-        <div id="project-description" class="col-sm-12 col-md-12">
-            <h2>@Resources.Resources.Description</h2>
-            @{
-                if(culture.ToLower() == "is-is") {
-                    
-                    if (Model.Project.Description != null)
-                    {
-                        @Html.Raw(Model.Project.Description)
-                    }
-                }
-                else {
-                    if (Model.Project.DescriptionEnglish != null)
-                    {
-                        @Html.Raw(Model.Project.DescriptionEnglish)
-                    }
-                }
-            }
-        </div>
+
     </div>
     
 </div>

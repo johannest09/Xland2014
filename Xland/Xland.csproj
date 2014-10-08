@@ -363,17 +363,29 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\css\component.css" />
-    <Content Include="Content\css\cs-select.css" />
-    <Content Include="Content\css\cs-skin-underline.css" />
-    <Content Include="Content\css\font-awesome.css" />
-    <Content Include="Content\css\font-awesome.min.css" />
-    <Content Include="Content\css\googlegriddemo.css" />
+    <Content Include="Content\less\bootstrap.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\bootstrap.min.css">
+      <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\pluginCss\component.css" />
+    <Content Include="Content\pluginCss\cs-select.css" />
+    <Content Include="Content\pluginCss\cs-skin-underline.css" />
+    <Content Include="Content\pluginCss\font-awesome.css" />
+    <Content Include="Content\pluginCss\font-awesome.min.css" />
+    <Content Include="Content\pluginCss\googlegriddemo.css" />
     <Content Include="Content\fonts\futura\FuturaLT-Bold.svg" />
     <Content Include="Content\fonts\futura\FuturaLT.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\xland-logo-dark.png" />
     <Content Include="Content\Images\xland-logo-light.png" />
+    <Content Include="Content\less\screen.css">
+      <DependentUpon>screen.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\screen.min.css">
+      <DependentUpon>screen.less</DependentUpon>
+    </Content>
     <Content Include="Content\screen.css" />
     <Content Include="Content\Template\icons\fila-logo-greyscale.jpg" />
     <Content Include="Content\Template\icons\marker_green.png" />

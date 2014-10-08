@@ -53,9 +53,9 @@ namespace Xland
                 "~/Scripts/tinymce/tinymce.min.js"));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/css/cs-select.css",
-                "~/Content/css/cs-skin-underline.css"
+            bundles.Add(new StyleBundle("~/Content/pluginCss").Include(
+                "~/Content/pluginCss/cs-select.css",
+                "~/Content/pluginCss/cs-skin-underline.css"
                 ));
 
             bundles.Add(new LessBundle("~/Content/less").Include("~/Content/less/bootstrap.less"));

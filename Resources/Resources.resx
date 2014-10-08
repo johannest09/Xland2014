@@ -132,6 +132,9 @@
   <data name="AreaSize" xml:space="preserve">
     <value>Stærð</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Til baka</value>
+  </data>
   <data name="CapitalCost" xml:space="preserve">
     <value>Stofnkostnaður</value>
   </data>

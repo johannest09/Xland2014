@@ -132,6 +132,7 @@ var xland = {
     showInfoWindow: function (markerId) {
         var marker = markerList[markerId];
 
+        /*
         $.getJSON('/home/GetMarkerInfo/' + markerId, function (data) {
 
             var photo = '';
@@ -144,6 +145,12 @@ var xland = {
             infowindow.setContent(html);
             infowindow.open(map, marker);
         });
+        */
+
+        var html = '<div class="infowindow"><h2><a href="/Project/Info/' + markerId + '">' + marker['title'] + '</a></h2></div>';
+
+        infowindow.setContent(html);
+        infowindow.open(map, marker);
 
     },
 

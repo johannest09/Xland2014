@@ -7,8 +7,10 @@
         <title>@ViewBag.Title - Xland</title>
 
         @Styles.Render("~/Content/less/bootstrap.less")
-        @Styles.Render("~/Content/css");
-        
+
+        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/cs-select.css" />
+        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/cs-skin-underline.css" />
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
         @RenderSection("scripts", required: false)
     </head>
@@ -24,16 +26,34 @@
                 }
             }
             
-        @using(Html.BeginForm("SetCulture", "Home"))
+        @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
         {
             <div id="select-language">
                 <input type="hidden" name="culture" />
-                <div><a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a></div>
-                <div><a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a></div>
+                <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
+                <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a>
             </div>
         }
-        @Html.Partial("_NavigationPartialFixed")
+        @*Html.Partial("_NavigationPartialFixed")*@
 
+        <div class="navbar col-xs-12 col-md-12">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
+                </div>
+                <section class="category-select">
+                
+			        <select class="cs-select cs-skin-underline">
+				        <option value="">@Resources.Resources.ChooseCategory</option>
+                        <option value="0">@Resources.Resources.PublicSpaces</option>
+				        <option value="1">@Resources.Resources.Historical</option>
+				        <option value="2">@Resources.Resources.Competitions</option>
+				        <option value="3">@Resources.Resources.Regional</option>
+				        <option value="4">@Resources.Resources.All</option>
+			        </select>
+		        </section>
+            </div>
+        </div>
         <div id="map-container">
                 @RenderSection("featured", required: false)
                 @RenderBody()
@@ -46,7 +66,7 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @Scripts.Render("~/bundles/map")
-    @Scripts.Render("~/bundles/front");
+    @Scripts.Render("~/bundles/front")
 
 
 

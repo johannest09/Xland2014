@@ -60,8 +60,9 @@ namespace Xland.Controllers
 
             return Redirect("Index");
 
-        }   
+        }
 
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkers()
         {
             try
@@ -81,9 +82,9 @@ namespace Xland.Controllers
 
         }
 
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkerInfo(int id)
         {
-
             var markerInfo =
                (from p in projectService.GetProjects()
                 where p.ID == id

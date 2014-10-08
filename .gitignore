@@ -1,4 +1,12 @@
 # git ignore file
 Web.config
 Xland/bin
+Xland/bin/
 Xland/obj
+Xland/obj/
+Resources/bin/Debug
+Resources/bin/Debug/
+Resources/bin/Release
+Resources/obj/Release/
+Resources/obj/Debug
+Resources/obj/Debug/
