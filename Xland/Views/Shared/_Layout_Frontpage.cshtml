@@ -23,6 +23,15 @@
         var isAdmin = "";
     }
     <body class="frontpage">
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/is_IS/sdk.js#xfbml=1&appId=131407496916188&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
         @helper selected(string c, string culture)
         {
             if (c == culture)
@@ -36,45 +45,58 @@
             @Html.Partial("_LoginPartial")
         }
         <div class="navbar navbar-fixed-top @Html.Raw(isAdmin)">
-            <div class="container-fluid">
-                
+            <div class="container">
+            
                 <div class="row">
-                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="col-lg-3">
                         <div class="navbar-header">
                             <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
                         </div>
                     </div>
-                    <div class="col-xs-8 col-sm-4 col-sm-push-5 col-md-4 col-md-push-6 col-lg-3 col-lg-push-7" id="top-controls">
+                    <div class="col-lg-9" id="top-controls">
                         <div class="row">
-                            <div class="col-xs-6">
-                                <span class="about" title="@Resources.Resources.AboutXland">@Resources.Resources.AboutXland</span>
-                            </div>
-                            <div class="col-xs-6">
-                                 @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
-                                {
-                                    <div id="select-language">
-                                        <input type="hidden" name="culture" />
-                                        <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
-                                        <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is-is">Is</a>
+                            <div class="col-lg-9 category-select">
+                                <div class="pull-right">
+                                    <select class="cs-select cs-skin-underline">
+				                        <option value="">@Resources.Resources.ChooseCategory</option>
+                                        <option value="0">@Resources.Resources.PublicSpaces</option>
+				                        <option value="1">@Resources.Resources.Historical</option>
+				                        <option value="2">@Resources.Resources.Competitions</option>
+				                        <option value="3">@Resources.Resources.Regional</option>
+				                        <option value="4">@Resources.Resources.All</option>
+			                        </select>
+                                </div>
+		                    </div>
+                            <div class="col-lg-3">
+                                <div class="pull-right">
+                                    <div class="about-xland">
+                                        <span class="about" title="@Resources.Resources.AboutXland">@Resources.Resources.AboutXland</span>
+                                        @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
+                                        {
+                                            <div id="select-language">
+                                                <input type="hidden" name="culture" />
+                                                <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
+                                                <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is-is">Is</a>
+                                            </div>
+                                        }
                                     </div>
-                                }
+                                    
+                                </div>
+                                
                             </div>
+                            
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-5 col-sm-pull-4 col-md-6 col-md-pull-4 col-lg-7 category-select">
-			            <select class="cs-select cs-skin-underline">
-				            <option value="">@Resources.Resources.ChooseCategory</option>
-                            <option value="0">@Resources.Resources.PublicSpaces</option>
-				            <option value="1">@Resources.Resources.Historical</option>
-				            <option value="2">@Resources.Resources.Competitions</option>
-				            <option value="3">@Resources.Resources.Regional</option>
-				            <option value="4">@Resources.Resources.All</option>
-			            </select>
-		            </div>
                     
                 </div>
             </div>
         </div>
+        <div id="projectContainer">
+            <div id="projectContent"></div>
+            <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+        </div>
+        <div id="templates" style="display: none;"></div>
+
         <div id="about">
             
             <div class="about-content">
@@ -100,7 +122,7 @@
                 @RenderBody()
         </div>
             @*Html.Partial("_NavigationPartialFixed")*@
-
+    
 
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
@@ -112,4 +134,9 @@
 
 
     </body>
+
+    <script id="template" type="x-tmpl-mustache">
+        <div>Hello {{ name }}</div>
+        
+    </script>
 </html>

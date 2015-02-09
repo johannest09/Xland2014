@@ -5,19 +5,7 @@ var App = {
     // ------------------------------
     Init: function () {
         //this.Global.Init();
-        //this.Utils.Init();
         this.Plugins.Init();
-    },
-
-    // Utilities
-    // ----------------------------------
-    Utils: {
-
-        // Initialize Utils
-        // ------------------------------
-        Init: function () {
-        }
-
     },
 
     // Plugins
@@ -30,7 +18,6 @@ var App = {
 
             $('.datepicker').datepicker();
 
-
             $("#geocomplete").geocomplete({
                 map: "#mapPreview",
                 details: ".geocomplete-inputs",
@@ -40,7 +27,6 @@ var App = {
                 }
             });
 
-            
             //Project_LongDescription
 
             tinymce.init({
@@ -64,9 +50,7 @@ var App = {
                      { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
                 ]
             });
-
         }
-
     },
 
     GeoCoding : 
@@ -83,7 +67,6 @@ var App = {
                 $('input[name="Project.Long"]').val(latLng.lng());
                 $("#reset").show();
             });
-
 
             $("#reset").click(function () {
                 $("#geocomplete").geocomplete("resetMarker");
@@ -110,7 +93,6 @@ var App = {
 $(document).ready(function () {
     App.Init();
 
-    
 });
 
 jQuery(window).on('load', function () {

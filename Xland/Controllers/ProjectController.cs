@@ -14,6 +14,8 @@ using Xland.Utilities;
 using System.Globalization;
 using Xland.Filters;
 using Xland.Helpers;
+using Newtonsoft.Json;
+
 
 namespace Xland.Controllers
 {
@@ -78,8 +80,41 @@ namespace Xland.Controllers
 
             }
 
-
             return View(model);
+
+        }
+
+        public string Info2(int? id)
+        {
+            if (id == null)
+            {
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return null;
+            }
+
+            var project = projectService.GetProjectIncludeStudios(id);
+
+            
+
+            var model = new ProjectInfoViewModel
+            {
+                Project = project
+            };
+
+            var gallery = (from g in photogalleryService.GetAllPhotoGalleries()
+                           where g.Project.ID == project.ID
+                           select g).SingleOrDefault();
+
+            if (gallery != null)
+            {
+                var photos = (from p in photoservice.GetPhotos()
+                              where p.PhotoGallery.ID == gallery.ID
+                              select p).ToList();
+                model.Photos = photos;
+
+            }
+
+            return JsonConvert.SerializeObject(model);
         }
 
         // GET: /Project/Details/5

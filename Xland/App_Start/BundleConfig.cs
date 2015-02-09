@@ -23,20 +23,17 @@ namespace Xland
                 "~/Scripts/bootstrap-datepicker.js"
                 ));
 
+            // Page bundle
             bundles.Add(new ScriptBundle("~/bundles/front").Include(
                 "~/Scripts/lib/lib-front.js",
-                "~/Scripts/jquery-ui-1.10.4.min.js",
-                "~/Scripts/isotope.js",
                 "~/Scripts/lib/classie.js",
                 "~/Scripts/lib/selectFX.js",
                 "~/Scripts/application-front.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/back").Include(
-                "~/Scripts/lib/lib-back.js",
-                "~/Scripts/GoogleGridGallery/masonry.pkgd.min.js",
-                "~/Scripts/map/jquery.geocomplete.min.js",
-                "~/Scripts/tinymce/tinymce.min.js",
-                "~/Scripts/Application-back.js"));
+            // Admin bundle
+            bundles.Add(new ScriptBundle("~/bundles/admin").Include(
+                "~/Scripts/lib/lib-admin.js",
+                "~/Scripts/Application-admin.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

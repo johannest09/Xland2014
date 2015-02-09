@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Xland.Helpers;
 using Xland.Services;
+using Xland.ViewModels;
 
 namespace Xland.Controllers
 {
@@ -16,8 +19,48 @@ namespace Xland.Controllers
         {
             this.projectService = projectService;
         }
+        
+        /*
         public ActionResult Index()
         {
+            return View();
+        }
+        */
+        public ActionResult Index(int? id)
+        {
+            /*
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var project = projectService.GetProjectIncludeStudios(id);
+
+
+
+            var model = new ProjectInfoViewModel
+            {
+                Project = project
+            };
+
+            var gallery = (from g in photogalleryService.GetAllPhotoGalleries()
+                           where g.Project.ID == project.ID
+                           select g).SingleOrDefault();
+
+            if (gallery != null)
+            {
+                var photos = (from p in photoService.GetPhotos()
+                              where p.PhotoGallery.ID == gallery.ID
+                              select p).ToList();
+                model.Photos = photos;
+
+            }
+             * */
+
+         
+
+            ViewBag.id = id;
+
             return View();
         }
 

@@ -446,6 +446,8 @@
     <Content Include="Content\Template\icons\marker_orange.png" />
     <Content Include="Content\Template\icons\marker_purple.png" />
     <Content Include="Content\Template\icons\marker_yellow.png" />
+    <Content Include="Content\Template\Mustache\mustache-template.html" />
+    <Content Include="Content\Template\Mustache\mustache.html" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -681,7 +683,7 @@
     <None Include="Properties\PublishProfiles\xland-throun.pubxml" />
     <None Include="Properties\PublishProfiles\Xland.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\application-back.js" />
+    <Content Include="Scripts\application-admin.js" />
     <Content Include="Scripts\application-front.js" />
     <Content Include="Scripts\application.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -704,13 +706,14 @@
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\lib\classie.js" />
-    <Content Include="Scripts\lib\lib-back.js" />
+    <Content Include="Scripts\lib\lib-admin.js" />
     <Content Include="Scripts\lib\lib-front.js" />
     <Content Include="Scripts\lib\lib.js" />
     <Content Include="Scripts\map\googleMapApi.js" />
     <Content Include="Scripts\map\jquery-ui-map.js" />
     <Content Include="Scripts\map\mapSetup.js" />
     <Content Include="Scripts\map\mapStyle.js" />
+    <Content Include="Scripts\map\mapStyle2.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\lib\selectFx.js" />
     <Content Include="Scripts\tinymce\license.txt" />
@@ -959,13 +962,11 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
-    <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Views\Shared\_Layout_Frontpage.cshtml" />
-    <Content Include="Views\Shared\_FrontpageSidebarPartial.cshtml" />
     <Content Include="Views\Shared\_Layout_Project.cshtml" />
     <Content Include="Views\Project\Info.cshtml" />
-    <Content Include="Views\Shared\_NavigationPartialFixedProject.cshtml" />
     <Content Include="Views\Shared\_Layout_Login.cshtml" />
+    <Content Include="Views\Shared\404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

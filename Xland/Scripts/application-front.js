@@ -3,10 +3,11 @@ var App = {
 
     // Initialize
     // ------------------------------
-    Init: function () {
+    Init: function (id) {
         this.Global.Init();
         this.Language.Init();
         this.Plugins.Init();
+        this.ProjectInfoData(id);
     },
 
     // Utilities
@@ -35,6 +36,38 @@ var App = {
         
     },
 
+    ProjectInfoData: function(id) {
+
+        if (id) {
+            $.getJSON('/project/info2/' + id).complete(function (data) {
+
+                if (data) {
+                    var project = data.responseJSON.Project;
+                    var photos = data.responseJSON.Photos;
+
+                    $("#projectContainer").addClass("open");
+
+
+                    $("#templates").load('./Content/Template/Mustache/mustache-template.html', function () {
+                        var template = document.getElementById('template1').innerHTML;
+                        var output = Mustache.render(template, project);
+                        $("#projectContent").html(output);
+                    });
+
+                    /*
+                    Mustache.parse(template);
+                    var rendered = Mustache.render(template, {
+                        name: project.Title
+                    });
+
+                    $("#projectContent").html(rendered);
+
+                    $(".fb-like").attr("data-href", "http://localhost:63210/Home/Info/" + id);
+                    */
+                }
+            });
+        }
+    },
 
     // Plugins
     // ----------------------------------
@@ -119,6 +152,8 @@ selectChanged = function (e) {
 
 $(document).ready(function () {
 
-    App.Init();
+    var id = $("#pid").val();
+
+    App.Init(id);
 
 });

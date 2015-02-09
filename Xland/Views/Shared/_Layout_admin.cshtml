@@ -9,7 +9,7 @@
         @Styles.Render("~/Content/less")
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/back")
+        @Scripts.Render("~/bundles/admin")
 
 
         @RenderSection("scripts", required: false)
@@ -33,7 +33,11 @@
             <div class="row row-offcanvas row-offcanvas-left">
 
                 <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
-                    @Html.Partial("_SidebarPartial")
+                    <ul class="nav nav-sidebar">
+                        <li>@Html.ActionLink("Verkefni", "Index", "Project")</li>
+                        <li>@Html.ActionLink("Stofur", "Index", "Studio")</li>
+                        <li>@Html.ActionLink("Myndagallerí", "Index", "PhotoGallery")</li>
+                    </ul>
                 </div>
                 <div class="col-sm-9 col-md-10 main">
                     <div class="content">

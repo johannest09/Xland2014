@@ -151,7 +151,7 @@ var xland = {
         });
         */
 
-        var html = '<div class="infowindow"><h2><a href="/Project/Info/' + markerId + '">' + marker['title'] + '</a></h2></div>';
+        var html = '<div class="infowindow"><h2><a href="/Project/Info/' + markerId + '" data-id="' + markerId + '">' + marker['title'] + '</a></h2></div>';
 
         infowindow.setContent(html);
         infowindow.open(map, marker);
@@ -177,10 +177,15 @@ $(document).ready(function () {
         xland.loadMarkers();
     });
 
-    google.maps.event.addListener(infowindow, 'domready', function () {
+    google.maps.event.addListener(infowindow, 'domready', function (e) {
 
-        $(".infowindow").find("a").bind("click", function () {
-            console.log("open project!");
+        $(".infowindow").find("a").bind("click", function (e) {
+            
+            e.preventDefault();
+            var id = $(this).data("id");
+            App.ProjectInfoData(id);
+            
+
         });
     });
 });
