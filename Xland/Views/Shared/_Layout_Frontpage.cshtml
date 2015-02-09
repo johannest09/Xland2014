@@ -3,56 +3,97 @@
     <head>
         <meta charset="utf-8" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        <title>@ViewBag.Title - Xland</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge;charset=utf-8" />
 
+        <title>Xland</title>
+
+        <!--[if lt IE 9]>
+            <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+
+        @Styles.Render("~/bundles/pluginCss")
         @Styles.Render("~/Content/less/bootstrap.less")
 
-        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/cs-select.css" />
-        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/cs-skin-underline.css" />
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
+            
         @RenderSection("scripts", required: false)
     </head>
     @{
         var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+        var isAdmin = "";
     }
     <body class="frontpage">
         @helper selected(string c, string culture)
-            {
-                if (c == culture)
-                {
-                    @:class="selected"
-                }
-            }
-            
-        @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
         {
-            <div id="select-language">
-                <input type="hidden" name="culture" />
-                <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
-                <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a>
-            </div>
+            if (c == culture)
+            {
+                @:class="selected"
+            }
         }
-        @*Html.Partial("_NavigationPartialFixed")*@
-
-        <div class="navbar col-xs-12 col-md-12">
+        @if (User.Identity.IsAuthenticated)
+        {
+            isAdmin="admin";
+            @Html.Partial("_LoginPartial")
+        }
+        <div class="navbar navbar-fixed-top @Html.Raw(isAdmin)">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
-                </div>
-                <section class="category-select">
                 
-			        <select class="cs-select cs-skin-underline">
-				        <option value="">@Resources.Resources.ChooseCategory</option>
-                        <option value="0">@Resources.Resources.PublicSpaces</option>
-				        <option value="1">@Resources.Resources.Historical</option>
-				        <option value="2">@Resources.Resources.Competitions</option>
-				        <option value="3">@Resources.Resources.Regional</option>
-				        <option value="4">@Resources.Resources.All</option>
-			        </select>
-		        </section>
+                <div class="row">
+                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                        <div class="navbar-header">
+                            <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-sm-4 col-sm-push-5 col-md-4 col-md-push-6 col-lg-3 col-lg-push-7" id="top-controls">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <span class="about" title="@Resources.Resources.AboutXland">@Resources.Resources.AboutXland</span>
+                            </div>
+                            <div class="col-xs-6">
+                                 @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
+                                {
+                                    <div id="select-language">
+                                        <input type="hidden" name="culture" />
+                                        <a href="javascript:void(0);" @selected("en-us", culture) data-culture="en-us">En</a>
+                                        <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is-is">Is</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 col-sm-pull-4 col-md-6 col-md-pull-4 col-lg-7 category-select">
+			            <select class="cs-select cs-skin-underline">
+				            <option value="">@Resources.Resources.ChooseCategory</option>
+                            <option value="0">@Resources.Resources.PublicSpaces</option>
+				            <option value="1">@Resources.Resources.Historical</option>
+				            <option value="2">@Resources.Resources.Competitions</option>
+				            <option value="3">@Resources.Resources.Regional</option>
+				            <option value="4">@Resources.Resources.All</option>
+			            </select>
+		            </div>
+                    
+                </div>
             </div>
+        </div>
+        <div id="about">
+            
+            <div class="about-content">
+                <i class="fa fa-close fa-2x"></i>
+				<h2>Hvað er XLAND? </h2>
+				<p>XLAND er lifandi gátt sem býður þér, fjölskyldu þinni og vinum í ferðalag um vel hönnuð borgarrými. Félag íslenskra landslagsarkitekta stendur fyrir fyrstu gagnvirku sýningunni þar sem verkum landslagsarkitekta á höfuðborgarsvæðinu er komið á kortið í bókstaflegum skilningi. Verkefnið er unnið í tengslum við Hönnunarmars 2013 og hlaut nafnið XLAND, sem vísar til meginmarkmiðs síðunnar að merkja með X-i og vekja athygli á vel hönnuðum og áhugaverðum almenningsrýmum í borginni okkar. Við stefnum að sjálfsögðu á að XLAND nái yfir Ísland allt þegar fram líða stundir.</p> 
+				<p>Verkin eru staðsett á gagnvirku korti af höfuðborgarsvæðinu. Sé smellt á verk opnast gátt þar sem verkunum er miðlað með ljósmyndum, teikningum grafískum skissum, myndböndum og texta. Þannig kemst þú í návígi við hönnuðina og hugsunina sem liggur að baki borgarrýmum í þínu nánasta umhverfi.</p>
+				<p>Í tengslum við opnun heimasíðunnar er gagnvirk sýning í Hafnarhúsinu, Listasafni Reykjavíkur dagana 14. - 17. mars þar sem gestum gefst tækifæri til að vafra um vel hönnuð og lifandi borgarrými á risavöxnum skjá. Heimasíðan er jafnframt kærkomin viðbót í afþreyingarflóru höfuðborgarinnar þar sem hægt er að fletta upp almenningsrýmum hvar sem þú ert á ferðinni í gegnum tölvu, i-pad, síma o.s.frv. </p>
+				<h2>Hverjir standa á bakvið XLAND?</h2>
+				<p>Að verkefninu standa þrír landslagsarkitektar, sem jafnframt eru meðlimir í FÍLA, í samstarfi við grafískan hönnuð og vefforritara. Þetta eru þær </p>
+				<ul>
+					<li>Björk Guðmundsdóttir <a href="www.landsvirkjun.is">www.landsvirkjun.is</a>, landslagsarkitekt hjá Landsvirkjun</li>
+					<li>Heiða Aðalsteinsdóttir <a href="http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir">http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir</a>, landslagsarkitekt hjá Alta ehf</li>
+					<li>Svava Þorleifsdóttir <a href="http://landslag.is/starfsfolk/svava-thorleifsdottir">http://landslag.is/starfsfolk/svava-thorleifsdottir</a>, landslagsarkitekt hjá Landslagi ehf. </li>
+					<li>Jóhannes Freyr Þorleifsson, grafískur hönnuður og vefforritari sá um útlits- og viðmótshönnun heimasíðunnar. </li>
+				</ul>
+				<p>Það er von okkar að heimasíðan megi vaxa og dafna og að fólk njóti góðs af því að geta nálgast upplýsingar um þessi verk á einum stað. Sérstakar þakkir færum við þeim Einari E. Sæmundssyni, landslagsarkitekt hjá Landmótun og Samson B. Harðarsyni, lektor hjá LbhÍ fyrir veitta aðstoð við samantekt sögulegra verkefna. Þá viljum við þakka öllum þeim tóku þátt í verkefninu með okkur með því að senda inn verk. </p>
+
+			</div>
         </div>
         <div id="map-container">
                 @RenderSection("featured", required: false)

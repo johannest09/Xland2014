@@ -5,9 +5,10 @@
  * @author Jóhannes Freyr Þorleifsson
  * @copyright (c) 2014
  */
-// 64.138621,-21.894722
-var defaultZoom = 11;
-var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
+var clientWidth = document.documentElement.clientWidth;
+var defaultZoom = clientWidth > 768 ? 7 : 6;
+//var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
+var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
 var infowindow;
 var markerList = {};
 var mapStyle = "/mapstyle.js";
@@ -36,13 +37,16 @@ var xland = {
         var myOptions = {
             center: defaultLatlng,
             zoom: defaultZoom,
-            panControl: false,
+            panControl: true,
             zoomControl: true,
             streetViewControl: false,
-            mapTypeControl: true,
+            mapTypeControl: false,
             mapTypeControlOptions: {
                 mapTypeIds: [google.maps.MapTypeId.ROADMAP, MY_MAPTYPE_ID],
                 style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+            },
+            panControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
             },
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.SMALL,

@@ -14,21 +14,34 @@
 
         @RenderSection("scripts", required: false)
     </head>
-    <body class="admin">
+    @{
+        var isAdmin = "";
+        if(User.Identity.IsAuthenticated) 
+        {
+            isAdmin = "admin";
+        }
+    }
+    
+    <body class="@Html.Raw(isAdmin)">
+        @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("_LoginPartial")
+        }
         @Html.Partial("_NavigationPartialFixed")
         <div class="container-fluid">
             
-            <div class="row">
+            <div class="row row-offcanvas row-offcanvas-left">
 
-                @Html.Partial("_SidebarPartial");
-                
-                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                    @RenderSection("featured", required: false)
-                    <div class="container">
+                <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+                    @Html.Partial("_SidebarPartial")
+                </div>
+                <div class="col-sm-9 col-md-10 main">
+                    <div class="content">
+                        @RenderSection("featured", required: false)
                         @RenderBody()
                     </div>
+                    
                 </div>
-                
             </div>
 
         </div>

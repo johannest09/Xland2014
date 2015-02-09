@@ -61,8 +61,10 @@ div.cs-select:focus {
 }
 
 .cs-select.cs-active > span::after {
+    /*
 	-webkit-transform: translateY(-50%) rotate(180deg);
 	transform: translateY(-50%) rotate(180deg);
+        */
 }
 
 /* Options */
@@ -83,6 +85,8 @@ div.cs-select:focus {
 	margin: 0;
 	padding: 0;
 	width: 100%;
+    border: 1px solid #ddd;
+    border-top: 0;
 }
 
 .cs-select ul span {

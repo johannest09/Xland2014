@@ -7,9 +7,8 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Ertu viss um að þú viljir eyða myndagallerí?</h3>
 <div>
-    <h4>PhotoGallery</h4>
     <hr />
     <dl class="dl-horizontal">
     </dl>
@@ -18,8 +17,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eyða" class="btn btn-default btn-danger" />
+            @Html.ActionLink("Aftur í yfirlit", "Index", null, new { @class = "btn btn-default" })
         </div>
     }
 </div>

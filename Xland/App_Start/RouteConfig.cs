@@ -32,6 +32,7 @@ namespace Xland
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
             );
              
             /*
@@ -41,7 +42,9 @@ namespace Xland
                 defaults: new { culture = CultureHelper.GetDefaultCulture(), controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
              * */
-           
+
         }
+
+      
     }
 }

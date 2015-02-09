@@ -187,6 +187,9 @@
     <Reference Include="System.Web.Optimization.Less">
       <HintPath>..\packages\System.Web.Optimization.Less.1.3.2\lib\net40\System.Web.Optimization.Less.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
@@ -233,7 +236,7 @@
     </Reference>
     <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.0\lib\net45\WebMatrix.WebData.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.2\lib\net45\WebMatrix.WebData.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -304,6 +307,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\HTMLHelpers.cs" />
     <Compile Include="Migrations\201408011609194_inital commit.cs" />
     <Compile Include="Migrations\201408011609194_inital commit.Designer.cs">
       <DependentUpon>201408011609194_inital commit.cs</DependentUpon>
@@ -363,11 +367,64 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\futura\FuturaLT-Bold.svg" />
+    <Content Include="Content\fonts\futura\FuturaLT-Book.svg" />
+    <Content Include="Content\fonts\futura\FuturaLT.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\less\admin.css">
+      <DependentUpon>admin.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\admin.min.css">
+      <DependentUpon>admin.less</DependentUpon>
+    </Content>
     <Content Include="Content\less\bootstrap.css">
       <DependentUpon>bootstrap.less</DependentUpon>
     </Content>
     <Content Include="Content\less\bootstrap.min.css">
       <DependentUpon>bootstrap.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\caption-overlay.css">
+      <DependentUpon>caption-overlay.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\caption-overlay.min.css">
+      <DependentUpon>caption-overlay.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\fonts.css">
+      <DependentUpon>fonts.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\fonts.min.css">
+      <DependentUpon>fonts.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins.min.css">
+      <DependentUpon>mixins.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\clearfix.css">
+      <DependentUpon>clearfix.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\clearfix.min.css">
+      <DependentUpon>clearfix.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\responsive.css">
+      <DependentUpon>responsive.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\responsive.min.css">
+      <DependentUpon>responsive.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\screen-admin.css">
+      <DependentUpon>screen-admin.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\screen-admin.min.css">
+      <DependentUpon>screen-admin.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\variables.css">
+      <DependentUpon>variables.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\variables.min.css">
+      <DependentUpon>variables.less</DependentUpon>
     </Content>
     <Content Include="Content\pluginCss\component.css" />
     <Content Include="Content\pluginCss\cs-select.css" />
@@ -375,9 +432,6 @@
     <Content Include="Content\pluginCss\font-awesome.css" />
     <Content Include="Content\pluginCss\font-awesome.min.css" />
     <Content Include="Content\pluginCss\googlegriddemo.css" />
-    <Content Include="Content\fonts\futura\FuturaLT-Bold.svg" />
-    <Content Include="Content\fonts\futura\FuturaLT.svg" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Images\xland-logo-dark.png" />
     <Content Include="Content\Images\xland-logo-light.png" />
     <Content Include="Content\less\screen.css">
@@ -458,12 +512,11 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome\bpicons\bpicons.svg" />
     <Content Include="fonts\fontawesome\fontawesome.svg" />
+    <Content Include="fonts\futura\FuturaLT-Bold.svg" />
+    <Content Include="fonts\futura\FuturaLT-Book.svg" />
+    <Content Include="fonts\futura\FuturaLT.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\icomoon\component.css" />
-    <Content Include="fonts\icomoon\cs-skin-underline.css" />
-    <Content Include="fonts\icomoon\font-awesome.css" />
-    <Content Include="fonts\icomoon\font-awesome.min.css" />
-    <Content Include="fonts\icomoon\googlegriddemo.css" />
+    <Content Include="fonts\icomoon\icomoon.svg" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -488,9 +541,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\less\screen.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\alerts.less" />
@@ -575,16 +625,60 @@
     <Content Include="fonts\fontawesome\bpicons\bpicons.eot" />
     <Content Include="fonts\fontawesome\bpicons\bpicons.ttf" />
     <Content Include="fonts\fontawesome\bpicons\bpicons.woff" />
+    <Content Include="Content\less\fonts.less" />
+    <Content Include="Content\less\caption-overlay.less" />
+    <Content Include="fonts\icomoon\icomoon.eot" />
+    <Content Include="fonts\icomoon\icomoon.ttf" />
+    <Content Include="fonts\icomoon\icomoon.woff" />
+    <Content Include="fonts\futura\FuturaLT-Bold.otf" />
+    <Content Include="fonts\futura\FuturaLT-Bold.ttf" />
+    <Content Include="fonts\futura\FuturaLT-Bold.woff" />
+    <Content Include="fonts\futura\FuturaLT-Book.otf" />
+    <Content Include="fonts\futura\FuturaLT-Book.ttf" />
+    <Content Include="fonts\futura\FuturaLT-Book.woff" />
+    <Content Include="fonts\futura\FuturaLT.otf" />
+    <Content Include="fonts\futura\FuturaLT.ttf" />
+    <Content Include="fonts\futura\FuturaLT.woff" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Bold.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-BoldOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Book.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-BookOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Condensed.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedBold.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedBoldOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedExtraBold.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedLight.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedLightObl.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondensedOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-CondExtraBoldObl.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-ExtraBold.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-ExtraBoldOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Heavy.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-HeavyOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Light.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-LightOblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT-Oblique.ttf" />
+    <Content Include="Content\fonts\futura all\FuturaLT.ttf" />
     <Content Include="Content\fonts\futura\FuturaLT-Bold.otf" />
     <Content Include="Content\fonts\futura\FuturaLT-Bold.ttf" />
     <Content Include="Content\fonts\futura\FuturaLT-Bold.woff" />
+    <Content Include="Content\fonts\futura\FuturaLT-Book.otf" />
     <Content Include="Content\fonts\futura\FuturaLT-Book.ttf" />
+    <Content Include="Content\fonts\futura\FuturaLT-Book.woff" />
     <Content Include="Content\fonts\futura\FuturaLT.otf" />
     <Content Include="Content\fonts\futura\FuturaLT.ttf" />
-    <Content Include="Content\less\fonts.less" />
     <Content Include="Content\fonts\futura\FuturaLT.woff" />
-    <Content Include="Content\less\caption-overlay.less" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\less\screen-admin.less" />
+    <Content Include="Content\less\admin.less" />
     <None Include="Properties\PublishProfiles\xland %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\xland-throun.pubxml" />
     <None Include="Properties\PublishProfiles\Xland.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\application-back.js" />
@@ -871,6 +965,7 @@
     <Content Include="Views\Shared\_Layout_Project.cshtml" />
     <Content Include="Views\Project\Info.cshtml" />
     <Content Include="Views\Shared\_NavigationPartialFixedProject.cshtml" />
+    <Content Include="Views\Shared\_Layout_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

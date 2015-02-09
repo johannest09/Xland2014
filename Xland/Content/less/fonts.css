@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/futura/FuturaLT.woff') format('woff'), /* Modern Browsers */ url('/fonts/futura/FuturaLT.ttf') format('truetype'), /* Safari, Android, iOS */ url('fonts/futura/FuturaLT.svg#FuturaLT') format('svg');
+  src: local(Futura), url(/fonts/futura/FuturaLT.woff) format('woff');
+  font-style: normal;
+  font-weight: 500;
+  
+  /* Legacy iOS */
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/futura/FuturaLT-Book.woff') format('woff'), /* Modern Browsers */ url('/fonts/futura/FuturaLT-Book.ttf') format('truetype'), /* Safari, Android, iOS */ url('/fonts/futura/FuturaLT-Book.svg#FuturaLT-Book') format('svg');
+  src: local(Futura), url(/fonts/futura/FuturaLT-Book.woff) format('woff');
+  font-style: normal;
+  font-weight: 300;
+  
+  /* Legacy iOS */
+}
+@font-face {
+  font-family: 'Futura';
+  src: url('/fonts/futura/FuturaLT-Bold.woff') format('woff'), /* Modern Browsers */ url('/fonts/futura/FuturaLT-Bold.ttf') format('truetype'), /* Safari, Android, iOS */ url('/fonts/futura/FuturaLT-Bold.svg#FuturaLT-Bold') format('svg');
+  src: local(Futura), url(/fonts/futura/FuturaLT-Bold.woff) format('woff');
+  font-style: normal;
+  font-weight: 700;
+  
+  /* Legacy iOS */
+}

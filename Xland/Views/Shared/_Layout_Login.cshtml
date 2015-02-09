@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <title>@ViewBag.Title - Xland</title>
+
+        @Styles.Render("~/Content/less")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+
+        @RenderSection("scripts", required: false)
+    </head>
+    <body class="admin login">
+        <div class="container">
+            
+            
+            @RenderSection("featured", required: false)
+            @RenderBody()
+
+        </div>
+
+        @Scripts.Render("~/bundles/bootstrap")
+    </body>
+    
+</html>

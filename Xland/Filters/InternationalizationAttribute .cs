@@ -13,12 +13,15 @@ namespace Xland.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            
 
-            string language = (string)filterContext.RouteData.Values["language"] ?? "is";
-            string culture = (string)filterContext.RouteData.Values["culture"] ?? "IS";
+            //string language = (string)filterContext.RouteData.Values["language"] ?? "is";
+            //string culture = (string)filterContext.RouteData.Values["culture"] ?? "IS";
 
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(string.Format("{0}-{1}", language, culture));
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(string.Format("{0}-{1}", language, culture));
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("is-IS");
+
+            //Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(string.Format("{0}-{1}", language, culture));
+            //Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(string.Format("{0}-{1}", language, culture));
 
         }
     }

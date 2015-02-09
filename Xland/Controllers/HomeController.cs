@@ -18,22 +18,6 @@ namespace Xland.Controllers
         }
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your app description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -52,17 +36,15 @@ namespace Xland.Controllers
             {
                 cookie = new HttpCookie("_culture");
                 cookie.Value = culture;
-                cookie.Expires = DateTime.Now.AddYears(1);
+                cookie.Expires = DateTime.Now.AddMinutes(10);
             }
             Response.Cookies.Add(cookie);
-
-            var currentUri = Request.Url.AbsoluteUri;
 
             return Redirect("Index");
 
         }
 
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkers()
         {
             try
@@ -82,7 +64,7 @@ namespace Xland.Controllers
 
         }
 
-        [OutputCache(Duration = 3600, VaryByParam = "none")]
+        //[OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkerInfo(int id)
         {
             var markerInfo =
@@ -100,6 +82,11 @@ namespace Xland.Controllers
             {
                 return Json(new { Id = markerInfo.ID, Title = markerInfo.Title }, JsonRequestBehavior.AllowGet);
             }
+        }
+
+        public ActionResult Admin()
+        {
+            return RedirectToAction("Login", "Account");
         }
     }
 }

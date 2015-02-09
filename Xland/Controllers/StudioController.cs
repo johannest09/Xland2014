@@ -22,6 +22,7 @@ namespace Xland.Controllers
         }
 
         // GET: /Studio/
+        [Authorize]
         public ActionResult Index()
         {
             return View(studioService.GetAllStudios());

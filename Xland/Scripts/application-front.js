@@ -72,7 +72,9 @@ var App = {
                 });
             })();
 
-            
+            if ($("#grid-gallery").length > 0) {
+                new CBPGridGallery(document.getElementById('grid-gallery'));
+            }
         }
 
     },
@@ -83,6 +85,15 @@ var App = {
 
         Init: function () {
 
+            $(".about").on("click", function () {
+                //$("#about").show('blind', null, 400)
+                $("#about").addClass("open");
+                return false;
+            });
+            $("#about .fa-close").on("click", function () {
+                //$(this).parents("#about").hide('blind', null, 400);
+                $("#about").removeClass("open");
+            });
             
         }
        

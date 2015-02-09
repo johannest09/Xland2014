@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge;charset=utf-8" />
         <title>@ViewBag.Title - Xland</title>
 
         @Styles.Render("~/Content/less/bootstrap.less")
@@ -16,8 +17,18 @@
 
         @RenderSection("scripts", required: false)
     </head>
-    <body class="project">
-       
+     @{
+        var isAdmin = "";
+        if(User.Identity.IsAuthenticated) 
+        {
+            isAdmin = "admin";
+        }
+    }
+    <body class="project @Html.Raw(isAdmin)">
+       @if (User.Identity.IsAuthenticated)
+        {
+            @Html.Partial("_LoginPartial")
+        }
         <div id="wrap" class="container-fluid">
             @RenderSection("featured", required: false)
             @RenderBody()
@@ -31,9 +42,7 @@
 		<script src="/Scripts/GoogleGridGallery/masonry.pkgd.min.js"></script>
 		<script src="/Scripts/GoogleGridGallery/classie.js"></script>
 		<script src="/Scripts/GoogleGridGallery/cbpGridGallery.js"></script>
-		<script>
-		    new CBPGridGallery(document.getElementById('grid-gallery'));
-		</script>
+		
 
     </body>
 </html>

@@ -25,6 +25,7 @@ namespace Xland
 
             bundles.Add(new ScriptBundle("~/bundles/front").Include(
                 "~/Scripts/lib/lib-front.js",
+                "~/Scripts/jquery-ui-1.10.4.min.js",
                 "~/Scripts/isotope.js",
                 "~/Scripts/lib/classie.js",
                 "~/Scripts/lib/selectFX.js",
@@ -53,9 +54,11 @@ namespace Xland
                 "~/Scripts/tinymce/tinymce.min.js"));
 
 
-            bundles.Add(new StyleBundle("~/Content/pluginCss").Include(
+            bundles.Add(new StyleBundle("~/bundles/pluginCss").Include(
+                "~/Content/pluginCss/font-awesome.min.css",
                 "~/Content/pluginCss/cs-select.css",
                 "~/Content/pluginCss/cs-skin-underline.css"
+                
                 ));
 
             bundles.Add(new LessBundle("~/Content/less").Include("~/Content/less/bootstrap.less"));

@@ -1,0 +1,106 @@
+﻿body.admin {
+    background-color: #312f33;
+
+    .content {
+        margin-bottom: 40px;
+        padding: 20px; 
+        -webkit-border-radius: 3px;
+        border-radius: 3px;
+        background-color: #fff;
+    }
+
+    //Navigation
+
+    .nav-sidebar > li > a {
+        color: #E8DDDD;
+        font-size: 18px;
+        -webkit-transition-duration: 100ms;
+        transition-duration: 100ms;
+        &:hover {
+            color:#AE7C7C !important;
+        }
+    }
+
+    .category-select { display: none; }
+
+    .nav-sidebar {
+
+    }
+
+    > .container-fluid { margin-top: 20px; }
+
+    .btn-create { display: inline-block; margin-bottom: 20px; }
+
+    // Photo gallery - details
+
+    .gallery-photos {
+        .item {
+            float: left;
+            width: 300px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #d4d4d4;
+            background: #f3f3f3;
+            border-radius: 2px;
+            textarea { width: 100%; }
+        }
+        .item img { width: 100%;}
+        ul.gallery-photos {
+            list-style: none;
+        }
+        .photo-actions {
+            margin: 20px;
+        }
+        .photo-text {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    }
+
+}
+
+.admin-bar {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    background-color: #1F8DAD;
+    color: #8FDFF0;
+    border-bottom: 1px solid #fff;
+
+    .user {
+        float: right;
+        min-width: 150px;
+        span { float: left; margin-right: 10px; }
+        .username, #logoutForm {
+            float: left;
+            margin-right: 10px;
+            color: #fff;
+        }
+        .logout {
+            color: #76A3B0;
+            font-size: 13px;
+            text-transform: lowercase;
+            padding: 4px;
+            background: #fff;
+            border-radius: 2px;
+            margin-left: 20px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        }
+    }
+}
+
+.project.admin {
+    padding-top: 0;
+
+    .navbar-fixed-top {
+        position: relative;
+    }
+
+  
+}
+
+.navbar-fixed-top.admin {
+    top: 40px;
+}
+

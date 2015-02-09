@@ -1,25 +1,10 @@
 ﻿@model Xland.ViewModels.ProjectInfoViewModel
+@using Xland.Helpers;
 @{
     ViewBag.Title = Model.Project.Title;
     Layout = "~/Views/Shared/_Layout_Project.cshtml";
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 }
-
-<style>
-
-
-/* ---- .item ---- */
-
-.item {
-  float: left;
-  width: 300px;
-  box-sizing: border-box;
-}
-.slideshow .item {
-    float: none;
-}
-
-</style>
 
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5215f1bf6e2cbb92"></script>
@@ -46,21 +31,21 @@
             
             
 
-<div class="top">
-    <div class="row">
-        <div class="col-xs-12 col-sm-2 col-md-2">
-            <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-md-10">
+<div class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="container">
             <div class="row">
-                <header id="project-header">
-                    <div class="col-xs-12 col-sm-8 col-md-6">
-                        <h1 class="project-title">@Html.DisplayFor(model => model.Project.Title)</h1>
+                <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2">
+                    <div class="navbar-header">
+                        <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-6">
-                        <div class="row">
-                            <a href="/" class="btn-back btn-mobile"><span>@Resources.Resources.Back</span></a>
-                            <a href="/" class="btn-back-desktop"><span>@Resources.Resources.Back</span></a>
+                </div>
+                <div class="col-xs-8 col-sm-4 col-sm-push-5 col-md-4 col-md-push-6 col-lg-3 col-lg-push-7" id="top-controls">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a class="btn-back"><i class="fa fa-chevron-left"></i>@Resources.Resources.Back</a>
+                        </div>
+                        <div class="col-xs-6">
                             @using (Html.BeginForm("SetCulture", "Home", FormMethod.Post, new { @class="lang" }))
                             {
                                 <div id="select-language">
@@ -69,12 +54,19 @@
                                     <a href="javascript:void(0);" @selected("is-is", culture) data-culture="is">Is</a>
                                 </div>
                             }
-                            
                         </div>
                     </div>
-                </header>
+                </div>
+                <!--div class="col-xs-12 col-sm-5 col-sm-pull-4 col-md-6 col-md-pull-4 col-lg-7">
+                    <div class="row">
+                        <header id="project-header">
+                            <h1 class="project-title">@Html.DisplayFor(model => model.Project.Title)</h1>
+                        </header>
+                    </div>
+                </!--div-->
             </div>
         </div>
+        
     </div>
 </div>
 
@@ -82,10 +74,12 @@
 
     <div class="row">
 
-        <div class="col-sm-4 col-md-3">
+        <div class="details">
+            <div class="col-sm-4 col-md-3">
 
             <div id="project-info">
                 <div class="project-type"><span>@Resources.Resources.Category</span>@projectType(Model.Project.ProjectType.ToString())</div>
+
                 <h3>@Resources.Resources.StudiosAndParticipants</h3>
                 <dl>
                     @if (Model.Project.Studios.Count > 0)
@@ -105,67 +99,23 @@
                         </dd>
                     }
         
-                    @if (Model.Project.Designers != null)
-                    {
-                        <dt>@Html.DisplayNameFor(model => model.Project.Designers)</dt>
-                        <dd>@Html.DisplayFor(model => model.Project.Designers)</dd>
-                    }
+
+                    @Html.LabelDisplayFor(model => model.Project.Designers)
         
-                    @if (Model.Project.ContactPerson != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.ContactPerson)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.ContactPerson)
-                        </dd>
-                    }
+                    @Html.LabelDisplayFor(model => model.Project.ContactPerson)
         
                 </dl>
-
-                @if (Model.Project.Affiliates != null)
-                {
-                    <h3>@Resources.Resources.Affiliations</h3>
-                    <dl>
-                        <dt>@Html.DisplayNameFor(model => model.Project.Affiliates)</dt>
-                        <dd>@Html.DisplayFor(model => model.Project.Affiliates)</dd>
-                    </dl>
-                }
     
-
                 <h3>@Resources.Resources.GeneralInformation</h3>
-                
 
                 <dl>
-                    @if (Model.Project.ProjectOwner != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.ProjectOwner)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.ProjectOwner)
-                        </dd>
-                    }
+                    @Html.LabelDisplayFor(model => model.Project.Affiliates)
+
+                    @Html.LabelDisplayFor(model => model.Project.ProjectOwner)
         
-                    @if(Model.Project.Contractor != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.Contractor)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.Contractor)
-                        </dd>
-                    }
-        
-                    @if(Model.Project.ProjectBeginDate != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.ProjectBeginDate)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.ProjectBeginDate)
-                        </dd>
-                    }
+                    @Html.LabelDisplayFor(model => model.Project.Contractor)
+
+                    @Html.LabelDisplayFor(model => model.Project.ProjectBeginDate)
 
                     @if (Model.Project.ProjectEndDate.ToString() != DateTime.MaxValue.ToString())
                     {
@@ -194,55 +144,13 @@
                         </dd>
                     }
 
-                    @if (Model.Project.CapitalCost != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.CapitalCost)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.CapitalCost)
-                        </dd>
-                    }
+
+                    @Html.LabelDisplayFor(model => model.Project.CapitalCost)
+                    @Html.LabelDisplayFor(model => model.Project.ProjectType)
+                    @Html.LabelDisplayFor(model => model.Project.AreaSize)
+                    @Html.LabelDisplayFor(model => model.Project.ProjectLocation)
+                    @Html.LabelDisplayFor(model => model.Project.Locality)
         
-                    @if (Model.Project.ProjectType != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.ProjectType)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.ProjectType)
-                        </dd>
-                    }
-        
-                    @if (Model.Project.AreaSize != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.AreaSize)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.AreaSize)
-                        </dd>
-                    }
-        
-                    @if (Model.Project.ProjectLocation != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.ProjectLocation)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.ProjectLocation)
-                        </dd>
-                    }
-        
-                    @if (Model.Project.Locality != null)
-                    {
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Project.Locality)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Project.Locality)
-                        </dd>
-                    }
         
                 </dl>
 
@@ -252,6 +160,8 @@
                 <div class="addthis_sharing_toolbox"></div>
                 </div>
             </div>
+        </div>
+        
             
        
         
@@ -302,7 +212,7 @@
             }
             <div class="row">
                 <div id="project-description" class="col-sm-12 col-md-12">
-                    <h2>@Resources.Resources.Description</h2>
+                    <h1 class="project-title">@Html.DisplayFor(model => model.Project.Title)</h1>
                     @{
                         if(culture.ToLower() == "is-is") {
                     

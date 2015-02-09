@@ -18,7 +18,7 @@ using Xland.Helpers;
 namespace Xland.Controllers
 {
 
-
+    
     public class ProjectController : BaseController
     {
         private IProjectService projectService;
@@ -36,6 +36,7 @@ namespace Xland.Controllers
 
         // GET: /Project/
         
+        [Authorize]
         public ActionResult Index()
         {
             var projects = projectService.GetProjects();

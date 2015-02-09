@@ -45,7 +45,7 @@
   	{
   	    "featureType": "water",
   	    "stylers": [
-      		{ "color": "#32373d" }
+      		{ "color": "#364251" }
   	    ]
   	},
 
