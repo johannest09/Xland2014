@@ -64,7 +64,7 @@ namespace Xland.Services
             photoRepository.Dispose();
         }
 
-        public void CreatePhotoBulk(string galleryPath, string filename, string filepath, PhotoGallery gallery)
+        public void CreatePhotoEntity(string galleryPath, string filename, string filepath, PhotoGallery gallery)
         {
             var photo = new Photo
             {
@@ -108,7 +108,8 @@ namespace Xland.Services
             }
             catch (Exception ex)
             {
-                return false;
+                //return false;
+                throw ex;
             }
         }
 

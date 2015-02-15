@@ -77,6 +77,12 @@
           box-sizing: @boxmodel;
 }
 
+.border-radius(@radius) {
+    -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
 // CSS3 Content Columns
 .content-columns(@column-count; @column-gap: @grid-gutter-width) {
   -webkit-column-count: @column-count;
@@ -222,3 +228,4 @@
       -ms-user-select: @select; // IE10+
           user-select: @select;
 }
+

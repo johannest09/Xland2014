@@ -10,17 +10,6 @@ var App = {
         this.ProjectInfoData(id);
     },
 
-    // Utilities
-    // ----------------------------------
-    Utils: {
-
-        // Initialize Utils
-        // ------------------------------
-        Init: function () {
-        }
-
-    },
-
     Language: {
 
         Init: function () {
@@ -36,34 +25,23 @@ var App = {
         
     },
 
-    ProjectInfoData: function(id) {
-
+    ProjectInfoData: function (id) {
+        
+        $("#projectContainer .fa-close").on("click", function () {
+            $("#projectContainer").removeClass("open");
+        });
         if (id) {
+            $("#preload").show();
             $.getJSON('/project/info2/' + id).complete(function (data) {
 
                 if (data) {
-                    var project = data.responseJSON.Project;
-                    var photos = data.responseJSON.Photos;
-
+        
                     $("#projectContainer").addClass("open");
-
-
-                    $("#templates").load('./Content/Template/Mustache/mustache-template.html', function () {
-                        var template = document.getElementById('template1').innerHTML;
-                        var output = Mustache.render(template, project);
-                        $("#projectContent").html(output);
-                    });
-
-                    /*
-                    Mustache.parse(template);
-                    var rendered = Mustache.render(template, {
-                        name: project.Title
-                    });
-
-                    $("#projectContent").html(rendered);
+                    $("#projectContent").html(data.responseText);
+                    $("#preload").hide();
+                    App.Plugins.CBPGridGalleryInit();
 
                     $(".fb-like").attr("data-href", "http://localhost:63210/Home/Info/" + id);
-                    */
                 }
             });
         }
@@ -104,6 +82,11 @@ var App = {
                     new SelectFx(el, options);
                 });
             })();
+
+            
+        },
+
+        CBPGridGalleryInit: function () {
 
             if ($("#grid-gallery").length > 0) {
                 new CBPGridGallery(document.getElementById('grid-gallery'));

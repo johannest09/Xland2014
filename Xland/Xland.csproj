@@ -122,6 +122,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.2.0\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="mustache-sharp">
+      <HintPath>..\packages\mustache-sharp.0.2.8.1\lib\net40\mustache-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -372,6 +375,7 @@
     <Content Include="Content\fonts\futura\FuturaLT-Book.svg" />
     <Content Include="Content\fonts\futura\FuturaLT.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\Preloader_5.gif" />
     <Content Include="Content\less\admin.css">
       <DependentUpon>admin.less</DependentUpon>
     </Content>
@@ -408,6 +412,12 @@
     <Content Include="Content\less\mixins\clearfix.min.css">
       <DependentUpon>clearfix.less</DependentUpon>
     </Content>
+    <Content Include="Content\less\mixins\vendor-prefixes.css">
+      <DependentUpon>vendor-prefixes.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\vendor-prefixes.min.css">
+      <DependentUpon>vendor-prefixes.less</DependentUpon>
+    </Content>
     <Content Include="Content\less\responsive.css">
       <DependentUpon>responsive.less</DependentUpon>
     </Content>
@@ -426,7 +436,7 @@
     <Content Include="Content\less\variables.min.css">
       <DependentUpon>variables.less</DependentUpon>
     </Content>
-    <Content Include="Content\pluginCss\component.css" />
+    <Content Include="Content\pluginCss\grid-gallery-component.css" />
     <Content Include="Content\pluginCss\cs-select.css" />
     <Content Include="Content\pluginCss\cs-skin-underline.css" />
     <Content Include="Content\pluginCss\font-awesome.css" />

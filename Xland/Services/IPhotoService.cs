@@ -20,7 +20,7 @@ namespace Xland.Services
         void SetAsMainPhoto(int id);
         void SavePhotoText(int id, string title, string text);
 
-        void CreatePhotoBulk(string galleryPath, string filename, string filepath, PhotoGallery gallery);
+        void CreatePhotoEntity(string galleryPath, string filename, string filepath, PhotoGallery gallery);
         bool UploadPhoto(HttpPostedFileBase file, string photoGalleryUploadPath, int maxWidth, int maxHeight);
 
         void Dispose();

@@ -27,7 +27,6 @@
 
 .grid-gallery figure img {
 	display: block;
-	width: 100%;
 }
 
 .grid-gallery figcaption h3 {
@@ -53,7 +52,7 @@
 }
 
 .grid li {
-	width: 25%;
+	width: 20%;
 	float: left;
 	cursor: pointer;
 }

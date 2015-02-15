@@ -15,6 +15,7 @@
         @Styles.Render("~/bundles/pluginCss")
         @Styles.Render("~/Content/less/bootstrap.less")
 
+        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/grid-gallery-component.css" />
             
         @RenderSection("scripts", required: false)
     </head>
@@ -91,11 +92,13 @@
                 </div>
             </div>
         </div>
+        <div id="preload" style="display: none;"><img src="@Url.Content("~/Content/Images/Preloader_5.gif")" /></div>
         <div id="projectContainer">
-            <div id="projectContent"></div>
+            <i class="fa fa-close fa-lg"></i>
+            <div id="projectContent" class="container"></div>
             <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
-        <div id="templates" style="display: none;"></div>
+        <!--div id="templates" style="display: none;"></!--div-->
 
         <div id="about">
             
@@ -128,15 +131,18 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 
+    <script src="/Scripts/GoogleGridGallery/imagesloaded.pkgd.min.js"></script>
+	<script src="/Scripts/GoogleGridGallery/masonry.pkgd.min.js"></script>
+	<script src="/Scripts/GoogleGridGallery/cbpGridGallery.js"></script>
+
     @Scripts.Render("~/bundles/map")
     @Scripts.Render("~/bundles/front")
 
 
+    
+
 
     </body>
 
-    <script id="template" type="x-tmpl-mustache">
-        <div>Hello {{ name }}</div>
-        
-    </script>
+    
 </html>

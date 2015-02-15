@@ -255,21 +255,51 @@ ul {list-style: none; }
 
 
 #projectContainer {
-    
     position: fixed;
-    left: 0;
+    left: -2500px;
     top: 75px;
     width: 100%;
-    height:200px;
+    height:100%;
     padding: 10px;
     box-sizing: border-box;
     z-index: 100;
     background-color: rgba(0,0,0,0.75);
-    .clearfix;
+    overflow: hidden;
+    .transition(all 200ms ease-in-out);
+
+    .fa-close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 200;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        margin-top: 40px;
+        max-height: 750px;
+        overflow-y: scroll;
+        .main-content {
+        }
+    }
 
     &.open {
         left: 0;
-        
+    }
+}
+
+#preload {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -100px;
+    margin-top: -100px;
+    z-index: 200;
+    img {
+        .border-radius(100px);
     }
 }
 
@@ -332,7 +362,18 @@ body.project {
         }
     }
 
-    #project-info {
+    
+    /* ---- .item ---- */
+    .item {
+      float: left;
+      box-sizing: border-box;
+    }
+    .slideshow .item {
+        float: none;
+    }
+}
+
+#project-info {
         padding: 15px;
         padding-top: 10px;
         //border-right: 1px dotted #364251;
@@ -399,15 +440,6 @@ body.project {
         }
 
     }
-    /* ---- .item ---- */
-    .item {
-      float: left;
-      box-sizing: border-box;
-    }
-    .slideshow .item {
-        float: none;
-    }
-}
 
 /* Less than 768px */
 @media (max-width: @screen-xs-max) {

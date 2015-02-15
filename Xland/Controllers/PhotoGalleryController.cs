@@ -119,7 +119,7 @@ namespace Xland.Controllers
                         {
                             var fileName = Path.GetFileName(file.FileName);
                             photoService.UploadPhoto(file, galleryPath, MAX_WIDTH, MAX_HEIGHT);
-                            photoService.CreatePhotoBulk(GalleryUploadFolderPath, file.FileName, folderUniqueName, photogallery);
+                            photoService.CreatePhotoEntity(GalleryUploadFolderPath, file.FileName, folderUniqueName, photogallery);
                         }
                     }
                 }

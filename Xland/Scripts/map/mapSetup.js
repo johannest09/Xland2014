@@ -7,8 +7,8 @@
  */
 var clientWidth = document.documentElement.clientWidth;
 var defaultZoom = clientWidth > 768 ? 7 : 6;
-//var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
-var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
+var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
+//var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
 var infowindow;
 var markerList = {};
 var mapStyle = "/mapstyle.js";
@@ -18,7 +18,7 @@ var overlay;
 MyOverlay.prototype = new google.maps.OverlayView();
 MyOverlay.prototype.onAdd = function () { }
 MyOverlay.prototype.onRemove = function () { }
-MyOverlay.prototype.draw = function () { }
+MyOverlay.prototype.draw = function () { }  
 function MyOverlay(map) { this.setMap(map); }
 
 var xland = {
@@ -36,7 +36,7 @@ var xland = {
         // Map config
         var myOptions = {
             center: defaultLatlng,
-            zoom: defaultZoom,
+            zoom: 14,
             panControl: true,
             zoomControl: true,
             streetViewControl: false,

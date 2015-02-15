@@ -15,12 +15,12 @@ using System.Globalization;
 using Xland.Filters;
 using Xland.Helpers;
 using Newtonsoft.Json;
+using Mustache;
+using System.Text;
 
 
 namespace Xland.Controllers
 {
-
-    
     public class ProjectController : BaseController
     {
         private IProjectService projectService;
@@ -92,9 +92,10 @@ namespace Xland.Controllers
                 return null;
             }
 
+            
             var project = projectService.GetProjectIncludeStudios(id);
 
-            
+            var photos = new List<Photo>();
 
             var model = new ProjectInfoViewModel
             {
@@ -107,14 +108,174 @@ namespace Xland.Controllers
 
             if (gallery != null)
             {
-                var photos = (from p in photoservice.GetPhotos()
+                photos = (from p in photoservice.GetPhotos()
                               where p.PhotoGallery.ID == gallery.ID
                               select p).ToList();
                 model.Photos = photos;
 
             }
+             
+            //return JsonConvert.SerializeObject(model);
 
-            return JsonConvert.SerializeObject(model);
+            
+            FormatCompiler compiler = new FormatCompiler();
+            //Generator generator = compiler.Compile("Hello, {{this}}!!!");
+            //string result = generator.Render("Bob");
+
+            StringBuilder projectHtml = new StringBuilder();
+
+            projectHtml.Append("<div class=\"row\">");
+            projectHtml.Append("<div class=\"col-sm-4 col-md-3\">");
+            projectHtml.Append("<div id=\"project-info\">");
+            projectHtml.Append("<div class=\"project-type\"><span>" + Resources.Resources.Category + "</span>{{ProjectType}}</div>");
+
+            projectHtml.Append("<h3>" + Resources.Resources.StudiosAndParticipants + "</h3>");
+
+            projectHtml.Append("<dl>");
+            if (model.Project.Studios.Count > 0)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.Studios + "</dt>");
+                projectHtml.Append("<dd>");
+                foreach (var studio in model.Project.Studios)
+                { 
+                    projectHtml.Append("<span>" + studio.Name + "</span>");
+                }
+                projectHtml.Append("</dd>");
+            }
+
+            if (project.Designers != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.Designers + "</dt>");
+                projectHtml.Append("<dd>" + project.Designers + "</dd>");
+            }
+
+            if (project.ContactPerson != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.ContactPerson + "</dt>");
+                projectHtml.Append("<dd>" + project.ContactPerson + "</dd>");
+            }
+
+            projectHtml.Append("</dl>");
+
+            projectHtml.Append("<h3>" + Resources.Resources.GeneralInformation + "</h3>");
+
+            projectHtml.Append("<dl>");
+
+            if (project.Affiliates != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.Affiliations + "</dt>");
+                projectHtml.Append("<dd>" + project.Affiliates + "</dd>");
+            }
+            if (project.ProjectOwner != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.ProjectOwner + "</dt>");
+                projectHtml.Append("<dd>" + project.ProjectOwner + "</dd>");
+            }
+            if (project.Contractor != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.Contractor + "</dt>");
+                projectHtml.Append("<dd>" + project.Contractor + "</dd>");
+            }
+            if (project.ProjectBeginDate != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.ProjectStarted + "</dt>");
+                projectHtml.Append("<dd>" + project.ProjectBeginDate + "</dd>");
+            }
+            if (project.ProjectEndDate != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.ProjectFinished + "</dt>");
+                projectHtml.Append("<dd>" + project.ProjectEndDate + "</dd>");
+            }
+            if (project.CapitalCost != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.CapitalCost + "</dt>");
+                projectHtml.Append("<dd>" + project.CapitalCost + "</dd>");
+            }
+
+            if (project.AreaSize != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.AreaSize + "</dt>");
+                projectHtml.Append("<dd>" + project.AreaSize + "</dd>");
+            }
+
+            if (project.ProjectLocation != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.ProjectLocation + "</dt>");
+                projectHtml.Append("<dd>" + project.ProjectLocation + "</dd>");
+            }
+
+            if (project.Locality != null)
+            {
+                projectHtml.Append("<dt>" + Resources.Resources.Locality + "</dt>");
+                projectHtml.Append("<dd>" + project.Locality + "</dd>");
+            }
+
+            projectHtml.Append("</dl>");
+
+            projectHtml.Append("</div></div>");
+
+
+            projectHtml.Append("<div class=\"col-xs-12 col-sm-8 col-md-9\">");
+            projectHtml.Append("<div class=\"main-content\">");
+
+            if (photos.Count > 0)
+            {
+                projectHtml.Append("<div id=\"grid-gallery\" class=\"grid-gallery\">");
+                projectHtml.Append("<section class=\"grid-wrap\">");
+                projectHtml.Append("<ul class=\"grid cs-style-3\"><li class=\"grid-sizer\"></li>");
+
+                foreach (var p in photos)
+                {
+                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?width=120\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></li>", Url.Content(p.Path), p.Title, p.ID);
+                }
+
+                projectHtml.Append("</ul>");
+                projectHtml.Append("</section>");
+
+                projectHtml.Append("<section class=\"slideshow\"><ul>");
+
+                foreach (var p in photos)
+                {
+                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?w=740&h=500&bgcolor=d9d9d9\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></img><figcaption><h3>{3}</h3><span>{4}</span></figcaption></figure></li>", Url.Content(p.Path), p.Title, p.ID, p.Title, p.Description);
+                }
+
+                projectHtml.Append("</ul>");
+                projectHtml.Append("<nav><span class=\"icon nav-prev\"></span><span class=\"icon nav-next\"></span><span class=\"icon nav-close\"></span></nav>");
+                projectHtml.Append("<div class=\"info-keys icon\">Navigate with arrow keys</div>");
+
+                projectHtml.Append("</section>");
+
+                projectHtml.Append("</div>");
+            }
+
+            projectHtml.Append("<div class=\"row\">");
+            projectHtml.Append("<div id=\"project-description\" class=\"col-sm-12 col-md-12\">");
+            projectHtml.AppendFormat("<h1 class=\"project-title\">{0}</h1>", project.Title);
+
+            if(CultureHelper.GetCurrentCulture().ToLower() == "is-is") {
+                    
+                if (project.Description != null)
+                {
+                    projectHtml.Append("<div>" + project.Description + "</div>");
+                } 
+                else 
+                {
+                    projectHtml.Append("<div>" + project.DescriptionEnglish + "</div>");
+                }
+            }
+
+            projectHtml.Append("</div></div>");
+
+            projectHtml.Append("</div></div>");
+            projectHtml.Append("</div>"); // Close row
+
+            Generator generator = compiler.Compile(projectHtml.ToString());
+
+            
+            string result = generator.Render(model.Project);
+
+            return result;
+           
         }
 
         // GET: /Project/Details/5
