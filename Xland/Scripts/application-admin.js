@@ -6,6 +6,7 @@ var App = {
     Init: function () {
         //this.Global.Init();
         this.Plugins.Init();
+        this.GeoCoding.Init();
     },
 
     // Plugins
@@ -53,7 +54,7 @@ var App = {
         }
     },
 
-    GeoCoding : 
+    GeoCoding: 
     {
         Init: function()
         {

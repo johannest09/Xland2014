@@ -33,6 +33,7 @@ namespace Xland
             // Admin bundle
             bundles.Add(new ScriptBundle("~/bundles/admin").Include(
                 "~/Scripts/lib/lib-admin.js",
+                "~/Scripts/tinymce/tinymce.js",
                 "~/Scripts/Application-admin.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -46,9 +47,6 @@ namespace Xland
                 "~/Scripts/map/mapSetup.js"
                 ));
 
-            
-            bundles.Add(new ScriptBundle("~/bundles/tinymce").Include(
-                "~/Scripts/tinymce/tinymce.min.js"));
 
 
             bundles.Add(new StyleBundle("~/bundles/pluginCss").Include(

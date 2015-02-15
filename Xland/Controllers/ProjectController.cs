@@ -279,6 +279,7 @@ namespace Xland.Controllers
         }
 
         // GET: /Project/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -299,6 +300,7 @@ namespace Xland.Controllers
         }
 
         // GET: /Project/Create
+        [Authorize]
         public ActionResult Create()
         {
 
@@ -319,6 +321,7 @@ namespace Xland.Controllers
         // POST: /Project/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         public ActionResult Create(ProjectCreateViewModel viewModel)
         {
@@ -347,6 +350,7 @@ namespace Xland.Controllers
         }
 
         // GET: /Project/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -408,6 +412,7 @@ namespace Xland.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(ProjectEditViewModel model)
         {
 
@@ -485,6 +490,7 @@ namespace Xland.Controllers
         }
 
         // GET: /Project/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -502,6 +508,7 @@ namespace Xland.Controllers
         // POST: /Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
             
