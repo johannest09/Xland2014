@@ -252,16 +252,13 @@ namespace Xland.Controllers
             projectHtml.Append("<div id=\"project-description\" class=\"col-sm-12 col-md-12\">");
             projectHtml.AppendFormat("<h1 class=\"project-title\">{0}</h1>", project.Title);
 
-            if(CultureHelper.GetCurrentCulture().ToLower() == "is-is") {
-                    
-                if (project.Description != null)
-                {
-                    projectHtml.Append("<div>" + project.Description + "</div>");
-                } 
-                else 
-                {
-                    projectHtml.Append("<div>" + project.DescriptionEnglish + "</div>");
-                }
+            if (CultureHelper.GetCurrentCulture().ToLower() == "is-is")
+            {
+                projectHtml.Append("<div>" + project.Description + "</div>");
+            }
+            else
+            {
+                projectHtml.Append("<div>" + project.DescriptionEnglish + "</div>");
             }
 
             projectHtml.Append("</div></div>");
