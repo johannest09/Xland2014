@@ -32,7 +32,8 @@
             js.src = "//connect.facebook.net/is_IS/sdk.js#xfbml=1&appId=131407496916188&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-
+        <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
+        <script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
         @helper selected(string c, string culture)
         {
             if (c == culture)
@@ -94,9 +95,14 @@
         </div>
         <div id="preload" style="display: none;"><img src="@Url.Content("~/Content/Images/Preloader_5.gif")" /></div>
         <div id="projectContainer">
-            <i class="fa fa-close fa-lg"></i>
+            <i class="close-project"></i>
             <div id="projectContent" class="container"></div>
-            <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+            <div class="social-media container">
+                <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="xland">Tweet</a>
+                <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
+                <!-- Please call pinit.js only once per page -->
+            </div>
         </div>
         <!--div id="templates" style="display: none;"></!--div-->
 

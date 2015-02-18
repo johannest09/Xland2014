@@ -27,7 +27,7 @@ var App = {
 
     ProjectInfoData: function (id) {
         
-        $("#projectContainer .fa-close").on("click", function () {
+        $("#projectContainer .close-project").on("click", function () {
             $("#projectContainer").removeClass("open");
         });
         if (id) {
@@ -42,6 +42,7 @@ var App = {
                     App.Plugins.CBPGridGalleryInit();
 
                     $(".fb-like").attr("data-href", "http://localhost:63210/Home/Info/" + id);
+                    $(".twitter-share-button").attr("href", "http://localhost:63210/Home/Info/" + id);
                 }
             });
         }

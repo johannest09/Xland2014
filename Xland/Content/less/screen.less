@@ -226,6 +226,54 @@ ul {list-style: none; }
         }
     }
 }
+
+.close-project {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    &:hover {
+        &::before, &::after {
+            background:#fff;
+        }
+    }
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        top: 50%;
+        left: 0;
+        margin-top: -1px;
+        background: #D7D7D7;
+    }
+
+    &::before {
+        .rotate(45deg);
+    }
+    &::after {
+        .rotate(-45deg);
+    }
+    &.big {
+        .scale(3);
+    }
+    &.hairline {
+        &::before, &::after {
+            height: 1px;
+        }
+    }
+    &.pointy {
+        &::Before, &::after {
+            width: 200%;
+            left: -50%;
+        }
+    }
+
+}
+
 @media (max-width: @screen-xs-max) {
     #about {
         padding-top: 0;
@@ -252,8 +300,6 @@ ul {list-style: none; }
 
 /* Single page project */
 
-
-
 #projectContainer {
     position: fixed;
     left: -2500px;
@@ -267,27 +313,28 @@ ul {list-style: none; }
     overflow: hidden;
     .transition(all 200ms ease-in-out);
 
-    .fa-close {
+    .close-project {
         position: absolute;
-        right: 20px;
-        top: 20px;
-        z-index: 200;
-        cursor: pointer;
-        color: #fff;
+        right: 10px;
+        top: 10px;
     }
-
     .container {
         background-color: #fff;
         padding: 20px;
-        margin-top: 40px;
+        margin-top: 50px;
         max-height: 750px;
         overflow-y: scroll;
         .main-content {
         }
     }
-
     &.open {
         left: 0;
+    }
+
+    .social-media {
+        margin-top: 0;
+        overflow: auto;
+        background: transparent;
     }
 }
 
@@ -400,8 +447,8 @@ body.project {
             font-size: 14px;
             dt {
                 font-weight: 300;
-                background-color: #3583B3;
-                color: rgba(255,255,255,0.8);
+                background-color: #F26522;
+                color: #fff;
                 margin-bottom: 8px;
                 text-transform: uppercase;
                 padding-left: 5px;
@@ -429,7 +476,7 @@ body.project {
 
     #project-description {
         //color: #fff;
-        font-size: 16px;
+        font-size: 15px;
         line-height: 1.5;
         font-weight: 500;
         color: #364251;
