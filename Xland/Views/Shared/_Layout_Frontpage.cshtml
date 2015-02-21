@@ -50,14 +50,14 @@
             <div class="container">
             
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 col-sm-4 col-xs-4">
                         <div class="navbar-header">
                             <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
                         </div>
                     </div>
-                    <div class="col-lg-9" id="top-controls">
+                    <div class="col-lg-9 col-sm-8 col-xs-8" id="top-controls">
                         <div class="row">
-                            <div class="col-lg-9 category-select">
+                            <div class="col-lg-9 col-sm-3 col-xs-3 category-select">
                                 <div class="pull-right">
                                     <select class="cs-select cs-skin-underline">
 				                        <option value="">@Resources.Resources.ChooseCategory</option>
@@ -69,7 +69,7 @@
 			                        </select>
                                 </div>
 		                    </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 col-sm-9 col-xs-9 language-select">
                                 <div class="pull-right">
                                     <div class="about-xland">
                                         <span class="about" title="@Resources.Resources.AboutXland">@Resources.Resources.AboutXland</span>
@@ -98,10 +98,17 @@
             <i class="close-project"></i>
             <div id="projectContent" class="container"></div>
             <div class="social-media container">
-                <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="xland">Tweet</a>
-                <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
-                <!-- Please call pinit.js only once per page -->
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="xland">Tweet</a>
+                    </div>
+                    <div class="col-sm-7">
+                        <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
+                    </div>
+                </div>
             </div>
         </div>
         <!--div id="templates" style="display: none;"></!--div-->

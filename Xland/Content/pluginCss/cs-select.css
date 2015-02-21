@@ -24,6 +24,10 @@ div.cs-select:focus {
 	display: none;
 }
 
+div.cs-select .cs-placeholder .dd-placeholder-text {
+    padding: 0;
+}
+
 .cs-select span {
 	display: block;
 	position: relative;
