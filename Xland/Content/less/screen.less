@@ -297,8 +297,8 @@ ul {list-style: none; }
     position: absolute;
     left: 50%;
     top: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
+    margin-left: -64px;
+    margin-top: -64px;
     z-index: 200;
     img {
         .border-radius(100px);
@@ -574,6 +574,31 @@ body.project {
             padding: 20px;
             .clearfix;
 
+        }
+    }
+
+    body.project-open {
+        .navbar-fixed-top { display: none; }
+        #projectContainer {
+            top: 0;
+        }
+    }
+
+    // Slideshow
+
+    .slideshow-open .slideshow {
+        padding-top: 50px;
+
+        nav {
+            position: absolute;
+            bottom: 40px;
+            span {
+                color: #fff;
+                &.nav-prev, &.nav-next {
+                    top: auto;
+                }
+                &.nav-close { top: 0; }
+            }
         }
     }
 }

@@ -57,6 +57,10 @@
 	cursor: pointer;
 }
 
+.grid li img {
+    width: 100%;
+}
+
 .grid figure {
 	/* padding: 15px; */
     margin: 15px;
@@ -76,7 +80,8 @@
 /* Slideshow style */
 .slideshow {
 	position: fixed;
-	background: rgba(0,0,0,0.6);
+	/*background: rgba(0,0,0,0.6);*/
+    background: #3583B3;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -121,7 +126,7 @@
 
 .slideshow li {
 	width: 800px;
-	height: 650px;
+	height: auto;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -176,7 +181,7 @@
 .slideshow nav span {
 	position: fixed;
 	z-index: 1000;
-	color: #59656c;
+	color: #000;
 	text-align: center;
 	padding: 3%;
 	cursor: pointer;

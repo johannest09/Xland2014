@@ -8,11 +8,14 @@
         <title>@ViewBag.Title - Xland</title>
 
         @Styles.Render("~/Content/less/bootstrap.less")
+        @Styles.Render("~/bundles/pluginCss")
+        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/grid-gallery-component.css" />
+
+
         @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/front")
 
-        <link rel="stylesheet" type="text/css" href="/Content/pluginCss/component.css" />
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
         @RenderSection("scripts", required: false)
@@ -53,6 +56,7 @@
 		<script src="/Scripts/GoogleGridGallery/classie.js"></script>
 		<script src="/Scripts/GoogleGridGallery/cbpGridGallery.js"></script>
 		
+
 
     </body>
 </html>

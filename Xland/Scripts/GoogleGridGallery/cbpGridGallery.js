@@ -150,6 +150,8 @@
 
         classie.addClass(this.el, 'slideshow-open');
 
+        $('body').addClass('project-slideshow-open');
+
         /* position slideshow items */
 
         // set viewport items (current, next and previous)
@@ -282,6 +284,7 @@
     CBPGridGallery.prototype._closeSlideshow = function (pos) {
         // remove class slideshow-open from the grid gallery elem
         classie.removeClass(this.el, 'slideshow-open');
+        $('body').removeClass('project-slideshow-open');
         // remove class animatable from the slideshow grid
         classie.removeClass(this.slideshow, 'animatable');
 

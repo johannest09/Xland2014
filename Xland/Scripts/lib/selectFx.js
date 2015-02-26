@@ -246,7 +246,8 @@
 		if( this._isOpen() ) {
 			if( this.current !== -1 ) {
 				// update placeholder text
-				this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
+			    //this.selPlaceholder.textContent = this.selOpts[ this.current ].textContent;
+			    $(this.selPlaceholder).find(".dd-placeholder-text").html(this.selOpts[this.current].textContent);
 			}
 			classie.remove( this.selEl, 'cs-active' );
 		}
@@ -273,7 +274,8 @@
 		var opt = this.selOpts[ this.current ];
 
 		// update current selected value
-		this.selPlaceholder.textContent = opt.textContent;
+	    //this.selPlaceholder.textContent = opt.textContent;
+		$(this.selPlaceholder).find(".dd-placeholder-text").html(opt.textContent);
 		
 		// change native select element´s value
 		this.el.value = opt.getAttribute( 'data-value' );

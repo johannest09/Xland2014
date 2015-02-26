@@ -226,7 +226,7 @@ namespace Xland.Controllers
 
                 foreach (var p in photos)
                 {
-                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?width=120\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></li>", Url.Content(p.Path), p.Title, p.ID);
+                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?width=300\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></li>", Url.Content(p.Path), p.Title, p.ID);
                 }
 
                 projectHtml.Append("</ul>");
@@ -236,7 +236,7 @@ namespace Xland.Controllers
 
                 foreach (var p in photos)
                 {
-                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?w=740&h=500&bgcolor=d9d9d9\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></img><figcaption><h3>{3}</h3><span>{4}</span></figcaption></figure></li>", Url.Content(p.Path), p.Title, p.ID, p.Title, p.Description);
+                    projectHtml.AppendFormat("<li><figure><img src=\"{0}?w=800&h=600\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></img><figcaption><h3>{3}</h3><span>{4}</span></figcaption></figure></li>", Url.Content(p.Path), p.Title, p.ID, p.Title, p.Description);
                 }
 
                 projectHtml.Append("</ul>");
