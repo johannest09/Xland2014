@@ -1,0 +1,46 @@
+﻿@model Xland.ViewModels.VideoGalleryDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="page-header">
+    <h1>Myndbandsgallerí (auðkenni: @Html.DisplayFor(model => model.ID))<small> Fyrir verkefnið @Html.DisplayFor(model => model.ProjectTitle) </small></h1>
+</div>
+
+<ul class="masonry js-masonry gallery-videos clearfix" data-masonry-options='{ "columnWidth": 200, "itemSelector": ".item" }'>
+                
+
+    @{
+        foreach(var video in Model.videos)
+        {
+            <li class="item video" data-video-id="@video.ID">
+
+                <video controls data-videoid="@video.ID" >
+	                <source src="@Url.Content(video.Path)" type="video/mp4">
+	                <p>Your browser does not support H.264/MP4.</p>
+                </video>
+
+                <div class="video-actions">
+                    <a href="javascript:void(0);" title="Eyða" class="btn btn-md btn-danger btn-delete" data-id="@video.ID">Eyða mynd</a>
+                    <a href="javascript:void(0);" title="Vista" class="btn btn-md btn-primary btn-save-video" data-id="@video.ID">Vista</a>
+                    
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="title" placeholder="Sláðu inn titil" value="@video.Title" />
+                    </div>
+                    
+                    <textarea placeholder="Lýsing sem birtist fyrir neðan myndbönd" rows="4"  cols="40" >@video.Description</textarea>
+                </div>
+                
+            </li>
+        }
+    }
+</ul>
+
+
+<p class="clearfix">
+    @Html.ActionLink("Aftur í yfirlit", "Index", null, new { @class = "btn btn-default btn-lg" })
+</p>
+
+

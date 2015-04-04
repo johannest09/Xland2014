@@ -1,0 +1,109 @@
+﻿@model Xland.ViewModels.VideoGalleryCreateViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Bæta við myndböndum</h2>
+
+<div class="alert alert-info" role="alert">Ath. leyfileg hámarksstærð hvers myndbands er 100 Mb</div>
+<div class="alert alert-danger filesize-exceed" role="alert">Myndband var yfir leyfilegri hámarksstærð<br>Vinsamlegast veljið myndbönd sem eru undir hámarksstærð</div>
+
+<output id="list"></output>
+
+<ul id="videoList"></ul>
+
+@using (Html.BeginForm("Create", "VideoGallery", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    
+
+    @Html.ValidationSummary(true)
+
+
+    <div class="form-group">
+        <label for="file" class="control-label col-sm-2">Sækja myndbönd</label>
+        <div class="col-sm-10">
+            <input type="file" id="files" name="files" value="" multiple="multiple" class="btn btn-default" />
+        </div>
+    </div>
+        
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            @Html.DropDownListFor(model => model.ProjectId, ViewBag.videogalleries as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.ActionLink("Aftur í lista", "Index", null, new { @class = "btn btn-default" })
+        <input type="submit" value="Bæta við" class="btn btn-primary" />
+    </div>
+
+     
+}
+
+<script>
+    function handleFileSelect(evt) {
+
+        // Clean up list first
+
+        $(".filesize-exceed").hide();
+        $("#list").empty();
+
+        var files = evt.target.files; // FileList object
+
+        // Loop through the FileList and render image files as thumbnails.
+
+        for (var i = 0, f; f = files[i]; i++) {
+
+            // Only process image files.
+            /*
+            if (!f.type.match('image.*')) {
+                continue;
+            }
+            */
+
+            var reader = new FileReader();
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+
+                if (theFile.size > 104857600) { // 100Mb
+                    $(".filesize-exceed").show();
+                    return;
+                }
+
+                return function (e) {
+                    // Render thumbnail.
+                    /*
+                    var span = document.createElement('span');
+                    var filesize = (theFile.size / 1024).toFixed(2);
+                    var msg = theFile.size / 1024 > 2000 ? ' style="color:red"' : '';
+
+                    span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                                      '" title="', escape(theFile.name), '"/><i' + msg + '>Size: ', filesize + ' kb', '</i>'].join('');
+
+                    span.innerHTML = theFile.name;
+
+                    document.getElementById('list').insertBefore(span, null);
+                    */
+
+                    var filesize = (theFile.size / 1024).toFixed(2);
+
+                    var listItem = '<li>Name: ' + theFile.name + ' Size: ' + filesize + 'kb ( ' + (filesize / 1024).toFixed(2) + 'Mb )</li>';
+
+                    $("#videoList").append(listItem);
+
+
+                };
+            })(f);
+
+            // Read in the file as a data URL.
+            reader.readAsDataURL(f);
+        }
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>

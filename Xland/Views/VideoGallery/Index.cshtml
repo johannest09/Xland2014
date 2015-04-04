@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Xland.Models.VideoGallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Myndbandasöfn</h2>
+
+<p>
+    @Html.ActionLink("Bæta við myndbands gallerí", "Create", null, new { @class = "btn btn-primary btn-lg btn-create" })
+</p>
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Auðkenni</th>
+            <th>Verkefni</th>
+            <th>Fjöldi myndbanda</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @{
+                    var projectTitle = ViewBag.ProjectTitles[item.Project.ID];
+                    @projectTitle
+                }
+            </td>
+            <td>
+                @{
+                    @ViewBag.VideoGalleryVideoCount[item.ID];
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Skoða", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Eyða", "Delete", new { id = item.ID })
+            </td>
+          
+        </tr>
+    }
+    
+
+
+</table>
