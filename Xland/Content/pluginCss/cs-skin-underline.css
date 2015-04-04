@@ -36,8 +36,9 @@ div.cs-skin-underline .cs-options ul {
 .cs-skin-underline > span {
 	padding: 0.5em 3em 0.5em 0.5em;
     padding: 5px 8px;
-    background-color: #3583B3; color: #fff;
+    color: #374351;
     letter-spacing: 1px;
+    border: 1px solid #374351;
 }
 
 .cs-skin-underline > span::after {
@@ -61,7 +62,9 @@ div.cs-skin-underline .cs-options ul {
 }
 
 .cs-skin-underline .cs-options {
-	background: #fff;
+	background: rgba(255,255,255,0.95);
+    border: 1px solid #374351;
+    border-top: 0;
 	opacity: 0;
 	-webkit-transition: opacity 0.3s 0.4s, visibility 0s 0.7s;
 	transition: opacity 0.3s 0.4s, visibility 0s 0.7s;

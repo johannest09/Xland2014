@@ -50,6 +50,7 @@ h2 { margin-bottom: 20px; }
 a {
     cursor: pointer;
     &:hover {text-decoration: none;}
+    color: #374351;
 }
 ul {list-style: none; }
 
@@ -66,11 +67,10 @@ ul {list-style: none; }
         float: left;
         padding: 5px 10px;
         cursor: pointer;
-        background-color: @buttonColor; //#F4F4F4;
-        color: #fff;
-        //border: 1px solid #ddd;
+        font-weight: 400;
+        font-size: 16px;
         &:hover {
-            background: #32373d;
+            //background: #32373d;
         }
     }
     #select-language {
@@ -78,11 +78,10 @@ ul {list-style: none; }
         a {
             float: left;
             padding: 5px 10px;
-            color: #fff;
             text-transform: uppercase;
-            background: @buttonColor; //#DADADA;
-            &.selected {background: #32373d; }
-
+            font-weight: 400;
+            font-size: 16px;
+            //&.selected {background: #32373d; }
             &:hover {
                 text-decoration: none;
             }
@@ -103,7 +102,6 @@ ul {list-style: none; }
         padding: 5px 10px;
         float: left;
         margin-right: 20px;
-        background: #2adddd; //#3d90a7;
         i {
             margin-right: 10px;
         }
@@ -111,6 +109,8 @@ ul {list-style: none; }
             background: #32373d; 
         }
     }
+
+    
 }
 
 .navbar {
@@ -125,7 +125,6 @@ ul {list-style: none; }
         .navbar-brand {
             font-size: 36px;
             font-weight: 300;
-            color: #F26522; //@primary-color;
             display: block;
             height: 75px;
             margin-left: 0px !important;
@@ -136,12 +135,25 @@ ul {list-style: none; }
             -ms-transition: background 200ms linear;
             -o-transition: background 200ms linear;
             transition: background 200ms linear;
+
+            margin-right: 20px;
             &:hover {
                 -webkit-transition: background 200ms linear;
                 -moz-transition: background 200ms linear;
                 -ms-transition: background 200ms linear;
                 -o-transition: background 200ms linear;
                 transition: background 200ms linear;
+            }
+        }
+        .slogan {
+            position: relative;
+            span {
+                color: #374351;
+                opacity: 0.5;
+                font-size: 20px;
+                position: absolute;
+                left: 0;
+                top: 30px;
             }
         }
     }
@@ -314,7 +326,7 @@ ul {list-style: none; }
 
 body.project {
     padding-top: 100px;
-    background: #3583B3; //#3d90a7;
+    background: #3583B3; 
 
     #project-header {
         margin-bottom: 20px;
@@ -401,7 +413,7 @@ body.project {
         font-size: 14px;
         dt {
             font-weight: 300;
-            background-color: #F26522;
+            background-color: #374351;
             color: #fff;
             margin-bottom: 8px;
             text-transform: uppercase;
@@ -458,7 +470,6 @@ body.project {
         }
         
         #content {
-            //background: #3D90A7;
             #project-description {
                 padding: 0;
             }

@@ -50,14 +50,22 @@
             <div class="container">
             
                 <div class="row">
-                    <div class="col-lg-3 col-sm-4 col-xs-4">
+                    <div class="col-lg-6 col-sm-6 col-xs-6">
                         <div class="navbar-header">
-                            <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="@Url.Action("Index", "Home")" class="navbar-brand">Xland</a>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="slogan"><span class="slogan">@Resources.Resources.Slogan</span></div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="col-lg-9 col-sm-8 col-xs-8" id="top-controls">
+                    <div class="col-lg-6 col-sm-6 col-xs-6" id="top-controls">
                         <div class="row">
-                            <div class="col-lg-9 col-sm-3 col-xs-3 category-select">
+                            <div class="col-lg-7 col-sm-7 col-xs-3 category-select">
                                 <div class="pull-right">
                                     <select class="cs-select cs-skin-underline">
 				                        <option disabled selected>@Resources.Resources.ChooseCategory</option>
@@ -70,7 +78,7 @@
 			                        </select>
                                 </div>
 		                    </div>
-                            <div class="col-lg-3 col-sm-9 col-xs-9 language-select">
+                            <div class="col-lg-5 col-sm-5 col-xs-9 language-select">
                                 <div class="pull-right">
                                     <div class="about-xland">
                                         <span class="about" title="@Resources.Resources.AboutXland">@Resources.Resources.AboutXland</span>

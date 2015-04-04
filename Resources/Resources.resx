@@ -216,6 +216,9 @@
   <data name="Regional" xml:space="preserve">
     <value>Skipulag</value>
   </data>
+  <data name="Slogan" xml:space="preserve">
+    <value>Íslenskur landslagsarkitektúr</value>
+  </data>
   <data name="Studios" xml:space="preserve">
     <value>Stofur</value>
   </data>

@@ -68,7 +68,9 @@ var xland = {
         $.getJSON('/home/GetMarkers', function (data) {
             if (data != null) {
                 $.each(data, function (i, item) {
-                    MapContainer.loadMarker(item);
+                    window.setTimeout(function () {
+                        MapContainer.loadMarker(item);
+                    }, i * 50);
                 });
             }
         });
