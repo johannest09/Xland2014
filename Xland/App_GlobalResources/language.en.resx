@@ -168,6 +168,9 @@
   <data name="Historical" xml:space="preserve">
     <value>Historical</value>
   </data>
+  <data name="LatestProjects" xml:space="preserve">
+    <value>Latest projects</value>
+  </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
   </data>

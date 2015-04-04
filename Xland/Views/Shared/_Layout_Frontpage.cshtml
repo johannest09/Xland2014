@@ -60,12 +60,13 @@
                             <div class="col-lg-9 col-sm-3 col-xs-3 category-select">
                                 <div class="pull-right">
                                     <select class="cs-select cs-skin-underline">
-				                        <option value="">@Resources.Resources.ChooseCategory</option>
+				                        <option disabled selected>@Resources.Resources.ChooseCategory</option>
                                         <option value="0">@Resources.Resources.PublicSpaces</option>
 				                        <option value="1">@Resources.Resources.Historical</option>
 				                        <option value="2">@Resources.Resources.Competitions</option>
 				                        <option value="3">@Resources.Resources.Regional</option>
-				                        <option value="4">@Resources.Resources.All</option>
+                                        <option value="4">@Resources.Resources.LatestProjects</option>
+				                        <option value="5">@Resources.Resources.RecentlyAdded</option>
 			                        </select>
                                 </div>
 		                    </div>
@@ -96,7 +97,9 @@
         <div id="preload" style="display: none;"><img src="@Url.Content("~/Content/Images/Preloader_10.gif")" /></div>
         <div id="projectContainer">
             <i class="close-project"></i>
-            <div id="projectContent" class="container"></div>
+            <div class="container">
+                <div id="projectContent"></div>
+            </div>
             <div class="social-media container">
                 <div class="row">
                     <div class="col-sm-3">

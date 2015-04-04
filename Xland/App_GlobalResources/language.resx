@@ -168,6 +168,9 @@
   <data name="Historical" xml:space="preserve">
     <value>Saga</value>
   </data>
+  <data name="LatestProjects" xml:space="preserve">
+    <value>Nýtt</value>
+  </data>
   <data name="Latitude" xml:space="preserve">
     <value>Breiddargráða</value>
   </data>

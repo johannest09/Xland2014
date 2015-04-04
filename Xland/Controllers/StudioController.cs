@@ -12,6 +12,7 @@ using Xland.Services;
 
 namespace Xland.Controllers
 {
+    [Authorize]
     public class StudioController : Controller
     {
         private IStudioService studioService;
@@ -22,7 +23,6 @@ namespace Xland.Controllers
         }
 
         // GET: /Studio/
-        [Authorize]
         public ActionResult Index()
         {
             return View(studioService.GetAllStudios());

@@ -107,7 +107,9 @@ var xland = {
             category: markerData["ProjectType"],
             position: Latlng,
             animation: google.maps.Animation.DROP,
-            icon: markerColor
+            icon: markerColor,
+            dateCreated: markerData["DateCreated"],
+            dateUpdated: markerData["DateUpdated"]
         });
 
         // add marker to list used later to get content and additional marker information
@@ -160,7 +162,19 @@ var xland = {
 
     showCategory: function (category) {
         for (id in markerList) {
-            if (category == 4 || markerList[id].category == parseInt(category)) {
+            if (category == 4) { // latest projects
+                // Check date
+                var date = new Date(parseInt(markerList[id].dateUpdated.substr(6)));
+                var timestamp = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)
+        
+                if (date.getTime() < 0 || date.getTime() > timestamp) { // Last 30 days projects
+                    markerList[id].setMap(null);
+                } else {
+                    markerList[id].setMap(map);
+                }
+
+            }
+            else if (category == 5 || markerList[id].category == parseInt(category)) {
                 markerList[id].setMap(map);
             }
             else {
@@ -170,6 +184,7 @@ var xland = {
     }
 
 };
+
 
 $(document).ready(function () {
 

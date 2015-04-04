@@ -28,7 +28,6 @@ var App = {
     ProjectInfoData: function (id) {
         
         $("#projectContainer .close-project").on("click", function () {
-            $('body').removeClass('project-open');
             $("#projectContainer").removeClass("open");
         });
         if (id) {
@@ -36,7 +35,7 @@ var App = {
             $.getJSON('/project/info2/' + id).complete(function (data) {
 
                 if (data) {
-                    $('body').addClass('project-open');
+        
                     $("#projectContainer").addClass("open");
                     $("#projectContent").html(data.responseText);
                     $("#preload").hide();
@@ -125,7 +124,6 @@ var App = {
 
 
 selectChanged = function (e) {
-    console.log("test on change: " + e);
 
     if (e == "undefined" || e == "")
         return;

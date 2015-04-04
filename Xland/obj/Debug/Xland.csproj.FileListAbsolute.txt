@@ -138,3 +138,7 @@ C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xlan
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Providers.dll
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\System.Web.Providers.xml
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\bin\mustache-sharp.dll
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.DateCreatedandDateUpdated.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.isvisible.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videofeature.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videodescription.resources

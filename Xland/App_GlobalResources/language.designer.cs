@@ -214,6 +214,15 @@ namespace Xland.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nýtt.
+        /// </summary>
+        public static string LatestProjects {
+            get {
+                return ResourceManager.GetString("LatestProjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Breiddargráða.
         /// </summary>
         public static string Latitude {

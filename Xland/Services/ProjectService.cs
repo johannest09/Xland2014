@@ -19,16 +19,20 @@ namespace Xland.Services
         private IUnitOfWork unitOfWork;
         private IGenericRepository<Project> projectRepository;
         private IGenericRepository<Studio> studioRepository;
-        private IGenericRepository<PhotoGallery> galleryRepository;
+        private IGenericRepository<PhotoGallery> photoGalleryRepository;
+        private IGenericRepository<VideoGallery> videoGalleryRepository;
         private IGenericRepository<Photo> photoRepository;
+        private IGenericRepository<Video> videoRepository;
 
-        public ProjectService(IUnitOfWork unitOfWork, IGenericRepository<Project> projectRepository, IGenericRepository<Studio> studioRepository, IGenericRepository<PhotoGallery> galleryRepository, IGenericRepository<Photo> photoRepository)
+        public ProjectService(IUnitOfWork unitOfWork, IGenericRepository<Project> projectRepository, IGenericRepository<Studio> studioRepository, IGenericRepository<PhotoGallery> photoGalleryRepository, IGenericRepository<Photo> photoRepository, IGenericRepository<VideoGallery> videoGalleryRepository, IGenericRepository<Video> videoRepository)
         {
             this.unitOfWork = unitOfWork;
             this.projectRepository = projectRepository;
             this.studioRepository = studioRepository;
-            this.galleryRepository = galleryRepository;
+            this.photoGalleryRepository = photoGalleryRepository;
             this.photoRepository = photoRepository;
+            this.videoGalleryRepository = videoGalleryRepository;
+            this.videoRepository = videoRepository;
         }
 
         public IList<string> GetProjectTitles()
@@ -47,7 +51,7 @@ namespace Xland.Services
         public string GetProjectGalleryMainPhotoPath(int id)
         {
 
-            var gallery = (from g in galleryRepository.GetAll()
+            var gallery = (from g in photoGalleryRepository.GetAll()
                        where g.Project.ID == id
                        select g).SingleOrDefault();
 
@@ -106,10 +110,10 @@ namespace Xland.Services
             return project;
         }
 
-        public IEnumerable<Project> GetProjectsWithoutGalleries()
+        public IEnumerable<Project> GetProjectsWithoutPhotoGalleries()
         {
             var projects = projectRepository.GetAll();
-            var galleries = galleryRepository.GetAll();
+            var galleries = photoGalleryRepository.GetAll();
 
             var projectsWithGalleries =
             from p in projects
@@ -119,7 +123,21 @@ namespace Xland.Services
             var noGalleries = projects.Where(x => !projectsWithGalleries.Contains(x)).ToList();
 
             return noGalleries;
+        }
 
+        public IEnumerable<Project> GetProjectsWithoutVideoGalleries()
+        {
+            var projects = projectRepository.GetAll();
+            var galleries = videoGalleryRepository.GetAll();
+
+            var projectsWithGalleries =
+                from p in projects
+                join g in galleries on p.ID equals g.Project.ID
+                select p;
+
+            var projectWithoutGalleries = projects.Where(x => !projectsWithGalleries.Contains(x)).ToList();
+
+            return projectWithoutGalleries;
         }
 
         public void SaveChanges()

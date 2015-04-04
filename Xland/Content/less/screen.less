@@ -261,11 +261,9 @@ ul {list-style: none; }
     top: 75px;
     width: 100%;
     height:100%;
-    padding: 10px;
     box-sizing: border-box;
     z-index: 100;
     background-color: rgba(0,0,0,0.75);
-    overflow: hidden;
     .transition(all 200ms ease-in-out);
 
     .close-project {
@@ -277,9 +275,14 @@ ul {list-style: none; }
         background-color: #fff;
         padding: 20px;
         margin-top: 50px;
-        max-height: 750px;
-        overflow-y: auto;
+        height: 750px;
+        overflow: hidden;
+        #projectContent {
+            height: 100%;
+            .row { height: 100%; }
+        }
         .main-content {
+            overflow-y: auto;
         }
     }
     &.open {

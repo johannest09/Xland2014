@@ -15,9 +15,9 @@ using Xland.ViewModels;
 
 namespace Xland.Controllers
 {
+    [Authorize]
     public class PhotoGalleryController : Controller
     {
-
         private IPhotoGalleryService photoGalleryService;
         private IPhotoService photoService;
         private IProjectService projectService;
@@ -82,7 +82,7 @@ namespace Xland.Controllers
 
             //ViewBag.photogalleries = projectService.GetProjects().Select(x => new SelectListItem { Text = x.Title, Value = x.ID.ToString() });
 
-            ViewBag.photogalleries = projectService.GetProjectsWithoutGalleries().Select(x => new SelectListItem { Text = x.Title, Value = x.ID.ToString() });
+            ViewBag.photogalleries = projectService.GetProjectsWithoutPhotoGalleries().Select(x => new SelectListItem { Text = x.Title, Value = x.ID.ToString() });
             return View(vm);
         }
 

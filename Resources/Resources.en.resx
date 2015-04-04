@@ -165,11 +165,20 @@
   <data name="Designers" xml:space="preserve">
     <value>Designers</value>
   </data>
+  <data name="ExecutionTime" xml:space="preserve">
+    <value>Execution Period</value>
+  </data>
   <data name="GeneralInformation" xml:space="preserve">
     <value>General Information</value>
   </data>
   <data name="Historical" xml:space="preserve">
     <value>Historical</value>
+  </data>
+  <data name="IsVisible" xml:space="preserve">
+    <value>Visible on web</value>
+  </data>
+  <data name="LatestProjects" xml:space="preserve">
+    <value>Latest projects</value>
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Latitude</value>
@@ -200,6 +209,9 @@
   </data>
   <data name="PublicSpaces" xml:space="preserve">
     <value>Public spaces</value>
+  </data>
+  <data name="RecentlyAdded" xml:space="preserve">
+    <value>Recently added</value>
   </data>
   <data name="Regional" xml:space="preserve">
     <value>Regional planning</value>

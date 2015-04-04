@@ -42,6 +42,8 @@ namespace Xland
             container.RegisterType<IStudioService, StudioService>();
             container.RegisterType<IPhotoService, PhotoService>();
             container.RegisterType<IPhotoGalleryService, PhotoGalleryService>();
+            container.RegisterType<IVideoService, VideoService>();
+            container.RegisterType<IVideoGalleryService, VideoGalleryService>();
 
 
 

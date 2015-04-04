@@ -94,7 +94,8 @@ namespace Xland.Controllers
             {
                 var markers =
                 (from p in projectService.GetProjects()
-                 select new { p.ID, p.Title, p.ProjectType, p.Lat, p.Long }).ToList();
+                 where p.IsVisible == true
+                 select new { p.ID, p.Title, p.ProjectType, p.Lat, p.Long, p.DateCreated, p.DateUpdated }).ToList();
 
                 return Json(markers, JsonRequestBehavior.AllowGet);
             }
@@ -104,7 +105,6 @@ namespace Xland.Controllers
                 //throw;
                 return null;
             }
-
         }
 
         //[OutputCache(Duration = 3600, VaryByParam = "none")]

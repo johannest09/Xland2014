@@ -27,5 +27,8 @@ namespace Xland.DAL
         public System.Data.Entity.DbSet<Xland.Models.Photo> Photos { get; set; }
 
         public System.Data.Entity.DbSet<Xland.Models.PhotoGallery> PhotoGalleries { get; set; }
+
+        public System.Data.Entity.DbSet<Xland.Models.Video> Video { get; set; }
+        public System.Data.Entity.DbSet<Xland.Models.VideoGallery> VideoGalleries { get; set; }
     }
 }

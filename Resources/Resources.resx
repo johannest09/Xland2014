@@ -154,7 +154,7 @@
     <value>Tengiliður</value>
   </data>
   <data name="Contractor" xml:space="preserve">
-    <value>Verkkaupi</value>
+    <value>Verktaki</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Lýsing</value>
@@ -165,11 +165,20 @@
   <data name="Designers" xml:space="preserve">
     <value>Hönnuðir</value>
   </data>
+  <data name="ExecutionTime" xml:space="preserve">
+    <value>Framkvæmdartími</value>
+  </data>
   <data name="GeneralInformation" xml:space="preserve">
     <value>Almennar upplýsingar</value>
   </data>
   <data name="Historical" xml:space="preserve">
     <value>Saga</value>
+  </data>
+  <data name="IsVisible" xml:space="preserve">
+    <value>Sýnilegt á vef</value>
+  </data>
+  <data name="LatestProjects" xml:space="preserve">
+    <value>Nýtt</value>
   </data>
   <data name="Latitude" xml:space="preserve">
     <value>Breiddargráða</value>
@@ -193,13 +202,16 @@
     <value>Verkefni hafið</value>
   </data>
   <data name="ProjectStatus" xml:space="preserve">
-    <value>Staða verkefnis</value>
+    <value>Í vinnslu</value>
   </data>
   <data name="ProjectType" xml:space="preserve">
     <value>Tegund verkefnis</value>
   </data>
   <data name="PublicSpaces" xml:space="preserve">
     <value>Almenninsrými</value>
+  </data>
+  <data name="RecentlyAdded" xml:space="preserve">
+    <value>Nýlega bætt við</value>
   </data>
   <data name="Regional" xml:space="preserve">
     <value>Skipulag</value>

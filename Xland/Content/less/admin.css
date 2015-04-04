@@ -27,7 +27,11 @@ body.admin .btn-create {
   display: inline-block;
   margin-bottom: 20px;
 }
-body.admin .gallery-photos .item {
+body.admin .filesize-exceed {
+  display: none;
+}
+body.admin .gallery-photos .item,
+body.admin .gallery-videos .item {
   float: left;
   width: 300px;
   -webkit-box-sizing: border-box;
@@ -37,21 +41,42 @@ body.admin .gallery-photos .item {
   background: #f3f3f3;
   border-radius: 2px;
 }
-body.admin .gallery-photos .item textarea {
+body.admin .gallery-photos .item textarea,
+body.admin .gallery-videos .item textarea {
   width: 100%;
 }
-body.admin .gallery-photos .item img {
+body.admin .gallery-photos .item img,
+body.admin .gallery-videos .item img,
+body.admin .gallery-photos .item video,
+body.admin .gallery-videos .item video {
   width: 100%;
 }
-body.admin .gallery-photos ul.gallery-photos {
+body.admin .gallery-photos ul.gallery-photos,
+body.admin .gallery-videos ul.gallery-photos,
+body.admin .gallery-photos ul.gallery-videos,
+body.admin .gallery-videos ul.gallery-videos {
   list-style: none;
 }
-body.admin .gallery-photos .photo-actions {
+body.admin .gallery-photos .photo-actions,
+body.admin .gallery-videos .photo-actions,
+body.admin .gallery-photos .video-actions,
+body.admin .gallery-videos .video-actions {
   margin: 20px;
 }
-body.admin .gallery-photos .photo-text {
+body.admin .gallery-photos .photo-text,
+body.admin .gallery-videos .photo-text,
+body.admin .gallery-photos .video-text,
+body.admin .gallery-videos .video-text {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+body.admin ul#videoList {
+  margin: 20px 10px;
+  font-family: "arial, helvetica, sans";
+}
+body.admin ul#videoList li {
+  padding: 6px;
+  list-style: disc;
 }
 #mapPreview {
   width: 500px;

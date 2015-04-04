@@ -13,16 +13,17 @@ namespace Xland.Models
 
         [Required]
         public string Title { get; set; }
+
         [Display(Name = "Category", ResourceType = typeof(Resources.Resources))]
         public ProjectType? ProjectType { get; set; }
 
         [Display(Name = "ContactPerson", ResourceType = typeof(Resources.Resources))]
         public string ContactPerson { get; set; }
 
-        [Display(Name = "ProjectStarted", ResourceType = typeof(Resources.Resources)), DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "ProjectStarted", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM/yyyy}")]
         public DateTime ProjectBeginDate { get; set; }
 
-        [Display(Name = "ProjectFinished", ResourceType = typeof(Resources.Resources)), DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [Display(Name = "ProjectFinished", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM/yyyy}")]
         public DateTime ProjectEndDate { get; set; }
 
         [Display(Name = "ProjectStatus", ResourceType = typeof(Resources.Resources))]
@@ -65,6 +66,12 @@ namespace Xland.Models
 
         [Display(Name = "Locality", ResourceType = typeof(Resources.Resources))]
         public string Locality { get; set; }
+
+        [Display(Name = "IsVisible", ResourceType = typeof(Resources.Resources))]
+        public bool IsVisible { get; set; }
+
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
         public virtual ICollection<Studio> Studios { get; set; }
     }

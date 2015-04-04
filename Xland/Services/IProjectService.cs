@@ -22,7 +22,8 @@ namespace Xland.Services
         string GetProjectGalleryMainPhotoPath(int id);
 
         IEnumerable<Project> GetProjects();
-        IEnumerable<Project> GetProjectsWithoutGalleries();
+        IEnumerable<Project> GetProjectsWithoutPhotoGalleries();
+        IEnumerable<Project> GetProjectsWithoutVideoGalleries();
 
         void SaveChanges();
 

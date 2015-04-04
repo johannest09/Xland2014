@@ -143,16 +143,10 @@ namespace Xland.Controllers
                 projectHtml.Append("</dd>");
             }
 
-            if (project.Designers != null)
+            if (!String.IsNullOrEmpty(project.Designers))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.Designers + "</dt>");
                 projectHtml.Append("<dd>" + project.Designers + "</dd>");
-            }
-
-            if (project.ContactPerson != null)
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.ContactPerson + "</dt>");
-                projectHtml.Append("<dd>" + project.ContactPerson + "</dd>");
             }
 
             projectHtml.Append("</dl>");
@@ -161,50 +155,52 @@ namespace Xland.Controllers
 
             projectHtml.Append("<dl>");
 
-            if (project.Affiliates != null)
+            if (!String.IsNullOrEmpty(project.Affiliates))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.Affiliations + "</dt>");
                 projectHtml.Append("<dd>" + project.Affiliates + "</dd>");
             }
-            if (project.ProjectOwner != null)
+            if (!String.IsNullOrEmpty(project.ProjectOwner))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.ProjectOwner + "</dt>");
                 projectHtml.Append("<dd>" + project.ProjectOwner + "</dd>");
             }
-            if (project.Contractor != null)
+            if (!String.IsNullOrEmpty(project.Contractor))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.Contractor + "</dt>");
                 projectHtml.Append("<dd>" + project.Contractor + "</dd>");
             }
-            if (project.ProjectBeginDate != null)
+            if (project.ProjectBeginDate != null && project.ProjectEndDate != null)
             {
-                projectHtml.Append("<dt>" + Resources.Resources.ProjectStarted + "</dt>");
-                projectHtml.Append("<dd>" + project.ProjectBeginDate + "</dd>");
+                projectHtml.Append("<dt>" + Resources.Resources.ExecutionTime + "</dt>");
+                if (project.ProjectBeginDate.Date.Year == project.ProjectEndDate.Date.Year)
+                {
+                    projectHtml.Append("<dd>" + project.ProjectBeginDate.Date.Year + "</dd>");
+                }
+                else
+                {
+                    projectHtml.Append("<dd>" + project.ProjectBeginDate.Date.Year + " &#8211; " + project.ProjectEndDate.Date.Year + "</dd>");
+                }
             }
-            if (project.ProjectEndDate != null)
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.ProjectFinished + "</dt>");
-                projectHtml.Append("<dd>" + project.ProjectEndDate + "</dd>");
-            }
-            if (project.CapitalCost != null)
+            if (!String.IsNullOrEmpty(project.CapitalCost))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.CapitalCost + "</dt>");
                 projectHtml.Append("<dd>" + project.CapitalCost + "</dd>");
             }
 
-            if (project.AreaSize != null)
+            if (!String.IsNullOrEmpty(project.AreaSize))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.AreaSize + "</dt>");
                 projectHtml.Append("<dd>" + project.AreaSize + "</dd>");
             }
 
-            if (project.ProjectLocation != null)
+            if (!String.IsNullOrEmpty(project.ProjectLocation))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.ProjectLocation + "</dt>");
                 projectHtml.Append("<dd>" + project.ProjectLocation + "</dd>");
             }
 
-            if (project.Locality != null)
+            if (!String.IsNullOrEmpty(project.Locality))
             {
                 projectHtml.Append("<dt>" + Resources.Resources.Locality + "</dt>");
                 projectHtml.Append("<dd>" + project.Locality + "</dd>");
@@ -326,6 +322,9 @@ namespace Xland.Controllers
             {
           
                 var project = viewModel.Project;
+
+                project.DateCreated = DateTime.Now;
+                project.DateUpdated = DateTime.Now;
                 
                 project.Studios = new List<Studio>();
 
@@ -425,8 +424,8 @@ namespace Xland.Controllers
 
                 project.ID = model.ID;
                 project.Title = model.Project.Title;
+                project.IsVisible = model.Project.IsVisible;
                 project.ProjectType = (ProjectType)Enum.Parse(typeof(ProjectType), projectType);
-                project.ContactPerson = model.Project.ContactPerson;
                 project.ProjectBeginDate = model.Project.ProjectBeginDate;
                 project.ProjectEndDate = model.Project.ProjectEndDate;
                 project.InProgress = model.Project.InProgress;
@@ -442,7 +441,7 @@ namespace Xland.Controllers
                 project.Long = model.Project.Long;
                 project.ProjectLocation = model.Project.ProjectLocation;
                 project.Locality = model.Project.Locality;
-                
+                project.DateUpdated = DateTime.Now;
 
                 if (model.Studios != null)
                 {
