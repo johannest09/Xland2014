@@ -400,6 +400,7 @@
     <Content Include="Content\fonts\futura\FuturaLT-Book.svg" />
     <Content Include="Content\fonts\futura\FuturaLT.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\gear.svg" />
     <Content Include="Content\Images\preloader_10.gif" />
     <Content Include="Content\Images\Preloader_5.gif" />
     <Content Include="Content\less\admin.css">
@@ -437,6 +438,12 @@
     </Content>
     <Content Include="Content\less\mixins\clearfix.min.css">
       <DependentUpon>clearfix.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\custom-functions.css">
+      <DependentUpon>custom-functions.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\custom-functions.min.css">
+      <DependentUpon>custom-functions.less</DependentUpon>
     </Content>
     <Content Include="Content\less\mixins\vendor-prefixes.css">
       <DependentUpon>vendor-prefixes.less</DependentUpon>
@@ -715,6 +722,7 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\less\screen-admin.less" />
     <Content Include="Content\less\admin.less" />
+    <Content Include="Content\less\mixins\custom-functions.less" />
     <None Include="Properties\PublishProfiles\xland %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\xland-throun.pubxml" />
     <None Include="Properties\PublishProfiles\Xland.pubxml" />

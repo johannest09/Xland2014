@@ -148,7 +148,7 @@
     <value>Veldu tungumál</value>
   </data>
   <data name="Competitions" xml:space="preserve">
-    <value>Samkeppnir</value>
+    <value>Samkeppni</value>
   </data>
   <data name="ContactPerson" xml:space="preserve">
     <value>Tengiliður</value>
@@ -213,11 +213,11 @@
   <data name="RecentlyAdded" xml:space="preserve">
     <value>Nýlega bætt við</value>
   </data>
-  <data name="Regional" xml:space="preserve">
-    <value>Skipulag</value>
-  </data>
   <data name="Slogan" xml:space="preserve">
-    <value>Íslenskur landslagsarkitektúr</value>
+    <value>Íslenskur landslagsarkitektúr á vefnum</value>
+  </data>
+  <data name="SpatialPlanning" xml:space="preserve">
+    <value>Skipulag</value>
   </data>
   <data name="Studios" xml:space="preserve">
     <value>Stofur</value>

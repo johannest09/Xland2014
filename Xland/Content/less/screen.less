@@ -59,9 +59,7 @@ ul {list-style: none; }
 *************************************/
 
 #top-controls {
-    > div {
-        padding-top: 25px;
-    }
+    padding-top: 13px;
     .about {
         display: inline-block;
         float: left;
@@ -69,9 +67,7 @@ ul {list-style: none; }
         cursor: pointer;
         font-weight: 400;
         font-size: 16px;
-        &:hover {
-            //background: #32373d;
-        }
+
     }
     #select-language {
         a:first-child {border-right: none;}
@@ -81,7 +77,6 @@ ul {list-style: none; }
             text-transform: uppercase;
             font-weight: 400;
             font-size: 16px;
-            //&.selected {background: #32373d; }
             &:hover {
                 text-decoration: none;
             }
@@ -115,45 +110,29 @@ ul {list-style: none; }
 
 .navbar {
     background-color: rgba(255,255,255,0.85); 
-    height: 75px;
     margin: 0;
     padding: 0;
     border: 0;
-    border-bottom: 1px solid #3583B3; 
+    border-bottom: 1px solid @brand-primary; 
     .navbar-header {
         margin-left: 0;
         .navbar-brand {
-            font-size: 36px;
+            font-size: 34px;
             font-weight: 300;
             display: block;
-            height: 75px;
             margin-left: 0px !important;
-            padding-top: 32px;
-
-            -webkit-transition: background 200ms linear;
-            -moz-transition: background 200ms linear;
-            -ms-transition: background 200ms linear;
-            -o-transition: background 200ms linear;
-            transition: background 200ms linear;
-
             margin-right: 20px;
-            &:hover {
-                -webkit-transition: background 200ms linear;
-                -moz-transition: background 200ms linear;
-                -ms-transition: background 200ms linear;
-                -o-transition: background 200ms linear;
-                transition: background 200ms linear;
-            }
+
+            .transition(background 200ms linear);
+            &:hover { .transition(background 200ms linear); }
         }
         .slogan {
             position: relative;
             span {
+                display: block;
                 color: #374351;
-                opacity: 0.5;
                 font-size: 20px;
-                position: absolute;
-                left: 0;
-                top: 30px;
+                margin-top: 20px;
             }
         }
     }
@@ -205,11 +184,11 @@ ul {list-style: none; }
     }
 }
 
-.close-project {
+.close-project, span.nav-close {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     cursor: pointer;
     z-index: 100;
@@ -251,6 +230,17 @@ ul {list-style: none; }
     }
 }
 
+span.nav-close {
+    &:hover {
+        &::before, &::after {
+            background: @brand-primary;
+        }
+    }
+    &::before, &::after {
+        background: @brand-primary;
+    }
+}
+
 #content {
     margin: 0 80px 40px 80px;
 }
@@ -270,42 +260,50 @@ ul {list-style: none; }
 #projectContainer {
     position: fixed;
     left: -2500px;
-    top: 75px;
+    top: 55px;
     width: 100%;
     height:100%;
     box-sizing: border-box;
     z-index: 100;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0,0,0,0.92);
+    padding-top: 35px;
     .transition(all 200ms ease-in-out);
 
     .close-project {
         position: absolute;
-        right: 10px;
-        top: 10px;
+        right: 20px;
+        top: 16px;
+        background: #C88485;
+        border: 1px solid #fff;
+        &:hover {
+            background: #CF4446;
+        }
     }
-    .container {
-        background-color: #fff;
+    .container-fluid {
+        background-color: rgba(255,255,255,0.6);
         padding: 20px;
-        margin-top: 50px;
-        height: 750px;
-        overflow: hidden;
         #projectContent {
             height: 100%;
+            margin-bottom: 20px;
             .row { height: 100%; }
         }
         .main-content {
+            padding: 20px;
+            background: #ddd;
+            border: 1px solid #fff;
             overflow-y: auto;
+        }
+    }
+    .social-media {
+        .sm {
+            float: left;
+            margin-right: 25px;
         }
     }
     &.open {
         left: 0;
     }
 
-    .social-media {
-        margin-top: 0;
-        overflow: auto;
-        background: transparent;
-    }
 }
 
 #preload {
@@ -315,6 +313,9 @@ ul {list-style: none; }
     margin-left: -64px;
     margin-top: -64px;
     z-index: 200;
+    border-radius: 4px;
+    background: #374351;
+    border: 1px solid #fff;
     img {
         .border-radius(100px);
     }
@@ -387,9 +388,9 @@ body.project {
 }
 
 #project-info {
-    padding: 15px;
-    padding-top: 10px;
-    //border-right: 1px dotted #364251;
+    padding: 20px;
+    background: #ddd;
+    border: 1px solid #fff;
     h3 {
         line-height: 24px;
         padding-bottom: 5px;
@@ -402,7 +403,7 @@ body.project {
     .project-type {
         text-transform: uppercase;
         margin-bottom: 20px;
-        color: #303030;
+        color: @brand-primary;
         font-weight: 600;
         span {
             margin-right: 15px;
@@ -413,7 +414,7 @@ body.project {
         font-size: 14px;
         dt {
             font-weight: 300;
-            background-color: #374351;
+            background-color: #000;
             color: #fff;
             margin-bottom: 8px;
             text-transform: uppercase;
@@ -454,164 +455,64 @@ body.project {
 
 }
 
-/* Less than 768px */
+@media (max-width: @screen-sm-max) {
+
+    .navbar .navbar-header .navbar-brand { padding-left: 0; }
+    body.project-open #top-controls { display: none; }
+    
+    #top-controls {
+        background: #666666;
+        padding-top: 8px;
+
+        div.cs-skin-underline {
+            max-width: none;
+            margin-bottom: 7px;
+        }
+        .about, #select-language a { font-weight: 300; }
+    }
+    #projectContainer .container-fluid { background: transparent; }
+    
+}
+
+/* tablet */
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+
+    .slogan span { float: right; } 
+
+    #top-controls {
+        .about, #select-language a { color: #fff; }
+    }
+
+}
+
 @media (max-width: @screen-xs-max) {
-    
-    body.project {
-        .navbar .navbar-header {
-            .navbar-brand { font-size: 22px; }
-        }
-        #top-controls { 
-            .btn-back {
-                padding: 5px;
-                margin: 0; 
-                i { margin-right: 6px; }
-            }
-        }
-        
-        #content {
-            #project-description {
-                padding: 0;
-            }
-        }
-        .details {
-            #project-info {
-                border: none;
-                padding: 0;
-            }
-        }
-        #grid-gallery { background: none; }
-    }
 
-    .navbar { 
-        height: 50px;
-            .navbar-header {
-            .navbar-brand {
-                height: 50px;
-                padding-top: 15px;
-                font-size: 25px;
-                padding: 15px 8px;
-            }
-        }
-    }
-    #top-controls {
-        .category-select {
-            .pull-right;
-            div.cs-select {
-                width: 32px;
-                height: 32px;
-                min-width: 0;
-                margin-left: 10px;
-                border-bottom: 0;
-        
-                .cs-placeholder {
-                    width: 100%;
-                    height: 100%;
-                    padding: 0;
-                    &:after {
-                        top: 15px;
-                        right: 7px;
-                        margin-right: 0;
-                        font-size: 18px;
-                    }
-                    .dd-placeholder-text {
-                        display: none;
-                    }
-                }
-                .cs-options {
-                    width: 100%;
-                    position: fixed;
-                    left: 0;
-                    top: 50px;
-                }
-            }
-        }
-        .about-xland {
-            height: 32px;
+    .navbar .navbar-header .slogan span { font-size: 14px; }
 
-            .about, .lang { height: 100%; }
-
-            #select-language {
-               a { height: 32px; padding: 8px 10px; } 
-            }
-            .about { padding: 8px 4px; }
-        }
-    }
-    
-    div.cs-skin-underline {
-        border: none;
-        border-bottom: 1px solid #fff;
-        margin-top: 0;
-        background-color: @primary-color-transparent;
-        span { border: 0 !important; }
-    }
-    h1 { font-size: 26px; }
-    #top-controls {
-        > div { padding-top: 10px; }
-        font-size: 12px;
-        .about { padding: 5px 4px; }
-    }
-
-    .close-project {
-        width: 35px;
-        height: 35px;
-        &:after, &:before {
-            background: #ABABAB;
-        }
+    #slogan { display: none; }
+    .language-select {
+        position: fixed;
+        top: 17px;
+        right: 0;
+        width: 200px;
     }
 
     #projectContainer {
-        padding: 0;
-        margin: 0;
-        top: 50px;
-        overflow-y: auto;
-        .container {
-            padding: 20px;
-            margin-top: 0;
-            max-height: none;
+        padding-top: 0;
+        padding-bottom: 40px;
+        .close-project {
+            top: 25px;
+            right: 25px;
+            border: 0;
+            background: transparent;
+            &:before, &:after { background: #000; }
         }
-
-        #project-content {
+        .container-fluid {
+            height: 100%;
             padding: 0;
-            margin: 0;
-
-            .container {
-                margin: 0;
-            }
-        }
-        #project-info {
-            padding: 0;
-        }
-
-        .social-media {
-            background-color: #fff;
-            padding: 20px;
-            .clearfix;
-
-        }
-    }
-
-    body.project-open {
-        .navbar-fixed-top { display: none; }
-        #projectContainer {
-            top: 0;
-        }
-    }
-
-    // Slideshow
-
-    .slideshow-open .slideshow {
-        padding-top: 50px;
-
-        nav {
-            position: absolute;
-            bottom: 40px;
-            span {
-                color: #fff;
-                &.nav-prev, &.nav-next {
-                    top: auto;
-                }
-                &.nav-close { top: 0; }
+            #projectContent {
+                height: 100%;
+                overflow-y: auto;
             }
         }
     }

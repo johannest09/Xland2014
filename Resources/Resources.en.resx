@@ -148,7 +148,7 @@
     <value>Choose language</value>
   </data>
   <data name="Competitions" xml:space="preserve">
-    <value>Competitions</value>
+    <value>Competition</value>
   </data>
   <data name="ContactPerson" xml:space="preserve">
     <value>Contact person</value>
@@ -213,11 +213,11 @@
   <data name="RecentlyAdded" xml:space="preserve">
     <value>Recently added</value>
   </data>
-  <data name="Regional" xml:space="preserve">
-    <value>Regional planning</value>
-  </data>
   <data name="Slogan" xml:space="preserve">
     <value>Icelandic landscape architecture forum</value>
+  </data>
+  <data name="SpatialPlanning" xml:space="preserve">
+    <value>Spatial planning</value>
   </data>
   <data name="Studios" xml:space="preserve">
     <value>Studios</value>

@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Samkeppnir.
+        ///   Looks up a localized string similar to Samkeppni.
         /// </summary>
         public static string Competitions {
             get {
@@ -349,20 +349,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Skipulag.
-        /// </summary>
-        public static string Regional {
-            get {
-                return ResourceManager.GetString("Regional", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Íslenskur landslagsarkitektúr.
+        ///   Looks up a localized string similar to Íslenskur landslagsarkitektúr á vefnum.
         /// </summary>
         public static string Slogan {
             get {
                 return ResourceManager.GetString("Slogan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skipulag.
+        /// </summary>
+        public static string SpatialPlanning {
+            get {
+                return ResourceManager.GetString("SpatialPlanning", resourceCulture);
             }
         }
         

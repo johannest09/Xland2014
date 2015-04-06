@@ -23,7 +23,6 @@
 div.cs-skin-underline {
 	background: transparent;
 	max-width: 320px;
-    min-width: 300px;
 }
 div.cs-skin-underline .cs-options ul {
     border: 0;
@@ -36,9 +35,10 @@ div.cs-skin-underline .cs-options ul {
 .cs-skin-underline > span {
 	padding: 0.5em 3em 0.5em 0.5em;
     padding: 5px 8px;
-    color: #374351;
+    color: #fff;
     letter-spacing: 1px;
     border: 1px solid #374351;
+    background: #374351;
 }
 
 .cs-skin-underline > span::after {

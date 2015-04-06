@@ -164,7 +164,7 @@ var xland = {
 
     showCategory: function (category) {
         for (id in markerList) {
-            if (category == 4) { // latest projects
+            if (category == 4) { // recently added
                 // Check date
                 var date = new Date(parseInt(markerList[id].dateUpdated.substr(6)));
                 var timestamp = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)

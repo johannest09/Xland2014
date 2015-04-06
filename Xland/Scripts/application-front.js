@@ -29,15 +29,17 @@ var App = {
         
         $("#projectContainer .close-project").on("click", function () {
             $("#projectContainer").removeClass("open");
+            $("#project").empty();
+            $("body").removeClass("project-open");
         });
         if (id) {
             $("#preload").show();
             $.getJSON('/project/info2/' + id).complete(function (data) {
 
                 if (data) {
-        
+                    $("body").addClass("project-open");
                     $("#projectContainer").addClass("open");
-                    $("#projectContent").html(data.responseText);
+                    $("#project").html(data.responseText);
                     $("#preload").hide();
                     App.Plugins.CBPGridGalleryInit();
 
