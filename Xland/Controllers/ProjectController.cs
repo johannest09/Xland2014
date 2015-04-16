@@ -54,6 +54,7 @@ namespace Xland.Controllers
 
         public ActionResult Info(int? id)
         {
+            /*
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -85,9 +86,14 @@ namespace Xland.Controllers
             }
 
             return View(model);
+            */
 
+
+
+            return RedirectToAction("Index", "Home", new { id = id });
         }
 
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public string Info2(int? id)
         {
             if (id == null)
@@ -125,178 +131,23 @@ namespace Xland.Controllers
                                 select v).ToList();
             }
 
-            //return JsonConvert.SerializeObject(model);
-
-            
-            FormatCompiler compiler = new FormatCompiler();
-            //Generator generator = compiler.Compile("Hello, {{this}}!!!");
-            //string result = generator.Render("Bob");
-
-            StringBuilder projectHtml = new StringBuilder();
-
-            projectHtml.Append("<div class=\"col-sm-4 col-md-3\">");
-            projectHtml.Append("<div id=\"project-info\">");
-            projectHtml.Append("<div class=\"project-type\"><span>" + Resources.Resources.Category + "</span>{{ProjectType}}</div>");
-
-            projectHtml.Append("<h3>" + Resources.Resources.StudiosAndParticipants + "</h3>");
-
-            projectHtml.Append("<dl>");
-            if (model.Project.Studios.Count > 0)
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.Studios + "</dt>");
-                projectHtml.Append("<dd>");
-                foreach (var studio in model.Project.Studios)
-                { 
-                    projectHtml.Append("<span>" + studio.Name + "</span>");
-                }
-                projectHtml.Append("</dd>");
-            }
-
-            if (!String.IsNullOrEmpty(project.Designers))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.Designers + "</dt>");
-                projectHtml.Append("<dd>" + project.Designers + "</dd>");
-            }
-
-            projectHtml.Append("</dl>");
-
-            projectHtml.Append("<h3>" + Resources.Resources.GeneralInformation + "</h3>");
-
-            projectHtml.Append("<dl>");
-
-            if (!String.IsNullOrEmpty(project.Affiliates))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.Affiliations + "</dt>");
-                projectHtml.Append("<dd>" + project.Affiliates + "</dd>");
-            }
-            if (!String.IsNullOrEmpty(project.ProjectOwner))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.ProjectOwner + "</dt>");
-                projectHtml.Append("<dd>" + project.ProjectOwner + "</dd>");
-            }
-            if (!String.IsNullOrEmpty(project.Contractor))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.Contractor + "</dt>");
-                projectHtml.Append("<dd>" + project.Contractor + "</dd>");
-            }
             if (project.ProjectBeginDate != null && project.ProjectEndDate != null)
             {
-                projectHtml.Append("<dt>" + Resources.Resources.ExecutionTime + "</dt>");
                 if (project.ProjectBeginDate.Date.Year == project.ProjectEndDate.Date.Year)
                 {
-                    projectHtml.Append("<dd>" + project.ProjectBeginDate.Date.Year + "</dd>");
+                    model.ProjectExecutionPeriod = project.ProjectBeginDate.Date.Year.ToString();
                 }
                 else
                 {
-                    projectHtml.Append("<dd>" + project.ProjectBeginDate.Date.Year + " &#8211; " + project.ProjectEndDate.Date.Year + "</dd>");
+                    model.ProjectExecutionPeriod = project.ProjectBeginDate.Date.Year.ToString() + " &#8211; " + project.ProjectEndDate.Date.Year.ToString(); 
                 }
             }
-            if (!String.IsNullOrEmpty(project.CapitalCost))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.CapitalCost + "</dt>");
-                projectHtml.Append("<dd>" + project.CapitalCost + "</dd>");
-            }
-
-            if (!String.IsNullOrEmpty(project.AreaSize))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.AreaSize + "</dt>");
-                projectHtml.Append("<dd>" + project.AreaSize + "</dd>");
-            }
-
-            if (!String.IsNullOrEmpty(project.ProjectLocation))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.ProjectLocation + "</dt>");
-                projectHtml.Append("<dd>" + project.ProjectLocation + "</dd>");
-            }
-
-            if (!String.IsNullOrEmpty(project.Locality))
-            {
-                projectHtml.Append("<dt>" + Resources.Resources.Locality + "</dt>");
-                projectHtml.Append("<dd>" + project.Locality + "</dd>");
-            }
-
-            projectHtml.Append("</dl>");
-
-            projectHtml.Append("</div></div>");
 
 
-            projectHtml.Append("<div class=\"col-xs-12 col-sm-8 col-md-9\">");
-            projectHtml.Append("<div class=\"main-content\">");
+            model.Photos.ToList().ForEach(p => p.Path = p.Path.Substring(2));
 
-            if (model.Photos.Count() > 0 || model.Videos.Count() > 0)
-            {
-                projectHtml.Append("<div id=\"grid-gallery\" class=\"grid-gallery\">");
-                projectHtml.Append("<section class=\"grid-wrap\">");
-                projectHtml.Append("<ul class=\"grid cs-style-3\"><li class=\"grid-sizer\"></li>");
+            return JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
-                if (model.Photos != null)
-                {
-                    foreach (var p in model.Photos)
-                    {
-                        projectHtml.AppendFormat("<li><figure><img src=\"{0}?width=300\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></li>", Url.Content(p.Path), p.Title, p.ID);
-                    }
-                }
-                if (model.Videos != null)
-                {
-                    foreach (var v in model.Videos)
-                    {
-                        projectHtml.AppendFormat("<li><figure><video controls data-videoid=\"{0}\" class=\"item\" ><source src=\"{1}?width=300\" type=\"video/mp4\" /><p> Your browser does not support this format</p></video></figure></li>", v.ID, Url.Content(v.Path));
-                    }
-                }
-                
-                projectHtml.Append("</ul>");
-                projectHtml.Append("</section>");
-
-                projectHtml.Append("<section class=\"slideshow\"><ul>");
-
-                if (model.Photos != null)
-                {
-                    foreach (var p in model.Photos)
-                    {
-                        projectHtml.AppendFormat("<li><figure><img src=\"{0}?w=800&h=600\" alt=\"{1}\" data-imageid=\"{2}\" class=\"item\"></img><figcaption><h3>{3}</h3><span>{4}</span></figcaption></figure></li>", Url.Content(p.Path), p.Title, p.ID, p.Title, p.Description);
-                    }
-                }
-                if (model.Videos != null)
-                {
-                    foreach (var v in model.Videos)
-                    {
-                        projectHtml.AppendFormat("<li><figure><video controls data-videoid=\"{0}\" class=\"item\" ><source src=\"{1}?w=800&h=600\" type=\"video/mp4\" /><p> Your browser does not support this format</p></video></figure></li>", v.ID, Url.Content(v.Path));
-                    }
-                }
-
-                projectHtml.Append("</ul>");
-                projectHtml.Append("<nav><span class=\"icon nav-prev\"></span><span class=\"icon nav-next\"></span><span class=\"icon nav-close\"></span></nav>");
-                projectHtml.Append("<div class=\"info-keys icon\">Navigate with arrow keys</div>");
-
-                projectHtml.Append("</section>");
-
-                projectHtml.Append("</div>");
-            }
-
-            projectHtml.Append("<div class=\"row\">");
-            projectHtml.Append("<div id=\"project-description\" class=\"col-sm-12 col-md-12\">");
-            projectHtml.AppendFormat("<h1 class=\"project-title\">{0}</h1>", project.Title);
-
-            if (CultureHelper.GetCurrentCulture().ToLower() == "is-is")
-            {
-                projectHtml.Append("<div>" + project.Description + "</div>");
-            }
-            else
-            {
-                projectHtml.Append("<div>" + project.DescriptionEnglish + "</div>");
-            }
-
-            projectHtml.Append("</div></div>");
-
-            projectHtml.Append("</div></div>");
-
-            Generator generator = compiler.Compile(projectHtml.ToString());
-
-            
-            string result = generator.Render(model.Project);
-
-            return result;
-           
         }
 
         // GET: /Project/Details/5

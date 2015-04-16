@@ -27,27 +27,45 @@ var App = {
 
     ProjectInfoData: function (id) {
         
-        $("#projectContainer .close-project").on("click", function () {
-            $("#projectContainer").removeClass("open");
-            $("#project").empty();
-            $("body").removeClass("project-open");
-        });
         if (id) {
             $("#preload").show();
             $.getJSON('/project/info2/' + id).complete(function (data) {
 
                 if (data) {
+                    
+                    //$("#project").html(data.responseText);
+
+                    var rendered = "";
+                    var template = $("#template-project").html();
+                    //rendered = Mustache.render(template, { name: itemType });
+
+                    rendered = Mustache.render(template, data.responseJSON);
+
+                    $("#project").html(rendered);
+
+                    $("#preload").hide();
+
                     $("body").addClass("project-open");
                     $("#projectContainer").addClass("open");
-                    $("#project").html(data.responseText);
-                    $("#preload").hide();
+
                     App.Plugins.CBPGridGalleryInit();
 
-                    $(".fb-like").attr("data-href", "http://localhost:63210/Home/Info/" + id);
-                    $(".twitter-share-button").attr("href", "http://localhost:63210/Home/Info/" + id);
+                    // Facebook
+                    FB.XFBML.parse();
+                    
+                    $(".fb-like").attr("data-href", window.location.href + "/Home/Info2/" + id);
+                    $(".twitter-share-button").attr("href", window.location.href + "/Home/Info2/" + id);
                 }
+
+                $(".close-project").off("click").on("click", function () {
+                    $("#projectContainer").removeClass("open");
+                    $("#project").empty();
+                    $("body").removeClass("project-open");
+                });
             });
         }
+
+        
     },
 
     // Plugins
@@ -57,26 +75,6 @@ var App = {
         // Initialize Plugins
         // ------------------------------
         Init: function () {
-
-            /*
-            $('#photoTiles').isotope({
-                
-                // layout mode options
-                masonry: {
-                    columnWidth: '.grid-sizer'
-                },
-                itemSelector: '.mini-item'
-            });
-
-            $('.isotope').isotope({
-                itemSelector: '.item',
-                masonry: {
-                    columnWidth: 300
-                }
-            });
-
-            */
-
             (function () {
                 [].slice.call(document.querySelectorAll('select.cs-select')).forEach(function (el) {
                     var options = {
@@ -85,8 +83,6 @@ var App = {
                     new SelectFx(el, options);
                 });
             })();
-
-            
         },
 
         CBPGridGalleryInit: function () {

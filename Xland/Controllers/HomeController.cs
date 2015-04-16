@@ -87,7 +87,7 @@ namespace Xland.Controllers
 
         }
 
-        //[OutputCache(Duration = 3600, VaryByParam = "none")]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkers()
         {
             try
@@ -107,7 +107,7 @@ namespace Xland.Controllers
             }
         }
 
-        //[OutputCache(Duration = 3600, VaryByParam = "none")]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public JsonResult GetMarkerInfo(int id)
         {
             var markerInfo =

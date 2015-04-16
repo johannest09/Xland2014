@@ -107,44 +107,189 @@
         </div>
 
         <div id="projectContainer">
-            <i class="close-project"></i>
+
             <div class="container-fluid">
        
                 <div id="projectContent">
-                    <div class="row">
-                        <div id="project">
-
-                        </div>
-                        <div class="col-md-9 col-sm-12 col-md-offset-3">
-                            <div class="social-media">
-                                <div class="row">
-                                    <div class="col-md-4 col-md-offset-8">
-                                        <div class="pull-right">
-                                            <div class="sm">
-                                                <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                                            </div>
-                                            <div class="sm">
-                                                <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="xland">Tweet</a>
-                                            </div>
-                                            <div class="sm">
-                                                <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                    <div id="project"></div>
                 </div>
-                
                 
             </div>
             
         </div>
         <!--div id="templates" style="display: none;"></!--div-->
+        <script id="template-project" type="x-tmpl-mustache">
 
+            <div class="top-header">
+                <div class="project-type">
+        
+                    {{#Project.ProjectType}}
+                        <span>@Resources.Resources.Category</span>
+                        {{Project.ProjectType}}
+                    {{/Project.ProjectType}}
+                </div>
+                <i class="close-project"></i>
+            </div>
+            <div class="container-fluid">
+    
+                <div id="project">
+                    <div class="row">
+                        <div class="col-cs-12 col-sm-4 col-md-3">
+                            <div id="project-info">
+                                <h3>@Resources.Resources.StudiosAndParticipants</h3>
+                                <dl>
+                                    {{#Project.Studios.length}}
+                                        <dt><span>@Resources.Resources.Studios</span></dt>
+                                        {{#Project.Studios}}
+                                            <dd>{{Name}}</dd>
+                                        {{/Project.Studios}}
+                                    {{/Project.Studios.length}}
+                                    {{#Project.Designers.length}}
+                                        <dt>@Resources.Resources.Designers</dt>
+                                        <dd>{{Project.Designers}}</dd>
+                                    {{/Project.Designers.length}}
+
+                                </dl>
+                                <h3>@Resources.Resources.GeneralInformation</h3>
+                                <dl>
+                                    {{#Project.Affiliates.length}}
+                                        <dt>@Resources.Resources.Affiliations</dt>
+                                        <dd>{{Project.Affiliates}}</dd>
+                                    {{/Project.Affiliates.length}}
+                                    {{#Project.ProjectOwner.length}}
+                                        <dt>@Resources.Resources.ProjectOwner</dt>
+                                        <dd>{{Project.ProjectOwner}}</dd>
+                                    {{/Project.ProjectOwner.length}}
+                                    {{#Project.Contractor.length}}
+                                        <dt>@Resources.Resources.Contractor</dt>
+                                        <dd>{{Project.Contractor}}</dd>
+                                    {{/Project.Contractor.length}}
+
+                                    {{#ProjectExecutionPeriod.length}}
+                                        <dt>@Resources.Resources.ExecutionTime</dt>
+                                        <dd>{{{ProjectExecutionPeriod}}}</dd>
+                                    {{/ProjectExecutionPeriod.length}}
+                                    {{#Project.CapitalCost.length}}
+                                        <dt>@Resources.Resources.CapitalCost</dt>
+                                        <dd>{{Project.CapitalCost}}</dd>
+                                    {{/Project.CapitalCost.length}}
+                                    {{#Project.AreaSize.length}}
+                                        <dt>@Resources.Resources.AreaSize</dt>
+                                        <dd>{{Project.AreaSize}}</dd>
+                                    {{/Project.AreaSize.length}}
+                                    {{#Project.ProjectLocation.length}}
+                                        <dt>@Resources.Resources.ProjectLocation</dt>
+                                        <dd>{{Project.ProjectLocation}}</dd>
+                                    {{/Project.ProjectLocation.length}}
+                                    {{#Project.Locality.length}}
+                                        <dt>@Resources.Resources.Locality</dt>
+                                        <dd>{{Project.Locality}}</dd>
+                                    {{/Project.Locality.length}}
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-8 col-md-9">
+         
+                            <div class="main-content">
+                                {{#Photos.length}}
+                                    <div class="row">
+                                        <div id="grid-gallery" class="grid-gallery">
+                                            <section class="grid-wrap">
+                                                <ul class="grid cs-style-3">
+                                                    <li class="grid-sizer"></li>
+                                                    {{#Photos}}
+                                                        <li>
+                                                            <figure><img src="{{Path}}?width=300" alt="{{Title}}" class="item" data-image-id="{{ID}}"></figure>
+                                                        </li>
+                                                    {{/Photos}}
+                                                    {{#Videos.length}}
+                                                        <li>
+                                                            <figure>
+                                                                <video controls data-video-id="{{ID}}" src="" class="item">
+                                                                    <source src="{{Path}}?width=300" type="video/mp4" />
+                                                                    <p>Your browser does not support this format</p>
+                                                                </video>
+                                                            </figure>
+                                                        </li>
+                                                    {{/Videos.length}}
+                                                </ul>
+                                            </section>
+
+                                            <section class="slideshow">
+                                                <ul>
+                                                    {{#Photos}}
+                                                        <li>
+                                                            <figure>
+                                                                <img src="{{Path}}?w=800&h=600" alt="{{Title}}" data-image-id="{{ID}}" class="item">
+                                                                    <figcaption>
+                                                                        <h3>{{Title}}</h3>
+                                                                        <span>{{Description}}</span>
+                                                                    </figcaption>
+                                                                </img>
+                                                            </figure>
+                                                        </li>
+                                                    {{/Photos}}
+                                                    {{#Videos}}
+                                                        <li>
+                                                            <figure>
+                                                                <video controls data-video-id="{{ID}}" class="item" >
+                                                                    <source src="{{Path}}?w=800&height=600" type="video/mp4">
+                                                                    <p>Your browser does not support this format</p>
+                                                                </video>
+                                                            </figure>
+                                                        </li>
+                                                    {{/Videos}}
+                                                </ul>
+                                                <nav>
+                                                    <span class="icon nav-prev"></span>
+                                                    <span class="icon nav-next"></span>
+                                                    <span class="icon nav-close"></span>
+                                                </nav>
+
+                                            </section>
+                                        </div>
+                                    </div>
+                        
+                                {{/Photos.length}}
+
+                                <div class="row">
+                                    <div id="project-description" class="col-sm-12 col-md-12">
+                                        <h1 class="project-title">{{Project.Title}}</h1>
+                                        <div>{{{Project.Description}}}</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9 col-sm-12 col-md-offset-3">
+                                        <div class="social-media">
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-8">
+                                                    <div class="pull-right">
+                                                        <div class="sm">
+                                                            <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                                                        </div>
+                                                        <div class="sm">
+                                                            <a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="xland">Tweet</a>
+                                                        </div>
+                                                        <div class="sm">
+                                                            <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_20.png" /></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                </div>
+
+            </div>
+
+
+        </script>
         <div id="about">
             
             <div class="about-content">
@@ -182,9 +327,6 @@
 
     @Scripts.Render("~/bundles/map")
     @Scripts.Render("~/bundles/front")
-
-
-    
 
 
     </body>

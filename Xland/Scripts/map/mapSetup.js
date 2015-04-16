@@ -198,11 +198,10 @@ $(document).ready(function () {
 
         $(".infowindow").find("a").bind("click", function (e) {
             
-            e.preventDefault();
             var id = $(this).data("id");
             App.ProjectInfoData(id);
             
-
+            e.preventDefault();
         });
     });
 });
