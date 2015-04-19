@@ -62,6 +62,7 @@ var App = {
                     $("#project").empty();
                     $("body").removeClass("project-open");
                 });
+
             });
         }
 
@@ -109,11 +110,20 @@ var App = {
                 //$(this).parents("#about").hide('blind', null, 400);
                 $("#about").removeClass("open");
             });
+
+            // Show hide close project btn
+            $("#projectContainer").on("scroll", function () {
+                var offsetY = $("#projectContainer").scrollTop();
+
+                if (offsetY > 40) {
+                    $(".close-project-mobile").addClass("active");
+                } else {
+                    $(".close-project-mobile").removeClass("active");
+                }
+            });
             
         }
-       
     }
-
 
 };
 

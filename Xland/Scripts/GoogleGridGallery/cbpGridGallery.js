@@ -149,6 +149,7 @@
         this.current = pos;
 
         classie.addClass(this.el, 'slideshow-open');
+        $("body").addClass('slideshow-active');
 
         /* position slideshow items */
 
@@ -282,6 +283,7 @@
     CBPGridGallery.prototype._closeSlideshow = function (pos) {
         // remove class slideshow-open from the grid gallery elem
         classie.removeClass(this.el, 'slideshow-open');
+        $("body").removeClass('slideshow-active');
         // remove class animatable from the slideshow grid
         classie.removeClass(this.slideshow, 'animatable');
 
