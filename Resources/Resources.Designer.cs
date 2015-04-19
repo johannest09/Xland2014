@@ -331,7 +331,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Almenninsrými.
+        ///   Looks up a localized string similar to Almenningsrými.
         /// </summary>
         public static string PublicSpaces {
             get {

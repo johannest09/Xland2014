@@ -52,9 +52,20 @@ var App = {
 
                     // Facebook
                     FB.XFBML.parse();
-                    
-                    $(".fb-like").attr("data-href", window.location.href + "/Home/Info2/" + id);
-                    $(".twitter-share-button").attr("href", window.location.href + "/Home/Info2/" + id);
+                    $(".fb-like").attr("data-href", window.location.href + "Project/Info/" + id);
+
+                    // Twitter
+                    twttr.widgets.createShareButton(
+                      window.location.href + "Project/Info/" + id,
+                      document.getElementById('twitter-button'),
+                      {
+                          count: 'none',
+                          text: 'Xland - ' + $(".project-title").text()
+                      });
+
+                    // Pinterest
+                    window.parsePinBtns(document.getElementById('#pinterest-button'));
+
                 }
 
                 $(".close-project").off("click").on("click", function () {
