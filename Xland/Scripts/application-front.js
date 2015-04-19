@@ -41,7 +41,7 @@ var App = {
 
                     rendered = Mustache.render(template, data.responseJSON);
 
-                    $("#project").html(rendered);
+                    $("#projectContainer .container-fluid").html(rendered);
 
                     $("#preload").hide();
 

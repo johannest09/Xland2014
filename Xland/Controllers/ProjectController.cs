@@ -146,6 +146,9 @@ namespace Xland.Controllers
 
             model.Photos.ToList().ForEach(p => p.Path = p.Path.Substring(2));
 
+            string pType = model.Project.ProjectType.ToString();
+            model.ProjectType = Resources.Resources.ResourceManager.GetString(pType);
+
             return JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
         }
