@@ -43,10 +43,12 @@ var App = {
 
                     $("#projectContainer .container-fluid").html(rendered);
 
-                    $("#preload").hide();
-
-                    $("body").addClass("project-open");
-                    $("#projectContainer").addClass("open");
+                    window.setTimeout(function () {
+                        $("#preload").hide();
+                        $("body").addClass("project-open");
+                        $("#projectContainer").removeClass("closed").addClass("open");
+                        $("div.cs-select").addClass("disabled");
+                    }, 800);
 
                     App.Plugins.CBPGridGalleryInit();
 
@@ -69,9 +71,10 @@ var App = {
                 }
 
                 $(".close-project").off("click").on("click", function () {
-                    $("#projectContainer").removeClass("open");
+                    $("#projectContainer").removeClass("open").addClass("closed");
                     $("#project").empty();
                     $("body").removeClass("project-open");
+                    $("div.cs-select").removeClass("disabled");
                 });
 
             });
@@ -113,13 +116,13 @@ var App = {
         Init: function () {
 
             $(".about").on("click", function () {
-                //$("#about").show('blind', null, 400)
                 $("#about").addClass("open");
+                $("div.cs-select").addClass("disabled");
                 return false;
             });
-            $("#about .fa-close").on("click", function () {
-                //$(this).parents("#about").hide('blind', null, 400);
+            $("#about .nav-close").on("click", function () {
                 $("#about").removeClass("open");
+                $("div.cs-select").removeClass("disabled");
             });
 
             // Show hide close project btn

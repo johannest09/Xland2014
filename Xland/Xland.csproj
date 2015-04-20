@@ -433,6 +433,12 @@
     <Content Include="Content\less\mixins.min.css">
       <DependentUpon>mixins.less</DependentUpon>
     </Content>
+    <Content Include="Content\less\mixins\animations.css">
+      <DependentUpon>animations.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\animations.min.css">
+      <DependentUpon>animations.less</DependentUpon>
+    </Content>
     <Content Include="Content\less\mixins\clearfix.css">
       <DependentUpon>clearfix.less</DependentUpon>
     </Content>
@@ -723,6 +729,7 @@
     <Content Include="Content\less\screen-admin.less" />
     <Content Include="Content\less\admin.less" />
     <Content Include="Content\less\mixins\custom-functions.less" />
+    <Content Include="Content\less\mixins\animations.less" />
     <None Include="Properties\PublishProfiles\xland %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\xland-throun.pubxml" />
     <None Include="Properties\PublishProfiles\Xland.pubxml" />

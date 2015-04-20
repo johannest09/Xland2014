@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Því miður eru engin textalýsing fyrir verkefnið að svo stöddu.
+        /// </summary>
+        public static string NoDescriptionMessage {
+            get {
+                return ResourceManager.GetString("NoDescriptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verkefni lokið.
         /// </summary>
         public static string ProjectFinished {

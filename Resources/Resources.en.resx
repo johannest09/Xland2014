@@ -189,6 +189,9 @@
   <data name="Longitude" xml:space="preserve">
     <value>Longitude</value>
   </data>
+  <data name="NoDescriptionMessage" xml:space="preserve">
+    <value>No detailed description for the project yet</value>
+  </data>
   <data name="ProjectFinished" xml:space="preserve">
     <value>Project finished</value>
   </data>

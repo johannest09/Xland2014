@@ -149,6 +149,31 @@ namespace Xland.Controllers
             string pType = model.Project.ProjectType.ToString();
             model.ProjectType = Resources.Resources.ResourceManager.GetString(pType);
 
+            var culture = CultureHelper.GetCurrentCulture();
+
+            if (culture.ToLower() == "en-us")
+            {
+                if (model.Project.DescriptionEnglish == null)
+                {
+                    model.ProjectDescription = model.ProjectDescription = Resources.Resources.NoDescriptionMessage;
+                }
+                else 
+                {
+                    model.ProjectDescription = model.Project.DescriptionEnglish;
+                }
+            }
+            else
+            {
+                if (model.Project.Description == null)
+                {
+                    model.ProjectDescription = Resources.Resources.NoDescriptionMessage;
+                }
+                else
+                {
+                    model.ProjectDescription = model.Project.Description;
+                }
+            }
+
             return JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings { PreserveReferencesHandling = PreserveReferencesHandling.Objects });
 
         }

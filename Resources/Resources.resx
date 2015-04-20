@@ -189,6 +189,9 @@
   <data name="Longitude" xml:space="preserve">
     <value>Lengdargráða</value>
   </data>
+  <data name="NoDescriptionMessage" xml:space="preserve">
+    <value>Því miður eru engin textalýsing fyrir verkefnið að svo stöddu</value>
+  </data>
   <data name="ProjectFinished" xml:space="preserve">
     <value>Verkefni lokið</value>
   </data>

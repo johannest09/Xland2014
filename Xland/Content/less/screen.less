@@ -54,6 +54,12 @@ a {
 }
 ul {list-style: none; }
 
+div.cs-select {
+    &.disabled {
+        display: none;
+    }
+}
+
 /************************************
     Top Header
 *************************************/
@@ -107,7 +113,7 @@ ul {list-style: none; }
             display: block;
             margin-left: 0px !important;
             margin-right: 20px;
-            color: #fff;
+            color: #82cdc4;
             .transition(background 200ms linear);
             &:hover { .transition(background 200ms linear); }
         }
@@ -128,42 +134,40 @@ ul {list-style: none; }
 *************************************/
 
 #about { // modal
-    width: 100%;
-    height: 0;
-    background-color: rgba(0,0,0,0.7);
-    z-index: 2000;
-    padding-top: 150px;
-    color: #FDF5E6;
+    height: 100%;
+    background-color: #dae8e6;
+    z-index: 0;
     position: fixed;
-    visibility: hidden;
-    top: 0;
+    top: 55px;
     left: 0;
     overflow: hidden;
+    opacity: 0;
 
     &.open {
-        height: 100%;
-        visibility: visible;
-        -webkit-transition: height 180ms linear;
-        -moz-transition: height 180ms linear;
-        -ms-transition: height 180ms linear;
-        -o-transition: height 180ms linear;
-        transition: height 180ms linear;
+
+        -webkit-animation-duration: 400ms;
+        animation-duration: 400ms;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: zoomIn;
+        animation-name: zoomIn;
+        z-index: 100;
+        opacity: 1;
+
     }
 
     .about-content {
         padding: 20px 40px;
-        background: #2D7B91;
         position: relative;
-        z-index: 2001;
-
-        .fa-close {
+        height: 100%;
+        overflow-y: auto;
+        .nav-close {
             position: absolute;
             right: 20px;
             top: 10px;
             cursor: pointer;
-
-            &:hover {
-                opacity: 0.7;
+            &:before, &.after {
+                background-color: #000;
             }
         }
     }
@@ -243,18 +247,35 @@ span.nav-close {
 /* Single page project */
 
 #projectContainer {
+
     position: fixed;
-    left: -2500px;
     top: 55px;
     width: 100%;
     height: 100%;
     overflow-y: auto;
     .box-sizing(border-box);
-    z-index: 100;
+    z-index: 0;
     background-color: rgba(0,0,0,0.65);
-    .transition(all 250ms ease-in-out);
     .clearfix;
 
+    &.open {
+        -webkit-animation-duration: 400ms;
+        animation-duration: 400ms;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: zoomIn;
+        animation-name: zoomIn;
+        z-index: 100;
+    }
+
+    &.closed {
+        -webkit-animation-duration: 250ms;
+        animation-duration: 250ms;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-name: zoomOut;
+        animation-name: zoomOut;
+    }
        
     .container-fluid {
         padding: 20px;
@@ -310,7 +331,7 @@ span.nav-close {
                 font-size: 14px;
                 dt {
                     font-weight: 300;
-                    background-color: #000;
+                    background-color: #374351;
                     color: #fff;
                     margin-bottom: 8px;
                     text-transform: uppercase;
@@ -378,9 +399,6 @@ span.nav-close {
             margin-right: 25px;
             &.sm-pinterest { margin-right: 0; }
         }
-    }
-    &.open {
-        left: 0;
     }
 
 }
@@ -525,6 +543,7 @@ body.project {
         .about, #select-language a { color: #fff; }
     }
 
+    #about { top: 98px; }
 }
 
 @media (max-width: @screen-xs-max) {
