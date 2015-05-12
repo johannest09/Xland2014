@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 category-select" >
                                 <div >
-                                    <select class="cs-select cs-skin-underline" style="visibility: hidden;">
+                                    <select class="cs-select cs-skin-underline" style="visibility: hidden">
 				                        <option disabled selected>@Resources.Resources.ChooseCategory</option>
                                         <option value="0">@Resources.Resources.PublicSpaces</option>
 				                        <option value="1">@Resources.Resources.Historical</option>
@@ -108,19 +108,11 @@
         <div id="preload" style="display:none;">
             <img src="@Url.Content("~/Content/gear.svg")" />
         </div>
-
         <div id="projectContainer">
-
-            <div class="container-fluid">
-       
-                
-                
-            </div>
-            
+            <div class="container-fluid"></div>
         </div>
-        <!--div id="templates" style="display: none;"></!--div-->
-        <script id="template-project" type="x-tmpl-mustache">
 
+        <script id="template-project" type="x-tmpl-mustache">
             <div class="top-header">
                 <div class="row">
                     <div class="col-xs-10 col-sm-10 col-md-6">
@@ -204,16 +196,16 @@
                                                 <figure><img src="{{Path}}?width=300" alt="{{Title}}" class="item" data-image-id="{{ID}}"></figure>
                                             </li>
                                         {{/Photos}}
-                                        {{#Videos.length}}
+                                        {{#Videos}}
                                             <li>
                                                 <figure>
-                                                    <video controls data-video-id="{{ID}}" src="" class="item">
+                                                    <video controls data-video-id="thumb-{{ID}}" class="item">
                                                         <source src="{{Path}}?width=300" type="video/mp4" />
                                                         <p>Your browser does not support this format</p>
                                                     </video>
                                                 </figure>
                                             </li>
-                                        {{/Videos.length}}
+                                        {{/Videos}}
                                     </ul>
                                 </section>
 
@@ -235,7 +227,7 @@
                                             <li>
                                                 <figure>
                                                     <video controls data-video-id="{{ID}}" class="item" >
-                                                        <source src="{{Path}}?w=800&height=600" type="video/mp4">
+                                                        <source src="{{Path}}" type="video/mp4">
                                                         <p>Your browser does not support this format</p>
                                                     </video>
                                                 </figure>
@@ -283,7 +275,6 @@
         <div id="about">
             
             <div class="about-content">
-                <!--i class="fa fa-close fa-2x"></!--i-->
                 <span class="nav-close"></span>
 				<h2>Hvað er XLAND? </h2>
 				<p>XLAND er lifandi gátt sem býður þér, fjölskyldu þinni og vinum í ferðalag um vel hönnuð borgarrými. Félag íslenskra landslagsarkitekta stendur fyrir fyrstu gagnvirku sýningunni þar sem verkum landslagsarkitekta á höfuðborgarsvæðinu er komið á kortið í bókstaflegum skilningi. Verkefnið er unnið í tengslum við Hönnunarmars 2013 og hlaut nafnið XLAND, sem vísar til meginmarkmiðs síðunnar að merkja með X-i og vekja athygli á vel hönnuðum og áhugaverðum almenningsrýmum í borginni okkar. Við stefnum að sjálfsögðu á að XLAND nái yfir Ísland allt þegar fram líða stundir.</p> 

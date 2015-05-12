@@ -118,6 +118,8 @@ namespace Xland.Controllers
                 model.Photos = (from p in photoservice.GetPhotos()
                                 where p.PhotoGallery.ID == photoGallery.ID
                                 select p).ToList();
+
+                model.Photos.ToList().ForEach(p => p.Path = "http://" + Request.Url.Authority + p.Path.Substring(1));
             }
 
             var videoGallery = (from vg in videoGalleryService.GetAllVideoGalleries()
@@ -129,6 +131,8 @@ namespace Xland.Controllers
                 model.Videos = (from v in videoService.GetVideos()
                                 where v.VideoGallery.ID == videoGallery.ID
                                 select v).ToList();
+
+                model.Videos.ToList().ForEach(v => v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1));
             }
 
             if (project.ProjectBeginDate != null && project.ProjectEndDate != null)
@@ -142,9 +146,6 @@ namespace Xland.Controllers
                     model.ProjectExecutionPeriod = project.ProjectBeginDate.Date.Year.ToString() + " &#8211; " + project.ProjectEndDate.Date.Year.ToString(); 
                 }
             }
-
-
-            model.Photos.ToList().ForEach(p => p.Path = p.Path.Substring(2));
 
             string pType = model.Project.ProjectType.ToString();
             model.ProjectType = Resources.Resources.ResourceManager.GetString(pType);

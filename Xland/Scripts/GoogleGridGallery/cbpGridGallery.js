@@ -43,6 +43,15 @@
             return client;
     }
 
+    function pauseVideo() {
+
+        var video = $("li.current video")[0];
+
+        if (video) {
+            video.pause();
+        }
+    }
+
     function extend(a, b) {
         for (var key in b) {
             if (b.hasOwnProperty(key)) {
@@ -277,7 +286,11 @@
             }
         };
 
+        pauseVideo();
+
         setTimeout(slide, 25);
+
+        
     }
 
     CBPGridGallery.prototype._closeSlideshow = function (pos) {
@@ -316,6 +329,8 @@
         else {
             onEndTransitionFn();
         }
+
+        pauseVideo();
     };
 
     CBPGridGallery.prototype._setViewportItems = function () {

@@ -25,7 +25,7 @@
 	margin: 0;
 }
 
-.grid-gallery figure img {
+.grid-gallery figure img, .grid-gallery figure video {
 	display: block;
 }
 
@@ -166,6 +166,8 @@
 	overflow: hidden;
 }
 
+.slideshow figure video { width: 100%; }
+
 .slideshow figcaption {
     background: #fff;
     padding: 0 20px 0 20px;
@@ -201,7 +203,7 @@
 }
 
 .slideshow nav span.nav-close {
-	top: 80px;
+	top: 20px;
 	right: 20px;
     font-size: 24px;
 	padding: 0.5em 1em;
@@ -272,7 +274,7 @@ span.nav-close:before {
 
 /* Example media queries (reduce number of columns and change slideshow layout) */
 
-@media screen and (max-width: 60em) {
+@media screen and (max-width: 1024px) {
 	/* responsive columns; see "Element sizing" on http://masonry.desandro.com/options.html */
 	.grid li {
 		width: 33.3%;
@@ -286,7 +288,7 @@ span.nav-close:before {
 		margin: 0;
 	}
 
-	.slideshow li figure img {
+	.slideshow li figure img, .slideshow li figure video {
 		width: auto;
 		margin: 0 auto;
 		max-width: 100%;
@@ -297,12 +299,21 @@ span.nav-close:before {
 		font-size: 1.8em;
 		padding: 0.3em;
 	}
+    .slideshow nav span.nav-close {
+        top: 3px;
+        right: 10px;
+        width: 34px;
+        height: 34px;
+    }
 
-	.info-keys {
-		display: none;
-	}
+	.info-keys { display: none; }
+
+    .slideshow { top: 0; }
+    .slideshow ul { margin-top: 40px; }
+    .slideshow nav span.nav-next, .slideshow nav span.nav-prev { height: 45px; background-color: rgba(130, 205, 196, 0.65); color: #333; }
 
 }
+
 
 @media screen and (max-width: 35em) {
 	.grid li {
@@ -314,4 +325,23 @@ span.nav-close:before {
 	.grid li {
 		width: 100%;
 	}
+}
+
+/* screen-xs-max */
+@media screen and (max-width: 767px) and (orientation: landscape) {
+
+    .slideshow ul {
+        margin-top: 0;
+    }
+
+    .slideshow li figure img, .slideshow li figure video {
+        height: 100%;
+    }
+
+    .slideshow nav span.nav-close {
+        background: rgba(130, 205, 196, 0.65);
+    }
+    .slideshow nav span.nav-close::before, .slideshow nav span.nav-close::after {
+        background: #333;
+    }
 }

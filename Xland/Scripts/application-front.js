@@ -33,11 +33,8 @@ var App = {
 
                 if (data) {
                     
-                    //$("#project").html(data.responseText);
-
                     var rendered = "";
                     var template = $("#template-project").html();
-                    //rendered = Mustache.render(template, { name: itemType });
 
                     rendered = Mustache.render(template, data.responseJSON);
 
@@ -48,10 +45,10 @@ var App = {
                         $("body").addClass("project-open");
                         $("#projectContainer").removeClass("closed").addClass("open");
                         $("div.cs-select").addClass("disabled");
+                        App.Plugins.CBPGridGalleryInit();
                     }, 800);
 
-                    App.Plugins.CBPGridGalleryInit();
-
+                    
                     // Facebook
                     FB.XFBML.parse();
                     $(".fb-like").attr("data-href", window.location.href + "Project/Info/" + id);
@@ -67,19 +64,17 @@ var App = {
 
                     // Pinterest
                     window.parsePinBtns(document.getElementById('#pinterest-button'));
-
                 }
 
                 $(".close-project").off("click").on("click", function () {
                     $("#projectContainer").removeClass("open").addClass("closed");
-                    $("#project").empty();
+                    $("#projectContainer .container-fluid").empty();
                     $("body").removeClass("project-open");
                     $("div.cs-select").removeClass("disabled");
                 });
 
             });
         }
-
         
     },
 
