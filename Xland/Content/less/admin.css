@@ -1,5 +1,9 @@
 body.admin {
   background-color: #FBFBFB;
+  padding-top: 55px;
+}
+body.admin .navbar-fixed-top {
+  background-color: #364251;
 }
 body.admin .content {
   margin-bottom: 40px;
@@ -84,7 +88,7 @@ body.admin ul#videoList li {
   height: 40px;
   padding: 10px;
   background-color: #364251;
-  color: #8FDFF0;
+  color: #82CDC4;
   border-bottom: 1px solid #fff;
 }
 .admin-bar .user {
@@ -116,7 +120,4 @@ body.admin ul#videoList li {
 }
 .project.admin .navbar-fixed-top {
   position: relative;
-}
-.navbar-fixed-top.admin {
-  top: 40px;
 }

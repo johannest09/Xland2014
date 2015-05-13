@@ -141,11 +141,25 @@ jQuery(window).on('load', function () {
         var title = $(this).parents('.photo').find('input[name="title"]').val();
         var text = $(this).parents('.photo').find('textarea').val();
 
-        if ((id !== "" || id !== 'undefined') && text !== "") {
+        if ((id !== "" || id !== 'undefined')) {
             //var str = text.substring(1, text.length - 1);
             //var json = JSON.stringify(text);
+
+            var qs = "";
+
+            if (title) {
+                qs += "?title=" + title;
+            }
+            if (text) {
+                if (title){
+                    qs += "&text=" + text;
+                } else {
+                    qs += "?text=" + text;
+                }
+                
+            }
             
-            $.post("/photo/SavePhotoText/" + id + "?title=" + title + "&text=" + text, function () {
+            $.post("/photo/SavePhotoText/" + id + qs, function () {
 
             });
         }

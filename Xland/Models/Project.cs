@@ -75,22 +75,13 @@ namespace Xland.Models
 
         public virtual ICollection<Studio> Studios { get; set; }
     }
-    /*
-    public enum ProjectType
-    {
-        Almenningsrými, 
-        Saga, 
-        Samkeppnir, 
-        Skipulag
-    }
-        */
         
     public enum ProjectType
     {
         PublicSpaces, 
         Historical, 
         Competitions, 
-        Regional
+        SpatialPlanning
     }
 
 }

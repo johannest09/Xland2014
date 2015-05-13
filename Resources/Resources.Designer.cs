@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allt.
+        ///   Looks up a localized string similar to Öll verkefni.
         /// </summary>
         public static string All {
             get {

@@ -95,6 +95,7 @@ namespace Xland.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public void DeletePhoto(int id)
         {
             photoService.DeletePhoto(id);
@@ -107,7 +108,8 @@ namespace Xland.Controllers
         }
 
         [HttpPost]
-        public void SavePhotoText(int id, string title, string text)
+        [Authorize]
+        public void SavePhotoText(int id, string title = "", string text = "")
         {
             photoService.SavePhotoText(id, title, text);
         }
