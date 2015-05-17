@@ -142,3 +142,8 @@ C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xlan
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.isvisible.resources
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videofeature.resources
 C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videodescription.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.photodescriptionenglishicelandic.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.deleteoldphotodescription.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videodescription1.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videoembed.resources
+C:\Users\biljft\documents\visual studio 2012\Projects\Xland\Xland\obj\Debug\Xland.Migrations.videotypeenum.resources

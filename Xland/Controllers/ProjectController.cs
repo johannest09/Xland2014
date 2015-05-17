@@ -102,6 +102,10 @@ namespace Xland.Controllers
                 return null;
             }
 
+            var culture = CultureHelper.GetCurrentCulture();
+
+            bool isEnglish = culture.ToLower() == "en-us" ? true : false;
+
             var project = projectService.GetProjectIncludeStudios(id);
 
             var model = new ProjectInfoViewModel
@@ -115,11 +119,29 @@ namespace Xland.Controllers
 
             if (photoGallery != null)
             {
-                model.Photos = (from p in photoservice.GetPhotos()
+
+                var photos = (from p in photoservice.GetPhotos()
                                 where p.PhotoGallery.ID == photoGallery.ID
                                 select p).ToList();
 
-                model.Photos.ToList().ForEach(p => p.Path = "http://" + Request.Url.Authority + p.Path.Substring(1));
+                if (photos.Count > 0)
+                {
+                    var pvmList = new List<PhotoViewModel>();
+
+                    foreach (var p in photos)
+                    {
+                        string descr = isEnglish == true ? p.DescriptionEN : p.DescriptionIS;
+                        var photoVM = new PhotoViewModel(p, descr);
+
+                        // fix path
+                        p.Path = "http://" + Request.Url.Authority + p.Path.Substring(1);
+
+                        pvmList.Add(photoVM);
+                    }
+
+                    model.Photos = pvmList;
+                }
+                
             }
 
             var videoGallery = (from vg in videoGalleryService.GetAllVideoGalleries()
@@ -128,11 +150,26 @@ namespace Xland.Controllers
 
             if (videoGallery != null)
             {
-                model.Videos = (from v in videoService.GetVideos()
+                var videos = (from v in videoService.GetVideos()
                                 where v.VideoGallery.ID == videoGallery.ID
                                 select v).ToList();
 
-                model.Videos.ToList().ForEach(v => v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1));
+                //model.Videos.ToList().ForEach(v => v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1));
+
+                if (videos.Count > 0)
+                {
+                    var vvmList = new List<VideoViewModel>();
+
+                    foreach (var v in videos)
+                    {
+                        string descr = isEnglish == true ? v.DescriptionEN : v.DescriptionIS;
+                        var vvm = new VideoViewModel(v, descr);
+                        v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1);
+                        vvmList.Add(vvm);
+                    }
+
+                    model.Videos = vvmList;
+                }
             }
 
             if (project.ProjectBeginDate != null && project.ProjectEndDate != null)
@@ -149,8 +186,6 @@ namespace Xland.Controllers
 
             string pType = model.Project.ProjectType.ToString();
             model.ProjectType = Resources.Resources.ResourceManager.GetString(pType);
-
-            var culture = CultureHelper.GetCurrentCulture();
 
             if (culture.ToLower() == "en-us")
             {

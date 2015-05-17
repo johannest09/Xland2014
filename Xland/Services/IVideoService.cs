@@ -16,8 +16,11 @@ namespace Xland.Services
         Video GetVideoById(int id);
         void DeleteVideo(int id);
         IEnumerable<Video> GetVideos();
+        void SaveVideoDescription(int id, string descriptionIs, string descriptionEn);
 
+        void CreateVideoEntity(string embed, VideoGallery gallery);
         void CreateVideoEntity(string galleryPath, string filename, string filepath, VideoGallery gallery);
+
         bool UploadVideo(HttpPostedFileBase file, string videoGalleryUploadPath);
 
         void Dispose();

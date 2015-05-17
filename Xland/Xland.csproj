@@ -303,6 +303,7 @@
     <Compile Include="Controllers\PhotoGalleryController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\StudioController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\VideoGalleryController.cs" />
     <Compile Include="DAL\XlandContext.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -356,6 +357,26 @@
     <Compile Include="Migrations\201504031214011_video description.Designer.cs">
       <DependentUpon>201504031214011_video description.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505141231287_photo description english icelandic.cs" />
+    <Compile Include="Migrations\201505141231287_photo description english icelandic.Designer.cs">
+      <DependentUpon>201505141231287_photo description english icelandic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505141258053_delete old photo description.cs" />
+    <Compile Include="Migrations\201505141258053_delete old photo description.Designer.cs">
+      <DependentUpon>201505141258053_delete old photo description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505141405017_videodescription1.cs" />
+    <Compile Include="Migrations\201505141405017_videodescription1.Designer.cs">
+      <DependentUpon>201505141405017_videodescription1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505142110284_video embed.cs" />
+    <Compile Include="Migrations\201505142110284_video embed.Designer.cs">
+      <DependentUpon>201505142110284_video embed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505172253215_videotype enum.cs" />
+    <Compile Include="Migrations\201505172253215_videotype enum.Designer.cs">
+      <DependentUpon>201505172253215_videotype enum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -384,6 +405,7 @@
     <Compile Include="Utilities\XlandExtensions.cs" />
     <Compile Include="ViewModels\PhotoGalleryCreateViewModel.cs" />
     <Compile Include="ViewModels\PhotoGalleryDetailViewModel.cs" />
+    <Compile Include="ViewModels\PhotoViewModel.cs" />
     <Compile Include="ViewModels\ProjectCreateViewModel.cs" />
     <Compile Include="ViewModels\ProjectEditViewModel.cs" />
     <Compile Include="ViewModels\ProjectIndexViewModel.cs" />
@@ -392,6 +414,7 @@
     <Compile Include="ViewModels\StudioSelectViewModel.cs" />
     <Compile Include="ViewModels\VideoGalleryCreateViewModel.cs" />
     <Compile Include="ViewModels\VideoGalleryDetailViewModel.cs" />
+    <Compile Include="ViewModels\VideoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -1028,6 +1051,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\PhotoGalleries\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1073,6 +1097,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504031214011_video description.resx">
       <DependentUpon>201504031214011_video description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505141231287_photo description english icelandic.resx">
+      <DependentUpon>201505141231287_photo description english icelandic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505141258053_delete old photo description.resx">
+      <DependentUpon>201505141258053_delete old photo description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505141405017_videodescription1.resx">
+      <DependentUpon>201505141405017_videodescription1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505142110284_video embed.resx">
+      <DependentUpon>201505142110284_video embed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505172253215_videotype enum.resx">
+      <DependentUpon>201505172253215_videotype enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

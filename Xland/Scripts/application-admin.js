@@ -138,30 +138,91 @@ jQuery(window).on('load', function () {
     $('.btn-save-photo').on('click', function () {
 
         var id = $(this).data('id');
-        var title = $(this).parents('.photo').find('input[name="title"]').val();
-        var text = $(this).parents('.photo').find('textarea').val();
+        //var title = $(this).parents('.photo').find('input[name="title"]').val();
+        var descriptionIS = $("#photoDescriptionIs" + id).val();
+        var descriptionEN = $("#photoDescriptionEn" + id).val();
+
 
         if ((id !== "" || id !== 'undefined')) {
-            //var str = text.substring(1, text.length - 1);
-            //var json = JSON.stringify(text);
+
+            $(this).parents(".photo-actions").find(".loader").show();
 
             var qs = "";
 
-            if (title) {
-                qs += "?title=" + title;
+            if (descriptionIS) {
+                qs += "?descriptionIS=" + descriptionIS;
             }
-            if (text) {
-                if (title){
-                    qs += "&text=" + text;
+            if (descriptionEN) {
+                if (descriptionIS) {
+                    qs += "&descriptionEN=" + descriptionEN;
                 } else {
-                    qs += "?text=" + text;
+                    qs += "?descriptionEN=" + descriptionEN;
                 }
-                
             }
-            
-            $.post("/photo/SavePhotoText/" + id + qs, function () {
-
+            var that = this;
+            $.post("/photo/SavePhotoDescription/" + id + qs, function () {
+                $(that).parents(".photo-actions").find(".loader").hide();
             });
         }
     });
+
+    $('.btn-save-video').on('click', function () {
+
+        var id = $(this).data('id');
+        var descriptionIS = $("#videoDescriptionIs" + id).val();
+        var descriptionEN = $("#videoDescriptionEn" + id).val();
+
+        if ((id !== "" || id !== 'undefined')) {
+
+            $(this).parents(".video-actions").find(".loader").show();
+
+            var qs = "";
+
+            if (descriptionIS) {
+                qs += "?descriptionIS=" + descriptionIS;
+            }
+            if (descriptionEN) {
+                if (descriptionIS) {
+                    qs += "&descriptionEN=" + descriptionEN;
+                } else {
+                    qs += "?descriptionEN=" + descriptionEN;
+                }
+            }
+            var that = this;
+            $.post("/video/SaveVideoDescription/" + id + qs, function () {
+                $(that).parents(".video-actions").find(".loader").hide();
+            });
+        }
+    });
+
+    $("#add-video-embed").on("click", function () {
+
+        var html = $("#video-embed .form-group").last().clone();
+
+        var hasRemove = $(html).find(".remove").length == 1;
+
+        if (!hasRemove) {
+            $(html).find('div').first().after('<span class="btn btn-xs btn-danger remove">eyða</div>');
+        }
+
+        var lastId = $(html).find("input").data("videoid"); 
+        var nextId = parseInt(lastId + 1);
+
+        //$(html).find("label").attr("for", "videoembed" + nextId);
+        $(html).find("input").val("").attr("placeholder", "Sláðu inn embed kóða hér").attr("id", "video" + nextId).attr("data-videoid", nextId);
+
+        $(html).find(".remove").on("click", function () {
+            (this).closest(".form-group").remove();
+            resetEmbedVideoIds();
+        });
+
+        $("#video-embed .form-group").last().after(html);
+    });
+
+
+    function resetEmbedVideoIds() {
+        $("#video-embed .form-group input").each(function (index, input) {
+            $(input).attr("id", "video" + parseInt(index + 1)).attr("data-videoid", index + 1);
+        });
+    }
 });

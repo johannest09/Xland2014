@@ -53,6 +53,38 @@ namespace Xland.Services
             return videoRepository.GetAll();
         }
 
+        public void CreateVideoEntity(string embed,  VideoGallery gallery)
+        {
+            var embedCode = "";
+            int pos = embed.LastIndexOf("/") + 1;
+            embedCode = embed.Substring(pos, embed.Length - pos);
+
+            VideoType videoType;
+
+            if (embed.ToLower().Contains("youtu"))
+            {
+                videoType = VideoType.Youtube;
+            }
+            else if (embed.ToLower().Contains("vimeo"))
+            {
+                videoType = VideoType.Vimeo;
+            }
+            else
+            {
+                videoType = VideoType.Other;
+            }
+
+            var video = new Video
+            {
+                Embed = embedCode,
+                VideoType = videoType,
+                VideoGallery = gallery
+            };
+            
+            this.CreateVideo(video);
+
+        }
+
         public void CreateVideoEntity(string galleryPath, string filename, string filepath, Models.VideoGallery gallery)
         {
             var video = new Video
@@ -60,6 +92,7 @@ namespace Xland.Services
                 Name = filename,
                 //Path = galleryPath + foldername + "/" + filename,
                 Path = galleryPath + filepath + filename,
+                VideoType = Models.VideoType.Upload,
                 VideoGallery = gallery
             };
 
@@ -87,6 +120,7 @@ namespace Xland.Services
             }
         }
 
+
         private static bool validateExtension(string extension)
         {
             extension = extension.ToLower();
@@ -105,9 +139,23 @@ namespace Xland.Services
             }
         }
 
+        public void SaveVideoDescription(int id, string descriptionIs, string descriptionEn)
+        {
+            var video = videoRepository.Find(id);
+
+            if (video != null)
+            {
+                video.DescriptionIS = descriptionIs;
+                video.DescriptionEN = descriptionEn;
+                videoRepository.Edit(video);
+                unitOfWork.Save();
+            }
+        }
+
         public void Dispose()
         {
             videoRepository.Dispose();
         }
+
     }
 }

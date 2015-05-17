@@ -109,9 +109,9 @@ namespace Xland.Controllers
 
         [HttpPost]
         [Authorize]
-        public void SavePhotoText(int id, string title = "", string text = "")
+        public void SavePhotoDescription(int id, string descriptionIs = "", string descriptionEn = "")
         {
-            photoService.SavePhotoText(id, title, text);
+            photoService.SavePhotoDescription(id, descriptionIs, descriptionEn);
         }
 
         protected override void Dispose(bool disposing)

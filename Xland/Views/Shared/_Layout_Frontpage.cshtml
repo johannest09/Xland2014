@@ -193,14 +193,14 @@
                                         <li class="grid-sizer"></li>
                                         {{#Photos}}
                                             <li>
-                                                <figure><img src="{{Path}}?width=300" alt="{{Title}}" class="item" data-image-id="{{ID}}"></figure>
+                                                <figure><img src="{{Photo.Path}}?width=300" alt="{{PhotoDescription}}" class="item" data-image-id="{{Photo.ID}}"></figure>
                                             </li>
                                         {{/Photos}}
                                         {{#Videos}}
                                             <li>
                                                 <figure>
-                                                    <video controls data-video-id="thumb-{{ID}}" class="item">
-                                                        <source src="{{Path}}?width=300" type="video/mp4" />
+                                                    <video controls data-video-id="thumb-{{Vide.ID}}" class="item">
+                                                        <source src="{{Video.Path}}?width=300" type="video/mp4" />
                                                         <p>Your browser does not support this format</p>
                                                     </video>
                                                 </figure>
@@ -214,10 +214,9 @@
                                         {{#Photos}}
                                             <li>
                                                 <figure>
-                                                    <img src="{{Path}}?w=800&h=600" alt="{{Title}}" data-image-id="{{ID}}" class="item">
+                                                    <img src="{{Photo.Path}}?w=800&h=600" alt="{{PhotoDescription}}" data-image-id="{{Photo.ID}}" class="item">
                                                         <figcaption>
-                                                            <h3>{{Title}}</h3>
-                                                            <span>{{Description}}</span>
+                                                            <span>{{PhotoDescription}}</span>
                                                         </figcaption>
                                                     </img>
                                                 </figure>
@@ -226,10 +225,13 @@
                                         {{#Videos}}
                                             <li>
                                                 <figure>
-                                                    <video controls data-video-id="{{ID}}" class="item" >
-                                                        <source src="{{Path}}" type="video/mp4">
+                                                    <video controls data-video-id="{{Video.ID}}" class="item" >
+                                                        <source src="{{Video.Path}}" type="video/mp4">
                                                         <p>Your browser does not support this format</p>
                                                     </video>
+                                                    {{#VideoDescription}}
+                                                        <div class="video-description">{{VideoDescription}}</div>
+                                                    {{/VideoDescription}}
                                                 </figure>
                                             </li>
                                         {{/Videos}}

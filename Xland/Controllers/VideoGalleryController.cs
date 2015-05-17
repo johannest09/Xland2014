@@ -87,27 +87,54 @@ namespace Xland.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 var videogallery = new VideoGallery();
 
                 videogallery.Project = projectService.GetProjectById(videoGalleryVm.ProjectId);
-                videoGalleryService.CreateGallery(videogallery);
 
-                string galleryUploadPath = Server.MapPath(GalleryUploadFolderPath);
-                string folderUniqueName = "Gallery" + videogallery.ID + "/";
+                bool galleryCreated = false;
 
-                Directory.CreateDirectory(galleryUploadPath + "\\" + folderUniqueName);
-                string galleryPath = GalleryUploadFolderPath + folderUniqueName;
-
-                foreach (var file in files)
+                if (files.First() != null)
                 {
-                    if (file.ContentLength == 0)
-                        continue;
+                    videoGalleryService.CreateGallery(videogallery);
+                    galleryCreated = true;
 
-                    if (file.ContentLength > 0)
+                    string galleryUploadPath = Server.MapPath(GalleryUploadFolderPath);
+                    string folderUniqueName = "Gallery" + videogallery.ID + "/";
+
+                    Directory.CreateDirectory(galleryUploadPath + "\\" + folderUniqueName);
+                    string galleryPath = GalleryUploadFolderPath + folderUniqueName;
+
+                    foreach (var file in files)
                     {
-                        var fileName = Path.GetFileName(file.FileName);
-                        videoService.UploadVideo(file, galleryPath);
-                        videoService.CreateVideoEntity(GalleryUploadFolderPath, file.FileName, folderUniqueName, videogallery);
+                        if (file.ContentLength == 0)
+                            continue;
+
+                        if (file.ContentLength > 0)
+                        {
+                            var fileName = Path.GetFileName(file.FileName);
+                            videoService.UploadVideo(file, galleryPath);
+                            videoService.CreateVideoEntity(GalleryUploadFolderPath, file.FileName, folderUniqueName, videogallery);
+                        }
+                    }
+                }
+
+
+                if (Request.Files.Count > 0)
+                {
+                    string[] embeds = Request["videoembed"].Split(',');
+
+                    if (embeds.Length > 0)
+                    {
+                        if (!galleryCreated)
+                        {
+                            videoGalleryService.CreateGallery(videogallery);
+                        }
+                    }
+                    foreach (string videoembed in embeds)
+                    {
+
+                        videoService.CreateVideoEntity(videoembed, videogallery);
                     }
                 }
                

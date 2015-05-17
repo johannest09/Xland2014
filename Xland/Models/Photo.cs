@@ -11,7 +11,8 @@ namespace Xland.Models
         public string Name { get; set; }
         public string Path { get; set; }
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string DescriptionIS { get; set; }
+        public string DescriptionEN { get; set; }
         public bool IsMainPhoto { get; set; }
 
         public virtual PhotoGallery PhotoGallery { get; set; }

@@ -24,18 +24,18 @@
                 <div class="photo-actions">
                     <a href="javascript:void(0);" title="Eyða" class="btn btn-md btn-danger btn-delete" data-id="@photo.ID">Eyða mynd</a>
                     <a href="javascript:void(0);" title="Vista" class="btn btn-md btn-primary btn-save-photo" data-id="@photo.ID">Vista</a>
-                    <div class="checkbox">
+                    <!--div class="checkbox">
                         <label>
                             <input type="checkbox" class="main-photo" @(photo.IsMainPhoto == true? "checked='checked'" : "") />Aðalmynd
                         </label>
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="title" placeholder="Sláðu inn titil" value="@photo.Title" />
-                    </div>
+                    </!--div-->
+                    <div class="loader" style="display: none;">Loading...</div>
                     
-                    <textarea placeholder="Myndatexti sem birtist þegar mynd er skoðuð" rows="4"  cols="40" >@photo.Description</textarea>
                 </div>
-                
+                <div class="description">
+                    <textarea id="@("photoDescriptionIs" + photo.ID)" placeholder="Íslenskur myndatexti sem birtist fyrir neðan mynd" rows="4"  cols="40" >@photo.DescriptionIS</textarea>
+                    <textarea id="@("photoDescriptionEn" + photo.ID)" placeholder="Enskur myndatexti sem birtist fyrir neðan mynd" rows="4"  cols="40" >@photo.DescriptionEN</textarea>
+                </div>
             </li>
         }
     }

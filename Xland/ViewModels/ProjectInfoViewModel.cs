@@ -12,8 +12,9 @@ namespace Xland.ViewModels
         public string ProjectExecutionPeriod { get; set; }
         public string ProjectType { get; set; }
         public string ProjectDescription { get; set; }
-        public IEnumerable<Photo> Photos { get; set; }
-        public IEnumerable<Video> Videos { get; set; }
+
+        public IEnumerable<PhotoViewModel> Photos { get; set; }
+        public IEnumerable<VideoViewModel> Videos { get; set; }
 
     }
 }

@@ -18,7 +18,7 @@ namespace Xland.Services
         void DeletePhoto(int id);
         IEnumerable<Photo> GetPhotos();
         void SetAsMainPhoto(int id);
-        void SavePhotoText(int id, string title, string text);
+        void SavePhotoDescription(int id, string descriptionIs, string descriptionEn);
 
         void CreatePhotoEntity(string galleryPath, string filename, string filepath, PhotoGallery gallery);
         bool UploadPhoto(HttpPostedFileBase file, string photoGalleryUploadPath, int maxWidth, int maxHeight);

@@ -165,14 +165,14 @@ namespace Xland.Services
             unitOfWork.Save();
         }
 
-        public void SavePhotoText(int id, string title, string text)
+        public void SavePhotoDescription(int id, string descriptionIs, string descriptionEn)
         {
             var photo = photoRepository.Find(id);
 
             if (photo != null)
             {
-                photo.Title = title;
-                photo.Description = text;
+                photo.DescriptionIS = descriptionIs;
+                photo.DescriptionEN = descriptionEn;
                 photoRepository.Edit(photo);
                 unitOfWork.Save();
             }
