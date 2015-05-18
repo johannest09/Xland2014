@@ -48,24 +48,37 @@ namespace Xland.Services
                           where v.VideoGallery.ID == gallery.ID
                           select v).ToList();
 
+            var dir = new DirectoryInfo(gallerypath);
+
             try
             {
+                bool dirDeleted = false;
+
                 if (videos.Count > 0)
                 {
                     videoRepository.DeleteMany(videos);
                     unitOfWork.Save();
-                    var dir = new DirectoryInfo(gallerypath);
-                    // Recursive delete
-                    dir.Delete(true);
+
+                    if (dir.Exists)
+                    {
+                        // Recursive delete
+                        dir.Delete(true);
+                        dirDeleted = true;
+                    }
+                }
+
+                videoGalleryRepository.Delete(gallery);
+                unitOfWork.Save();
+
+                if (dir.Exists && !dirDeleted)
+                {
+                    dir.Delete();
                 }
             }
             catch (Exception ex)
             {
-
+                throw;
             }
-
-            videoGalleryRepository.Delete(gallery);
-            unitOfWork.Save();
         }
 
         public void Dispose()

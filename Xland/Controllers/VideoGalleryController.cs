@@ -35,9 +35,12 @@ namespace Xland.Controllers
         {
             var galleries = videoGalleryService.GetAllVideoGalleries();
 
-            ViewBag.ProjectTitles = videoGalleryService.GetVideoGalleryProjectTitles();
-            ViewBag.VideoGalleryVideoCount = videoGalleryService.GetVideoGalleryVideoCount();
-
+            if (galleries != null)
+            {
+                ViewBag.ProjectTitles = videoGalleryService.GetVideoGalleryProjectTitles();
+                ViewBag.VideoGalleryVideoCount = videoGalleryService.GetVideoGalleryVideoCount();
+            }
+            
             return View(galleries);
         }
 
@@ -87,13 +90,13 @@ namespace Xland.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 var videogallery = new VideoGallery();
-
                 videogallery.Project = projectService.GetProjectById(videoGalleryVm.ProjectId);
 
                 bool galleryCreated = false;
+                bool galleryDeleted = false;
 
+                // Uploaded videos
                 if (files.First() != null)
                 {
                     videoGalleryService.CreateGallery(videogallery);
@@ -105,6 +108,8 @@ namespace Xland.Controllers
                     Directory.CreateDirectory(galleryUploadPath + "\\" + folderUniqueName);
                     string galleryPath = GalleryUploadFolderPath + folderUniqueName;
 
+                    int videoCounter = 0;
+
                     foreach (var file in files)
                     {
                         if (file.ContentLength == 0)
@@ -112,29 +117,44 @@ namespace Xland.Controllers
 
                         if (file.ContentLength > 0)
                         {
-                            var fileName = Path.GetFileName(file.FileName);
-                            videoService.UploadVideo(file, galleryPath);
-                            videoService.CreateVideoEntity(GalleryUploadFolderPath, file.FileName, folderUniqueName, videogallery);
+                            if (videoService.UploadVideo(file, galleryPath))
+                            {
+                                videoService.CreateVideoEntity(GalleryUploadFolderPath, file.FileName, folderUniqueName, videogallery);
+                                videoCounter++;
+                            }
                         }
+                    }
+
+                    if (videoCounter < 1)
+                    {
+                        // Delete the gallery folder already created if no videos have been created
+                        string galleryAbsolutePath = Server.MapPath(GalleryUploadFolderPath + "/Gallery" + videogallery.ID);
+                        videoGalleryService.DeleteGallery(videogallery.ID, galleryAbsolutePath);
+                        galleryDeleted = true;
                     }
                 }
 
-
+                // embedded videos
                 if (Request.Files.Count > 0)
                 {
+                    if (galleryDeleted)
+                    {
+                        videogallery.Project = projectService.GetProjectById(videoGalleryVm.ProjectId);
+                    }
+                    
                     string[] embeds = Request["videoembed"].Split(',');
-
-                    if (embeds.Length > 0)
+             
+                    foreach (string embed in embeds)
                     {
                         if (!galleryCreated)
                         {
                             videoGalleryService.CreateGallery(videogallery);
+                            galleryCreated = true;
                         }
-                    }
-                    foreach (string videoembed in embeds)
-                    {
-
-                        videoService.CreateVideoEntity(videoembed, videogallery);
+                        if (embed != "")
+                        {
+                            videoService.CreateVideoEntity(embed, videogallery);
+                        }
                     }
                 }
                

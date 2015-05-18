@@ -1,25 +1,28 @@
 ﻿@model Xland.Models.VideoGallery
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eyða myndbandasafni";
     Layout = "~/Views/Shared/_Layout_admin.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Eyða myndbandasafni</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Ertu viss um að þú viljir eyða myndbandasafni fyrir verkefnið:</h3>
+<h3><i>@Html.DisplayFor(model => model.Project.Title)</i> </h3>
+
+<div class="alert alert-warning">
+    <p><b>Ef þú eyðir myndbandasafni er það með öllu farið. </b></p>
+    <p>Hægt er að búa til nýtt myndbandasafn fyrir verkefni með því að smella á hnappinn "Bæta við myndbandasafni" undir yfirliti fyrir myndbönd.</p>
+</div>
+<br />
 <div>
-    <h4>VideoGallery</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-
+   
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eyða" class="btn btn-danger" />
+            @Html.ActionLink("Aftur í yfirlit", "Index", null, new { @class = "btn btn-default" } )
         </div>
     }
 </div>
