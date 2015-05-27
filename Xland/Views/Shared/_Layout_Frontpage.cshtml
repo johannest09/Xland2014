@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge;charset=utf-8" />
 
         <title>Xland</title>
@@ -23,7 +24,7 @@
         var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
         var isAdmin = "";
     }
-    <body class="frontpage">
+    <body class="frontpage @culture">
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -198,12 +199,7 @@
                                         {{/Photos}}
                                         {{#Videos}}
                                             <li>
-                                                <figure>
-                                                    <video controls data-video-id="thumb-{{Vide.ID}}" class="item">
-                                                        <source src="{{Video.Path}}?width=300" type="video/mp4" />
-                                                        <p>Your browser does not support this format</p>
-                                                    </video>
-                                                </figure>
+                                                <figure>{{{VideoHtmlThumb}}}</figure>
                                             </li>
                                         {{/Videos}}
                                     </ul>
@@ -224,15 +220,7 @@
                                         {{/Photos}}
                                         {{#Videos}}
                                             <li>
-                                                <figure>
-                                                    <video controls data-video-id="{{Video.ID}}" class="item" >
-                                                        <source src="{{Video.Path}}" type="video/mp4">
-                                                        <p>Your browser does not support this format</p>
-                                                    </video>
-                                                    {{#VideoDescription}}
-                                                        <div class="video-description">{{VideoDescription}}</div>
-                                                    {{/VideoDescription}}
-                                                </figure>
+                                                <figure>{{{VideoHtmlSlide}}}</figure>
                                             </li>
                                         {{/Videos}}
                                     </ul>
@@ -278,25 +266,90 @@
             
             <div class="about-content">
                 <span class="nav-close"></span>
-				<h2>Hvað er XLAND? </h2>
-				<p>XLAND er lifandi gátt sem býður þér, fjölskyldu þinni og vinum í ferðalag um vel hönnuð borgarrými. Félag íslenskra landslagsarkitekta stendur fyrir fyrstu gagnvirku sýningunni þar sem verkum landslagsarkitekta á höfuðborgarsvæðinu er komið á kortið í bókstaflegum skilningi. Verkefnið er unnið í tengslum við Hönnunarmars 2013 og hlaut nafnið XLAND, sem vísar til meginmarkmiðs síðunnar að merkja með X-i og vekja athygli á vel hönnuðum og áhugaverðum almenningsrýmum í borginni okkar. Við stefnum að sjálfsögðu á að XLAND nái yfir Ísland allt þegar fram líða stundir.</p> 
-				<p>Verkin eru staðsett á gagnvirku korti af höfuðborgarsvæðinu. Sé smellt á verk opnast gátt þar sem verkunum er miðlað með ljósmyndum, teikningum grafískum skissum, myndböndum og texta. Þannig kemst þú í návígi við hönnuðina og hugsunina sem liggur að baki borgarrýmum í þínu nánasta umhverfi.</p>
-				<p>Í tengslum við opnun heimasíðunnar er gagnvirk sýning í Hafnarhúsinu, Listasafni Reykjavíkur dagana 14. - 17. mars þar sem gestum gefst tækifæri til að vafra um vel hönnuð og lifandi borgarrými á risavöxnum skjá. Heimasíðan er jafnframt kærkomin viðbót í afþreyingarflóru höfuðborgarinnar þar sem hægt er að fletta upp almenningsrýmum hvar sem þú ert á ferðinni í gegnum tölvu, i-pad, síma o.s.frv. </p>
-				<h2>Hverjir standa á bakvið XLAND?</h2>
-				<p>Að verkefninu standa þrír landslagsarkitektar, sem jafnframt eru meðlimir í FÍLA, í samstarfi við grafískan hönnuð og vefforritara. Þetta eru þær </p>
-				<ul>
-					<li>Björk Guðmundsdóttir <a href="www.landsvirkjun.is">www.landsvirkjun.is</a>, landslagsarkitekt hjá Landsvirkjun</li>
-					<li>Heiða Aðalsteinsdóttir <a href="http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir">http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir</a>, landslagsarkitekt hjá Alta ehf</li>
-					<li>Svava Þorleifsdóttir <a href="http://landslag.is/starfsfolk/svava-thorleifsdottir">http://landslag.is/starfsfolk/svava-thorleifsdottir</a>, landslagsarkitekt hjá Landslagi ehf. </li>
-					<li>Jóhannes Freyr Þorleifsson, grafískur hönnuður og vefforritari sá um útlits- og viðmótshönnun heimasíðunnar. </li>
-				</ul>
-				<p>Það er von okkar að heimasíðan megi vaxa og dafna og að fólk njóti góðs af því að geta nálgast upplýsingar um þessi verk á einum stað. Sérstakar þakkir færum við þeim Einari E. Sæmundssyni, landslagsarkitekt hjá Landmótun og Samson B. Harðarsyni, lektor hjá LbhÍ fyrir veitta aðstoð við samantekt sögulegra verkefna. Þá viljum við þakka öllum þeim tóku þátt í verkefninu með okkur með því að senda inn verk. </p>
-
+                <div class="lang is">
+                    <h1>Hvað er Xland?</h1>
+                    <p>
+                        XLAND er lifandi gátt sem býður þér, fjölskyldu þinni og vinum í ferðalag um vel hönnuð 
+                        almenningsrými. XLAND var komið á fót í tengslum við Hönnunarmars 2013, þegar Félag íslenskra 
+                        landslagsarkitekta stóð fyrir fyrstu gagnvirku sýningunni þar sem verkum landslagsarkitekta á 
+                        höfuðborgarsvæðinu var komið á kortið í bókstaflegum skilningi. Nafnið XLAND vísar til 
+                        meginmarkmiðs síðunnar að merkja með X-i og vekja athygli á vel hönnuðum og áhugaverðum 
+                        almenningsrýmum um land allt. 
+                    </p>
+                    <p>
+                        Verkin eru staðsett á gagnvirku korti af Íslandi. Sé smellt á verk opnast gátt þar sem verkunum er 
+                        miðlað með ljósmyndum, teikningum grafískum skissum, myndböndum og texta. Þannig kemst þú í 
+                        návígi við hönnuðina og hugsunina sem liggur að baki almenningsrýmum í þínu nánasta umhverfi. 
+                        Heimasíðan er jafnframt hugsuð sem kærkomin viðbót í afþreyingarflóru landsins, þar sem hægt er 
+                        að fletta upp almenningsrýmum hvar sem þú ert á ferðinni í gegnum tölvu, spjaldtölvu, síma o.þ.h.
+                    </p>
+                    <h2>Hverjir standa á bak við Xland?</h2>
+                    <p>
+                        Að verkefni Hönnunarmars 2013 stóðu þrír landslagsarkitektar, sem jafnframt eru meðlimir í FÍLA, í 
+                        samstarfi við grafískan hönnuð og vefforritara. Þetta eru þær
+                    </p>
+                    <ul>
+                        <li>Björk Guðmundsdóttir <a href="http://www.landsvirkjun.is">www.landsvirkjun.is</a> , landslagsarkitekt hjá Landsvirkjun</li>
+                        <li>Heiða Aðalsteinsdóttir <a href="http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir">www.alta.is/starfsfolk/heidha-adhalsteinsdottir</a>, landslagsarkitekt hjá Alta ehf</li>
+                        <li>Svava Þorleifsdóttir <a href="http://landslag.is/starfsfolk/svava-thorleifsdottir">www.landslag.is/starfsfolk/svava-thorleifsdottir</a> , landslagsarkitekt hjá Landslagi ehf.</li>
+                    </ul>
+                    <p>Jóhannes Freyr Þorleifsson, grafískur hönnuður og vefforritari sá um útlits- og viðmótshönnun heimasíðunnar.</p>
+                    <p>
+                        Heiða, Svava og Jóhannes Freyr hafa, frá því Hönnunarmars lauk, unnið að frekari þróun vefsíðunnar með styrk frá Hönnunarsjóði Auroru. Nýja síðan lítur dagsins ljós á vormánuðum 2015 en á henni verður verkum af landinu öllu bætt í sarpinn. 
+                    </p>
+                    <p>
+                        Það er von okkar að heimasíðan megi vaxa og dafna og að fólk njóti góðs af því að geta nálgast 
+                        upplýsingar um þessi verk á einum stað. Sérstakar þakkir færum við þeim Einari E. Sæmundssyni, 
+                        landslagsarkitekt hjá Landmótun og Samson B. Harðarsyni, lektor hjá LbhÍ fyrir veitta aðstoð við 
+                        samantekt sögulegra verkefna. Þá viljum við þakka Hönnunarsjóði Auroru veittan styrk sem gerði 
+                        okkur kleift að þróa vefsíðuna áfram og öllum þeim tóku þátt í verkefninu með okkur með því að 
+                        senda inn verk. Án ykkar væri ekkert XLAND.
+                    </p>
+                </div>
+                <div class="lang en">
+                    <h1>About Xland</h1>
+                    <p>
+                        XLAND is a live portal that offers you, your family and friends on a journey through well-designed 
+                        public spaces. XLAND was established in connection with DesignMarch 2013, marking the first 
+                        interactive exhibition held by the Association of Icelandic Landscape Architects (FÍLA), where 
+                        landscape architecture in the capital area was put on the map, literally. XLAND refers to the site‘s 
+                        main objective: to mark with an X and draw attention to well-designed and attractive public spaces across Iceland.
+                    </p>
+                    <p>
+                        The works are located on an interactive map of Iceland. Clicking on any work opens up a gateway 
+                        communicating the design through photographs, drawings, graphic sketches, videos and text, 
+                        allowing you to get up close and personal with the designers and the thought that lies behind the 
+                        public spaces in your immediate environment. The website is also a welcome addition to the 
+                        recreative arena of the country, where you can look up the public spaces you‘re in on the go, on your 
+                        tablet, phone, etc.
+                    </p>
+                    <h2>Who‘s behind Xland?</h2>
+                    <p>
+                        Three landscape architects, members of FÍLA, in collaboration with a graphic designer and programmer organised and realised XLAND.is at DesignMarch 2013:
+                    </p>
+                    <ul>
+                        <li>Björk Guðmundsdóttir <a href="http://www.landsvirkjun.is">www.landsvirkjun.is</a>, landscape architect at Landsvirkjun</li>
+                        <li>Heiða Aðalsteinsdóttir <a href="http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir">www.alta.is/starfsfolk/heidha-adhalsteinsdottir</a>, landscape architect at Alta Ltd.</li>
+                        <li>Svava Þorleifsdóttir <a href="http://landslag.is/starfsfolk/svava-thorleifsdottir">www.landslag.is/starfsfolk/svava-thorleifsdottir</a>, landscape architect at Landslag Ltd.</li>
+                    </ul>
+                    <p>Jóhannes Freyr Þorleifsson, graphic designer and web programmer managed the layout and design of the website interface.</p>
+                    <p>
+                        The team was granted a fund from Aurora Design Fund for further development of the website. 
+                        Heiða, Svava and Jóhannes Freyr have been working on the new website launching in spring 2015.
+                        It is our hope that the XLAND.is will keep developing and collecting well-designed spaces accross 
+                        Iceland. We would like to extend our gratitude to Einar E. Sæmundsson, landscape architect at 
+                        Landmótun and Samson B. Harðarson, assistant professor at the Agricultural University of Iceland for 
+                        their assistance with the historical projects. We would also like to thank Aurora Design Fund for 
+                        enabling us to develop the website further and finally everyone who was involved in the project by 
+                        submitting a work. This would never have been possible without you.
+                    </p>
+                </div>
 			</div>
         </div>
         <div id="map-container">
                 @RenderSection("featured", required: false)
                 @RenderBody()
+            <img src="~/Content/Images/fila_logo_transparent.png" id="filalogo" />
         </div>
             @*Html.Partial("_NavigationPartialFixed")*@
     

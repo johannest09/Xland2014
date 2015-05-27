@@ -11,6 +11,8 @@
 
 html, body {
     width: 100%; height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .frontpage #wrap > .row {
@@ -22,6 +24,13 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+#map-container #filalogo {
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+}
+
 #wrap {
     max-width: 1200px;
     min-height: 100%;
@@ -162,6 +171,7 @@ div.cs-select {
     }
 
     .about-content {
+        
         padding: 20px 40px;
         position: relative;
         height: 100%;
@@ -175,8 +185,12 @@ div.cs-select {
                 background-color: #000;
             }
         }
+        .lang { display: none; }
     }
 }
+
+.is-is #about .about-content .lang.is { display: block; }
+.en-us #about .about-content .lang.en { display: block; } 
 
 .close-project, span.nav-close {
     position: relative;
@@ -264,23 +278,21 @@ body.slideshow-active {
     background-color: rgba(0,0,0,0.65);
     .clearfix;
 
+    -webkit-animation-duration: 400ms;
+    animation-duration: 400ms;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+
+
     &.open {
-        -webkit-animation-duration: 400ms;
-        animation-duration: 400ms;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
         -webkit-animation-name: zoomIn;
         animation-name: zoomIn;
         z-index: 100;
     }
 
     &.closed {
-        -webkit-animation-duration: 250ms;
-        animation-duration: 250ms;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        -webkit-animation-name: zoomOut;
-        animation-name: zoomOut;
+        //-webkit-animation-name: zoomOut;
+        //animation-name: zoomOut;
     }
        
     .container-fluid {
@@ -535,6 +547,9 @@ body.project {
     }
     #projectContainer .container-fluid { background: transparent; }
 
+    #map-container #filalogo {
+        display: none;
+    }
 }
 
 /* tablet */

@@ -205,7 +205,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Framkvæmdartími.
+        ///   Looks up a localized string similar to Framkvæmdatími.
         /// </summary>
         public static string ExecutionTime {
             get {

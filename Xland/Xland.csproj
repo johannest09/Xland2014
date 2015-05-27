@@ -424,6 +424,7 @@
     <Content Include="Content\fonts\futura\FuturaLT.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\gear.svg" />
+    <Content Include="Content\Images\fila_logo_transparent.png" />
     <Content Include="Content\Images\preloader_10.gif" />
     <Content Include="Content\Images\Preloader_5.gif" />
     <Content Include="Content\less\admin.css">

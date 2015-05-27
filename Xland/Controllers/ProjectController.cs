@@ -163,8 +163,11 @@ namespace Xland.Controllers
                     foreach (var v in videos)
                     {
                         string descr = isEnglish == true ? v.DescriptionEN : v.DescriptionIS;
+                        if (v.Path != null)
+                        {
+                            v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1);
+                        }
                         var vvm = new VideoViewModel(v, descr);
-                        v.Path = "http://" + Request.Url.Authority + v.Path.Substring(1);
                         vvmList.Add(vvm);
                     }
 
