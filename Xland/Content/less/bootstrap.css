@@ -6783,6 +6783,16 @@ body.frontpage .admin-bar {
 body.project-open {
   overflow: hidden;
 }
+.error-page {
+  margin-top: 100px;
+  font-size: 16px;
+}
+.error-page h2 {
+  font-size: 24px;
+}
+.error-page ul {
+  list-style: disc;
+}
 h2 {
   margin-bottom: 20px;
 }
@@ -6875,7 +6885,8 @@ div.cs-select.disabled {
 *************************************/
 #about {
   height: 100%;
-  background-color: #dae8e6;
+  height: calc(100% - 55px);
+  background-color: #F5F4EE;
   z-index: 0;
   position: fixed;
   top: 55px;
@@ -6898,6 +6909,11 @@ div.cs-select.disabled {
   position: relative;
   height: 100%;
   overflow-y: auto;
+  font-size: 15px;
+  font-weight: 500;
+}
+#about .about-content a {
+  font-weight: 600;
 }
 #about .about-content .nav-close {
   position: absolute;
@@ -6995,14 +7011,11 @@ span.nav-close::after {
 .admin .container {
   padding-bottom: 40px;
 }
-.infowindow {
-  width: 150px;
-}
-.infowindow .marker-image {
-  margin-bottom: 10px;
-}
-.infowindow h2 {
-  font-size: 16px;
+.infowindow a {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px;
 }
 body.slideshow-active #projectContainer {
   overflow: hidden !important;
@@ -7096,10 +7109,11 @@ body.slideshow-active #projectContainer {
   margin-bottom: 8px;
   text-transform: uppercase;
   padding-left: 5px;
+  padding: 1px 6px;
 }
 #projectContainer .container-fluid #project-info dl dd {
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   margin-bottom: 10px;
 }
 #projectContainer .container-fluid #project-info .fa-file-text-o {
@@ -7256,6 +7270,46 @@ body.project .slideshow .item {
   margin-top: 0;
   margin-bottom: 20px;
 }
+/************************************
+    CS select additional styling
+*************************************/
+.cs-select li {
+  color: #fff;
+}
+.cs-select li span {
+  background: none;
+  color: #fff;
+}
+.cs-select li[data-value="0"] {
+  background-color: #F26522;
+  color: #fff;
+}
+.cs-select li[data-value="0"] span:hover {
+  background-color: #f26522;
+}
+a.cs-select li[data-value="0"] span:hover:hover {
+  background-color: #d44d0d;
+}
+.cs-select li[data-value="1"] {
+  background-color: #57AA9B;
+  color: #fff;
+}
+.cs-select li[data-value="2"] {
+  background-color: #8E76B5;
+  color: #fff;
+}
+.cs-select li[data-value="3"] {
+  background-color: #D48B28;
+  color: #fff;
+}
+.cs-select li[data-value="4"] {
+  background-color: #374351;
+  color: #fff;
+}
+.cs-select li[data-value="5"] {
+  background-color: #374351;
+  color: #fff;
+}
 @media (min-width: 1199px) {
   .main-content {
     min-height: 700px;
@@ -7263,11 +7317,6 @@ body.project .slideshow .item {
 }
 @media (min-width: 767px) {
   .close-project-mobile {
-    display: none;
-  }
-}
-@media (max-width: 1199px) {
-  #map-container #filalogo {
     display: none;
   }
 }
@@ -7298,6 +7347,9 @@ body.project .slideshow .item {
   }
   #projectContainer .container-fluid {
     background: transparent;
+  }
+  #map-container #filalogo {
+    display: none;
   }
 }
 /* tablet */

@@ -7,8 +7,8 @@
  */
 var clientWidth = document.documentElement.clientWidth;
 var defaultZoom = clientWidth > 768 ? 7 : 6;
-var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
-//var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
+//var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
+var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
 var infowindow;
 var markerList = {};
 var mapStyle = "/mapstyle.js";
@@ -36,7 +36,7 @@ var xland = {
         // Map config
         var myOptions = {
             center: defaultLatlng,
-            zoom: 14,
+            zoom: 7,
             panControl: true,
             zoomControl: true,
             streetViewControl: false,
@@ -140,22 +140,7 @@ var xland = {
     showInfoWindow: function (markerId) {
         var marker = markerList[markerId];
 
-        /*
-        $.getJSON('/home/GetMarkerInfo/' + markerId, function (data) {
-
-            var photo = '';
-            if (data['MainPhoto'] !== undefined) {
-                photo = '<img src="' + data['MainPhoto'].substring(1) + '?w=150&h=150&mode=carve" class="marker-image" />';
-            }
-            
-            var html = '<div class="infowindow"><h2>' + data['Title'] + '</h2>' + photo + '<a href="/Project/Info/' + markerId + '"' + ' title="Nánar">Nánar</a></div>';
-
-            infowindow.setContent(html);
-            infowindow.open(map, marker);
-        });
-        */
-
-        var html = '<div class="infowindow"><h2><a href="/Project/Info/' + markerId + '" data-id="' + markerId + '">' + marker['title'] + '</a></h2></div>';
+        var html = '<div class="infowindow"><a href="/Project/Info/' + markerId + '" data-id="' + markerId + '">' + marker['title'] + '</a></div>';
 
         infowindow.setContent(html);
         infowindow.open(map, marker);

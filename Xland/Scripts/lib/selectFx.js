@@ -273,8 +273,11 @@
 		var opt = this.selOpts[ this.current ];
 
 		// update current selected value
-	    this.selPlaceholder.textContent = opt.textContent;
-		
+		this.selPlaceholder.textContent = opt.textContent;
+        
+		var color = $(opt).css("background-color");
+
+		$(this.selPlaceholder).css({ "background": color, "border-color": color });
 		// change native select element´s value
 		this.el.value = opt.getAttribute( 'data-value' );
 

@@ -93,7 +93,7 @@ namespace Xland.Controllers
             return RedirectToAction("Index", "Home", new { id = id });
         }
 
-        //[OutputCache(Duration = 3600, VaryByParam = "none")]
+        [OutputCache(Duration = 3600, VaryByParam = "none")]
         public string Info2(int? id)
         {
             if (id == null)

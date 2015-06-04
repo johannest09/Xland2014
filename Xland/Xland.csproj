@@ -298,6 +298,7 @@
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\PhotoGalleryController.cs" />
@@ -462,6 +463,12 @@
     </Content>
     <Content Include="Content\less\mixins\animations.min.css">
       <DependentUpon>animations.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\background-variant.css">
+      <DependentUpon>background-variant.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\mixins\background-variant.min.css">
+      <DependentUpon>background-variant.less</DependentUpon>
     </Content>
     <Content Include="Content\less\mixins\clearfix.css">
       <DependentUpon>clearfix.less</DependentUpon>
@@ -996,7 +1003,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config">
@@ -1041,12 +1048,13 @@
     <Content Include="Views\Shared\_Layout_Project.cshtml" />
     <Content Include="Views\Project\Info.cshtml" />
     <Content Include="Views\Shared\_Layout_Login.cshtml" />
-    <Content Include="Views\Shared\404.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\VideoGallery\Create.cshtml" />
     <Content Include="Views\VideoGallery\Delete.cshtml" />
     <Content Include="Views\VideoGallery\Details.cshtml" />
     <Content Include="Views\VideoGallery\Edit.cshtml" />
     <Content Include="Views\VideoGallery\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout_Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

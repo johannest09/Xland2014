@@ -60,6 +60,13 @@ body {
     }
 }
 
+.error-page {
+    margin-top: 100px;
+    font-size: 16px;
+    h2 { font-size: 24px; }
+    ul { list-style: disc; }
+}
+
 h2 { margin-bottom: 20px; }
 a {
     cursor: pointer;
@@ -149,7 +156,8 @@ div.cs-select {
 
 #about { // modal
     height: 100%;
-    background-color: #dae8e6;
+    height: ~"calc(100% - 55px)";
+    background-color: #F5F4EE;
     z-index: 0;
     position: fixed;
     top: 55px;
@@ -176,6 +184,11 @@ div.cs-select {
         position: relative;
         height: 100%;
         overflow-y: auto;
+        font-size: 15px;
+        font-weight: 500;
+        a {
+            font-weight: 600;
+        }
         .nav-close {
             position: absolute;
             right: 20px;
@@ -257,9 +270,12 @@ span.nav-close {
 }
 
 .infowindow {
-    width: 150px;
-    .marker-image { margin-bottom: 10px; }
-    h2 { font-size: 16px; }
+    a {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 10px;
+    }
 }
 
 body.slideshow-active {
@@ -332,7 +348,6 @@ body.slideshow-active {
                 font-size: 15px;
                 text-transform: uppercase;
                 margin-top: 0;
-                //border-bottom: 1px dotted #364251;
 
             }
             .project-type {
@@ -354,12 +369,12 @@ body.slideshow-active {
                     margin-bottom: 8px;
                     text-transform: uppercase;
                     padding-left: 5px;
+                    padding: 1px 6px;
                 }
                 dd {
-                    font-size: 12px;
-                    font-weight: 300;
+                    font-size: 14px;
+                    font-weight: 400;
                     margin-bottom: 10px;
-                    //color: rgba(255,255,255,0.7);
                 }
             }
             .fa-file-text-o {
@@ -512,6 +527,29 @@ body.project {
     }
 
 }
+
+/************************************
+    CS select additional styling
+*************************************/
+
+.cs-skin-underline .cs-options {
+    li {
+        color: #fff;
+        span { 
+            background: none; 
+            color: #fff; 
+           &:hover { color: #fff; }
+        }
+        &.cs-selected span { color: #fff; }
+    }
+    li[data-value="0"] { .bg-variant(#F26522); }
+    li[data-value="1"] { .bg-variant(#57AA9B); }
+    li[data-value="2"] { .bg-variant(#8E76B5); }
+    li[data-value="3"] { .bg-variant(#D48B28); }
+    li[data-value="4"] { .bg-variant(#838383); }
+    li[data-value="5"] { .bg-variant(#838383); }
+}
+
 
 @media (min-width: @screen-md-max) {
 
