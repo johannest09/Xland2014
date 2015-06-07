@@ -20,10 +20,10 @@ namespace Xland.Models
         [Display(Name = "ContactPerson", ResourceType = typeof(Resources.Resources))]
         public string ContactPerson { get; set; }
 
-        [Display(Name = "ProjectStarted", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM/yyyy}")]
+        [Display(Name = "ProjectStarted", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime ProjectBeginDate { get; set; }
 
-        [Display(Name = "ProjectFinished", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{MM/yyyy}")]
+        [Display(Name = "ProjectFinished", ResourceType = typeof(Resources.Resources)), DataType(DataType.DateTime), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime ProjectEndDate { get; set; }
 
         [Display(Name = "ProjectStatus", ResourceType = typeof(Resources.Resources))]
