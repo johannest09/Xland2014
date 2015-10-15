@@ -278,6 +278,13 @@
 		var color = $(opt).css("background-color");
 
 		$(this.selPlaceholder).css({ "background": color, "border-color": color });
+
+		//var rgbColorArr = color.substring(4, color.length - 1).replace(/ /g, '').split(',');
+
+	    // Change the whole navbar color
+		//$(".navbar").css("background", "rgba(" + rgbColorArr[0] + "," + rgbColorArr[1] + "," + rgbColorArr[2] + ", 70% )");
+		//$(".navbar").css("border-bottom-color", color);
+
 		// change native select element´s value
 		this.el.value = opt.getAttribute( 'data-value' );
 

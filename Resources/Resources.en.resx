@@ -120,6 +120,44 @@
   <data name="AboutXland" xml:space="preserve">
     <value>About Xland</value>
   </data>
+  <data name="AboutXlandText" xml:space="preserve">
+    <value>&lt;h1&gt;About Xland&lt;/h1&gt;
+                    &lt;p&gt;
+                        XLAND is a live portal that offers you, your family and friends on a journey through well-designed 
+                        public spaces. XLAND was established in connection with DesignMarch 2013, marking the first 
+                        interactive exhibition held by the Association of Icelandic Landscape Architects (FÍLA), where 
+                        landscape architecture in the capital area was put on the map, literally. XLAND refers to the site‘s 
+                        main objective: to mark with an X and draw attention to well-designed and attractive public spaces across Iceland.
+                    &lt;/p&gt;
+                    &lt;p&gt;
+                        The works are located on an interactive map of Iceland. Clicking on any work opens up a gateway 
+                        communicating the design through photographs, drawings, graphic sketches, videos and text, 
+                        allowing you to get up close and personal with the designers and the thought that lies behind the 
+                        public spaces in your immediate environment. The website is also a welcome addition to the 
+                        recreative arena of the country, where you can look up the public spaces you‘re in on the go, on your 
+                        tablet, phone, etc.
+                    &lt;/p&gt;
+                    &lt;h2&gt;Who‘s behind Xland?&lt;/h2&gt;
+                    &lt;p&gt;
+                        Three landscape architects, members of FÍLA, in collaboration with a graphic designer and programmer organised and realised XLAND.is at DesignMarch 2013:
+                    &lt;/p&gt;
+                    &lt;ul&gt;
+                        &lt;li&gt;Björk Guðmundsdóttir &lt;a href="http://www.landsvirkjun.is"&gt;www.landsvirkjun.is&lt;/a&gt;, landscape architect at Landsvirkjun&lt;/li&gt;
+                        &lt;li&gt;Heiða Aðalsteinsdóttir &lt;a href="http://www.alta.is/starfsfolk/heidha-adhalsteinsdottir"&gt;www.alta.is/starfsfolk/heidha-adhalsteinsdottir&lt;/a&gt;, landscape architect at Alta Ltd.&lt;/li&gt;
+                        &lt;li&gt;Svava Þorleifsdóttir &lt;a href="http://landslag.is/starfsfolk/svava-thorleifsdottir"&gt;www.landslag.is/starfsfolk/svava-thorleifsdottir&lt;/a&gt;, landscape architect at Landslag Ltd.&lt;/li&gt;
+                    &lt;/ul&gt;
+                    &lt;p&gt;Jóhannes Freyr Þorleifsson, graphic designer and web programmer managed the layout and design of the website interface.&lt;/p&gt;
+                    &lt;p&gt;
+                        The team was granted a fund from Aurora Design Fund for further development of the website. 
+                        Heiða, Svava and Jóhannes Freyr have been working on the new website launching in spring 2015.
+                        It is our hope that the XLAND.is will keep developing and collecting well-designed spaces accross 
+                        Iceland. We would like to extend our gratitude to Einar E. Sæmundsson, landscape architect at 
+                        Landmótun and Samson B. Harðarson, assistant professor at the Agricultural University of Iceland for 
+                        their assistance with the historical projects. We would also like to thank Aurora Design Fund for 
+                        enabling us to develop the website further and finally everyone who was involved in the project by 
+                        submitting a work. This would never have been possible without you.
+                    &lt;/p&gt;</value>
+  </data>
   <data name="Affiliations" xml:space="preserve">
     <value>Affiliations</value>
   </data>
@@ -167,6 +205,9 @@
   </data>
   <data name="ExecutionTime" xml:space="preserve">
     <value>Execution Period</value>
+  </data>
+  <data name="FacebookShare" xml:space="preserve">
+    <value>Share on facebook</value>
   </data>
   <data name="GeneralInformation" xml:space="preserve">
     <value>General Information</value>

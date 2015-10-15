@@ -134,7 +134,7 @@ div.cs-select {
             display: block;
             margin-left: 0px !important;
             margin-right: 20px;
-            color: #82cdc4;
+            color: #fff;
             .transition(background 200ms linear);
             &:hover { .transition(background 200ms linear); }
         }
@@ -142,7 +142,7 @@ div.cs-select {
             position: relative;
             span {
                 display: block;
-                color: #82CDC4;
+                color: #fff;
                 font-size: 17px;
                 margin-top: 20px;
             }
@@ -175,11 +175,9 @@ div.cs-select {
         animation-name: zoomIn;
         z-index: 100;
         opacity: 1;
-
     }
 
     .about-content {
-        
         padding: 20px 40px;
         position: relative;
         height: 100%;
@@ -198,12 +196,8 @@ div.cs-select {
                 background-color: #000;
             }
         }
-        .lang { display: none; }
     }
 }
-
-.is-is #about .about-content .lang.is { display: block; }
-.en-us #about .about-content .lang.en { display: block; } 
 
 .close-project, span.nav-close {
     position: relative;
@@ -428,6 +422,15 @@ body.slideshow-active {
             float: left;
             margin-right: 25px;
             &.sm-pinterest { margin-right: 0; }
+            #fb-share {
+                padding: 4px 13px;
+                background-color: #3b5998;
+                color: #fff;
+                cursor: pointer;
+                margin-top: -5px;
+                i { margin-right: 10px; }
+            }
+            
         }
     }
 

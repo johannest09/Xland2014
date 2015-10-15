@@ -75,7 +75,7 @@ namespace Xland.Controllers
         {
             var markerInfo =
                (from p in projectService.GetProjects()
-                where p.ID == id
+                where p.ID == id && p.IsVisible == true
                 select new { p.ID, p.Title }).SingleOrDefault();
 
             var mainPhotoPath = projectService.GetProjectGalleryMainPhotoPath(id);

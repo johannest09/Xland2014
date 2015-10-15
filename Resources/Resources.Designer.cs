@@ -70,6 +70,20 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;h1&gt;Hvað er Xland?&lt;/h1&gt;
+        ///                    &lt;p&gt;
+        ///                        XLAND er lifandi gátt sem býður þér, fjölskyldu þinni og vinum í ferðalag um vel hönnuð 
+        ///                        almenningsrými. XLAND var komið á fót í tengslum við Hönnunarmars 2013, þegar Félag íslenskra 
+        ///                        landslagsarkitekta stóð fyrir fyrstu gagnvirku sýningunni þar sem verkum landslagsarkitekta á 
+        ///                        höfuðborgarsvæðinu var komið á kortið í bókstaflegum skilningi. Nafnið XLAND vísar t [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AboutXlandText {
+            get {
+                return ResourceManager.GetString("AboutXlandText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Samstarfsaðilar.
         /// </summary>
         public static string Affiliations {
@@ -210,6 +224,15 @@ namespace Resources {
         public static string ExecutionTime {
             get {
                 return ResourceManager.GetString("ExecutionTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deila á facebook.
+        /// </summary>
+        public static string FacebookShare {
+            get {
+                return ResourceManager.GetString("FacebookShare", resourceCulture);
             }
         }
         

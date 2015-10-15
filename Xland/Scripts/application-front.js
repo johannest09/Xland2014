@@ -10,6 +10,8 @@ var App = {
         this.ProjectInfoData(id);
     },
 
+    CurrentProject: {},
+
     Language: {
 
         Init: function () {
@@ -26,6 +28,19 @@ var App = {
     },
 
     ProjectInfoData: function (id) {
+
+        function cutText(text) {
+            if (text.length > 200) {
+                return text.substring(0, 200) + "...";
+            } else {
+                return text;
+            }
+                
+        }
+
+        function stripHtml(html) {
+            return html.replace(/<(?:.|\n)*?>/gm, '');
+        }
         
         if (id) {
             $("#preload").show();
@@ -40,18 +55,73 @@ var App = {
 
                     $("#projectContainer .container-fluid").html(rendered);
 
-                    window.setTimeout(function () {
+                    imagesLoaded($("#grid-gallery"), function () {
+
+                        App.Plugins.CBPGridGalleryInit();
+
                         $("#preload").hide();
                         $("body").addClass("project-open");
                         $("#projectContainer").removeClass("closed").addClass("open");
                         $("div.cs-select").addClass("disabled");
-                        App.Plugins.CBPGridGalleryInit();
-                    }, 800);
-
+                    });
                     
                     // Facebook
+                    
+                    var project = data.responseJSON;
+                    var mainPhoto = project.Photos[0].Photo.Path; // If no main photo, take the first
+
+                    $(project.Photos).each(function (i, item) {
+                        $(item).each(function (iphoto, photo) {
+                            if (photo.Photo.IsMainPhoto) {
+                                mainPhoto = photo.Photo.Path;
+                            }
+                        });
+                    });
+
+                    var firstPart = mainPhoto.substring(0, mainPhoto.lastIndexOf("/") + 1);
+                    var lastPart = mainPhoto.substring(mainPhoto.lastIndexOf("/") + 1, mainPhoto.length);
+
+                    var URIEncodedPhotoPath = firstPart + encodeURIComponent(lastPart);
+
+                    App.CurrentProject = {
+                        ID: id,
+                        Title: project.Project.Title,
+                        Description: project.Project.Description,
+                        Photo: URIEncodedPhotoPath
+                    }
+
+                    FB.init({
+                        appId: '623955561080687',
+                        xfbml: true,
+                        version: 'v2.4'
+                    });
+                    
+                    $("#fb-share").off("click").on("click", function () {
+                        if (App.CurrentProject.Photo) {
+                            FB.ui(
+                                {
+                                    method: "feed",
+                                    link: window.location.href + 'Project/Info/' + id,
+                                    caption: App.CurrentProject.Title,
+                                    description: cutText(stripHtml(App.CurrentProject.Description)),
+                                    picture: App.CurrentProject.Photo
+                                },
+                                function (response) { }
+                            );
+                        } else {
+                            FB.ui(
+                                {
+                                    method: "feed",
+                                    link: window.location.href + 'Project/Info/' + id,
+                                    caption: title,
+                                    description: cutText(stripHtml(App.CurrentProject.Description)),
+                                },
+                                function (response) { }
+                            );
+                        }
+                    });
+
                     FB.XFBML.parse();
-                    $(".fb-like").attr("data-href", window.location.href + "Project/Info/" + id);
 
                     // Twitter
                     twttr.widgets.createShareButton(
@@ -63,7 +133,7 @@ var App = {
                       });
 
                     // Pinterest
-                    window.parsePinBtns(document.getElementById('#pinterest-button'));
+                    //window.parsePinBtns(document.getElementById('#pinterest-button'));
                 }
 
                 $(".close-project").off("click").on("click", function () {
@@ -145,15 +215,12 @@ selectChanged = function (e) {
     if (e == "undefined" || e == "")
         return;
 
-    var category = parseInt(e);
-
-    xland.showCategory(category);
+    xland.showCategory(parseInt(e));
 }
 
 $(document).ready(function () {
 
     var id = $("#pid").val();
-
     App.Init(id);
 
 });

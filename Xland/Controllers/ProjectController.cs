@@ -233,8 +233,6 @@ namespace Xland.Controllers
                 return HttpNotFound();
             }
 
-
-
             return View(project);
         }
 

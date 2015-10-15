@@ -762,6 +762,9 @@
     <Content Include="Content\less\mixins\custom-functions.less" />
     <Content Include="Content\less\mixins\animations.less" />
     <None Include="Properties\PublishProfiles\xland %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\xland-throun %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\xland-throun %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\xland-throun %284%29.pubxml" />
     <None Include="Properties\PublishProfiles\xland-throun.pubxml" />
     <None Include="Properties\PublishProfiles\Xland.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />

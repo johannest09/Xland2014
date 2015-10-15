@@ -27,6 +27,7 @@ namespace Xland
 
             Bootstrapper.Initialise();
             Bootstrapper.ConfigureAutoMapper();
+
         }
     }
 }

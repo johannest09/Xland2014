@@ -6,7 +6,7 @@
  * @copyright (c) 2014
  */
 var clientWidth = document.documentElement.clientWidth;
-var defaultZoom = clientWidth > 768 ? 7 : 6;
+var defaultZoom = clientWidth > 768 ? 7 : 5;
 //var defaultLatlng = new google.maps.LatLng(64.152123, -21.816328);
 var defaultLatlng = new google.maps.LatLng(64.963051, -19.020835);
 var infowindow;
@@ -36,7 +36,7 @@ var xland = {
         // Map config
         var myOptions = {
             center: defaultLatlng,
-            zoom: 7,
+            zoom: defaultZoom,
             panControl: true,
             zoomControl: true,
             streetViewControl: false,
@@ -150,11 +150,14 @@ var xland = {
     showCategory: function (category) {
         for (id in markerList) {
             if (category == 4) { // recently added
-                // Check date
+                // Get project created date
                 var date = new Date(parseInt(markerList[id].dateUpdated.substr(6)));
-                var timestamp = new Date().getTime() + (30 * 24 * 60 * 60 * 1000)
-        
-                if (date.getTime() < 0 || date.getTime() > timestamp) { // Last 30 days projects
+
+                // Current date - 30 days
+                var pastMonth = new Date().getTime() - (30 * 24 * 60 * 60 * 1000)
+
+                // If project date is less than 30 days back date then we hide it
+                if (date.getTime() < 0 || date.getTime() < pastMonth) { // Last 30 days projects
                     markerList[id].setMap(null);
                 } else {
                     markerList[id].setMap(map);
